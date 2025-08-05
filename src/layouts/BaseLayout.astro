@@ -124,24 +124,19 @@ const languagesForSelector: Array<LanguageSelectorItem> =
         ) {
           return localStorage.getItem('theme');
         }
-        if (
-          window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-        ) {
-          return 'dark';
-        }
-        return 'light';
+        return 'dark'; // Force dark as default
       };
       const theme = getInitialTheme();
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
       }
-      // Ensure localStorage is consistent if theme was derived from prefers-color-scheme
-      // or if localStorage was empty.
       if (typeof localStorage !== 'undefined') {
         localStorage.setItem('theme', theme);
       }
     </script>
+    
     <title>{pageTitle || tSite('title')}</title>
 
     {/* Font, for example Google Fonts - to adapt according to your choices */}
