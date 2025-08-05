@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    
     "@hookform/resolvers": "^5.0.1",
     "@nanostores/react": "^1.0.0",
     "@radix-ui/react-accordion": "^1.2.11",
@@ -31,21 +30,22 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@react-email/components": "^0.0.41",
     "@tailwindcss/vite": "^4.1.7",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
-    
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.11",
+
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "date-fns": "^4.1.0",
+    "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.511.0",
     "mermaid": "^11.6.0",
     "nanostores": "^1.0.1",
     "next-themes": "^0.4.6",
-    "react": "^19.1.0",
+
+    "react": "^18.2.0",
     "react-day-picker": "8.10.1",
-    "react-dom": "^19.1.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.56.4",
     "react-icons": "^5.5.0",
     "reading-time": "^1.5.0",
