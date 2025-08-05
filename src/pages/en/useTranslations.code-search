@@ -1,0 +1,49 @@
+# Query: useTranslations
+# ContextLines: 1
+
+10 results - 5 files
+
+src/features/blog/components/TableOfContents.astro:
+   8  } from '@/components/ui/card.tsx';
+   9: import { useTranslations, type LanguageCode } from '@/i18n/ui';
+  10  import { cn } from '@/lib/utils';
+
+  26  
+  27: const t = useTranslations(lang, 'toc');
+  28  const componentTitle = t('title');
+
+src/features/tips/components/TipCard.astro:
+   9  } from '@/components/ui/card';
+  10: import { useTranslations, type LanguageCode } from '@/i18n/ui';
+  11  import { formatDate } from '@/lib/utils';
+
+  22  const { tip, lang } = Astro.props;
+  23: const t = useTranslations(lang, 'tipsPage');
+  24  ---
+
+src/features/tips/layouts/TipLayout.astro:
+   3  import { buttonVariants } from '@/components/ui/button';
+   4: import { useTranslations } from '@/i18n/ui';
+   5  import BaseLayout from '@/layouts/BaseLayout.astro';
+
+  18  const lang = tip.data.lang || 'fr';
+  19: const t = useTranslations(lang, 'tipsPage');
+  20  
+
+src/features/tips/screens/AllTipsScreen.astro:
+   5  import TipCard from '@/features/tips/components/TipCard.astro';
+   6: import { useTranslations, type LanguageCode } from '@/i18n/ui';
+   7  import BaseLayout from '@/layouts/BaseLayout.astro';
+
+  16  const { tips, lang } = Astro.props;
+  17: const t = useTranslations(lang, 'tipsPage');
+  18  const featuredTips = tips.filter((tip) => tip.data.featured);
+
+src/pages/en/contact.astro:
+  2  import { ContactScreen } from '@/features/contact';
+  3: import { useTranslations, type LanguageCode } from '@/i18n/ui';
+  4  import BaseLayout from '@/layouts/BaseLayout.astro';
+
+  6  const lang = 'en';
+  7: const t = useTranslations(lang, 'contactPage');
+  8  
