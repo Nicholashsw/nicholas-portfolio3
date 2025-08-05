@@ -62,7 +62,7 @@ export function BlogFilters({
   onSearchChange,
   onTagChange,
 }: BlogFiltersProps) {
-  // searchQuery and selectedTagValue are now managed by the parent (FilteredPostsList)
+  // searchQuery and selectedTagValue are now managed by the parent ()
   // currentSearchQuery and currentTag are the initial/active values passed as props
   const [internalSearchQuery, setInternalSearchQuery] =
     React.useState(currentSearchQuery);

@@ -7,20 +7,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { useTranslations, type LanguageCode } from '@/i18n/ui';
 import { formatDate } from '@/lib/utils';
 
 import type { CollectionEntry } from 'astro:content';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Calendar, ChevronRight } from 'lucide-react';
 
 interface Props {
   tip: CollectionEntry<'tips'>;
-  lang: LanguageCode;
 }
 
-const { tip, lang } = Astro.props;
-const t = useTranslations(lang, 'tipsPage');
+const { tip } = Astro.props;
 ---
 
 <Card
@@ -30,12 +26,13 @@ const t = useTranslations(lang, 'tipsPage');
   <div class="absolute top-4 right-4 z-10">
     <Badge variant="outline">💡 TIP</Badge>
   </div>
+
   <CardHeader className="row-span-1 pb-4 flex flex-col justify-between">
     <CardTitle
       className="text-xl font-semibold group-hover:text-primary transition-colors pr-12"
     >
       <a
-        href={getRelativeLocaleUrl(lang, `/tips/${tip.id}/`)}
+        href={`/tips/${tip.id}/`}
         class="hover:underline"
       >
         {tip.data.title}
@@ -46,7 +43,7 @@ const t = useTranslations(lang, 'tipsPage');
       <div class="flex items-center gap-1">
         <Calendar className="size-4" />
         <time datetime={tip.data.pubDate.toISOString()}>
-          {formatDate(tip.data.pubDate, lang)}
+          {formatDate(tip.data.pubDate)}
         </time>
       </div>
       {
@@ -74,10 +71,10 @@ const t = useTranslations(lang, 'tipsPage');
       class="flex items-center justify-between w-full border-t border-border/50 pt-4"
     >
       <a
-        href={getRelativeLocaleUrl(lang, `/tips/${tip.id}/`)}
+        href={`/tips/${tip.id}/`}
         class="flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors group/link"
       >
-        {t('readTip')}
+        Read Tip
         <ChevronRight
           className="ml-1 size-4 transition-transform group-hover/link:translate-x-0.5"
         />
@@ -92,9 +89,8 @@ const t = useTranslations(lang, 'tipsPage');
     </div>
   </CardContent>
 
-  <!-- Effect hover  -->
+  <!-- Effect hover -->
   <div
     class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl"
-  >
-  </div>
+  />
 </Card>
