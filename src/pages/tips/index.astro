@@ -1,0 +1,16 @@
+---
+import AllTipsScreen from '@/features/tips/screens/AllTipsScreen.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'en';
+
+const allTips = await getCollection('tips', ({ data, id }) => {
+  return data.isDraft !== true && id.startsWith(`en/`);
+});
+
+const sortedTips = allTips.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<AllTipsScreen tips={sortedTips} lang={lang} />
