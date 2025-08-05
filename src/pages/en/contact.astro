@@ -1,43 +1,41 @@
 ---
 import { ContactScreen } from '@/features/contact';
-import { useTranslations, type LanguageCode } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const lang = 'en';
-const t = useTranslations(lang, 'contactPage');
 
 const pageMeta = {
-  title: t('pageTitle'),
-  description: t('pageDescription'),
+  title: 'Contact Me',
+  description: "Let's discuss your project, a potential collaboration, or just chat about tech!",
 };
 
 const formTranslations = {
-  firstNameLabel: t('firstNameLabel'),
-  lastNameLabel: t('lastNameLabel'),
-  emailLabel: t('emailLabel'),
-  messageLabel: t('messageLabel'),
-  firstNamePlaceholder: t('firstNamePlaceholder'),
-  lastNamePlaceholder: t('lastNamePlaceholder'),
-  emailPlaceholder: t('emailPlaceholder'),
-  messagePlaceholder: t('messagePlaceholder'),
-  sendButtonLabel: t('sendButtonLabel'),
-  toastSuccessMessageSent: t('toastSuccessMessageSent'),
-  toastErrorFailedToSend: t('toastErrorFailedToSend'),
-  toastErrorUnexpected: t('toastErrorUnexpected'),
-  toastErrorDetails: t('toastErrorDetails'),
-  toastErrorValidationFailed: t('toastErrorValidationFailed'),
+  firstNameLabel: 'First Name',
+  lastNameLabel: 'Last Name',
+  emailLabel: 'Email',
+  messageLabel: 'Message',
+  firstNamePlaceholder: 'Your first name',
+  lastNamePlaceholder: 'Your last name',
+  emailPlaceholder: 'Your email address',
+  messagePlaceholder: 'Your message here...',
+  sendButtonLabel: 'Send',
+  toastSuccessMessageSent: 'Message sent successfully!',
+  toastErrorFailedToSend: 'Failed to send message.',
+  toastErrorUnexpected: 'An unexpected error occurred.',
+  toastErrorDetails: 'Error details:',
+  toastErrorValidationFailed: 'Form validation failed.',
 };
 
 const layoutProps = {
   lang,
   mainHeadingTitle: pageMeta.title,
-  mainHeadingDescription: t('description'),
-  formTitle: t('formTitle'),
+  mainHeadingDescription: pageMeta.description,
+  formTitle: 'Send a message',
   formTranslations,
-  orSeparatorText: t('orSeparatorText'),
-  calendarTitle: t('calendarTitle'),
-  calendarDescription: t('calendarDescription'),
-  calendarLinkLabel: t('calendarLinkLabel'),
+  orSeparatorText: 'OR',
+  calendarTitle: 'Schedule a Meeting',
+  calendarDescription: 'Prefer to talk live? Book a slot directly in my calendar.',
+  calendarLinkLabel: 'See my calendar',
   calendarUrl: import.meta.env.PUBLIC_GOOGLE_CALENDAR_URL,
 };
 ---
