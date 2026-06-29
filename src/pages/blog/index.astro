@@ -9,7 +9,7 @@ const tBlog = (key: keyof typeof ui[typeof lang]['blogPage']) => ui[lang].blogPa
 const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection(
   'blog',
   ({ data, id }) => {
-    return data.isDraft !== true && id.startsWith('fr/');
+    return data.isDraft !== true && id.startsWith('en/');
   }
 );
 

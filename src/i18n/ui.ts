@@ -151,6 +151,11 @@ export const ui = {
       tips: 'Tips',
       contact: 'Contact',
     },
+    skillsContent: {
+      languages: { title: 'Languages', description: '' },
+      quantitative: { title: 'Quantitative', description: '' },
+      tools: { title: 'Tools', description: '' },
+    },
     projectsContent: {
       sgxMultifactorFyp: {
         title: "Multi-Factor Equity Strategy — SGX",
@@ -231,7 +236,9 @@ export const ui = {
         dateText: "March 2026",
         detailedDescription: `A C++20 event-driven market-making and execution engine: limit order book, order management, a pre-trade risk gate with kill switch, and an exchange simulator, on a fully deterministic single-queue event loop. 28 unit tests, ~109 assertions. Against a random-walk feed the sample run loses money by design, to adverse selection, which is the point: it's the engine and the microstructure that are the work, not a tuned PnL.`,
         keyFeatures: {},
-        galleryImages: {},
+        galleryImages: {
+          architecture: { alt: "lowlat-mm engine architecture", caption: "Event-driven module pipeline: market data, order book, strategy, OMS, risk, simulator, backtest" },
+        },
         challenges: `Designing clean module boundaries (book / OMS / risk / simulator), keeping the event loop deterministic, and modelling fills and latency realistically.`,
         learnings: `Market microstructure, low-latency systems design in C++, and how adverse selection punishes a naive quoting strategy.`,
       },

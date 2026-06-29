@@ -3,7 +3,9 @@ import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import {
   PortfolioScreen,
   getTranslatedProjects,
+  getTranslatedSkills,
   type TranslatedProject,
+  type TranslatedSkill,
 } from '@/features/projects';
 
 // Set lang to 'en' and remove any logic for French/fr
@@ -14,10 +16,12 @@ const pageTitle = ui[lang]?.indexPage?.pageTitle ?? 'Home';
 const pageDescription = ui[lang]?.indexPage?.description ?? '';
 
 const projects: Array<TranslatedProject> = getTranslatedProjects(lang);
+const skills: Array<TranslatedSkill> = getTranslatedSkills(lang);
 
 const layoutProps = {
   lang,
   projects,
+  skills,
   heroGreeting: t('heroGreeting'),
   heroSubtitlePart1: t('heroSubtitlePart1'),
   heroSubtitlePart2: t('heroSubtitlePart2'),
@@ -27,6 +31,8 @@ const layoutProps = {
   imageNotAvailable: t('imageNotAvailable'),
   featuredProjectsTitle: t('featuredProjectsTitle'),
   featuredProjectsDescription: t('featuredProjectsDescription'),
+  mySkillsTitle: t('mySkillsTitle'),
+  mySkillsDescription: t('mySkillsDescription'),
   projectPreviewCtaText: t('projectCardViewProject'),
 };
 ---

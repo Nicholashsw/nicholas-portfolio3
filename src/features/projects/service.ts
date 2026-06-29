@@ -1,6 +1,7 @@
 // Import i18n utilities
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import placeholderImage from '@/assets/placeholder.webp';
+import lowlat_arch from '@/assets/lowlat/architecture.png';
 import sgx_cumulative from '@/assets/sgx/fig1_cumulative.png';
 import sgx_ic from '@/assets/sgx/fig2_ic.png';
 import sgx_annual from '@/assets/sgx/fig3_annual.png';
@@ -23,7 +24,12 @@ import mv_gap from '@/assets/macrovar/gap_vs_level_heatmap.png';
 import mv_hp from '@/assets/macrovar/hp_lookahead.png';
 import mv_phase2 from '@/assets/macrovar/phase2_heatmap.png';
 
-import type { ProjectData, TranslatedProject } from './type';
+import type {
+  ProjectData,
+  SkillData,
+  TranslatedProject,
+  TranslatedSkill,
+} from './type';
 
 const projectsListUnsorted: Array<ProjectData> = [
   {
@@ -96,13 +102,15 @@ const projectsListUnsorted: Array<ProjectData> = [
   {
     id: "lowlatMm",
     slug: "lowlat-mm",
-    imageUrl: placeholderImage,
+    imageUrl: lowlat_arch,
     codeUrl: "https://github.com/Nicholashsw/lowlat-mm",
     tags: ["C++", "Market Making", "Low Latency"],
     category: "Systems / C++",
     date: "2026-03-01",
     keyFeatures: [],
-    galleryImages: [],
+    galleryImages: [
+      { id: "architecture", src: lowlat_arch },
+    ],
   },
 ];
 
@@ -323,3 +331,52 @@ export function getTranslatedProjectBySlug(
   return translateProject(project, currentLang);
 }
 
+
+
+// Skills
+export const skillsList: Array<SkillData> = [
+  {
+    id: 'languages',
+    iconName: 'Code',
+    technologies: [
+      { id: 'python', name: 'Python' },
+      { id: 'cpp', name: 'C++' },
+      { id: 'sql', name: 'SQL' },
+    ],
+  },
+  {
+    id: 'quantitative',
+    iconName: 'TrendingUp',
+    technologies: [
+      { id: 'microstructure', name: 'Market Microstructure' },
+      { id: 'options', name: 'Options & Volatility' },
+      { id: 'bayesian', name: 'Bayesian Time-Series' },
+      { id: 'factor', name: 'Factor Modelling' },
+    ],
+  },
+  {
+    id: 'tools',
+    iconName: 'Wrench',
+    technologies: [
+      { id: 'bloomberg', name: 'Bloomberg' },
+      { id: 'databento', name: 'Databento' },
+      { id: 'git', name: 'Git' },
+    ],
+  },
+];
+
+export function getTranslatedSkills(
+  lang: LanguageCode | undefined
+): Array<TranslatedSkill> {
+  const currentLang = lang ?? defaultLanguage;
+  const langUi = ui as any;
+  return skillsList.map((skill) => {
+    const c =
+      langUi[currentLang]?.skillsContent?.[skill.id] ??
+      langUi[defaultLanguage]?.skillsContent?.[skill.id] ?? {
+        title: skill.id,
+        description: '',
+      };
+    return { ...skill, title: c.title, description: c.description ?? '' };
+  });
+}
