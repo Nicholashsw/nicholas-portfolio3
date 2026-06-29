@@ -2,6 +2,8 @@
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import placeholderImage from '@/assets/placeholder.webp';
 import lowlat_arch from '@/assets/lowlat/architecture.png';
+import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
+import alpha_pairs from '@/assets/alpha/pairs_dashboard.png';
 import sgx_cumulative from '@/assets/sgx/fig1_cumulative.png';
 import sgx_ic from '@/assets/sgx/fig2_ic.png';
 import sgx_annual from '@/assets/sgx/fig3_annual.png';
@@ -80,13 +82,16 @@ const projectsListUnsorted: Array<ProjectData> = [
   {
     id: "alphaResearchLab",
     slug: "alpha-research-lab",
-    imageUrl: placeholderImage,
+    imageUrl: alpha_vrp,
     codeUrl: "https://github.com/Nicholashsw/alpha-research-lab",
     tags: ["Volatility", "Options", "Backtesting"],
     category: "Quantitative Research",
     date: "2026-06-14",
     keyFeatures: [],
-    galleryImages: [],
+    galleryImages: [
+      { id: "vrp_tearsheet", src: alpha_vrp },
+      { id: "pairs_dashboard", src: alpha_pairs },
+    ],
   },
   {
     id: "financialMlLab",
