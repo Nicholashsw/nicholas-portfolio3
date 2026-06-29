@@ -212,7 +212,10 @@ export const ui = {
         dateText: "June 2026",
         detailedDescription: `A multi-strategy research lab built around the volatility risk premium. A VRP strategy across FX spot, futures and options (defined-risk spreads, 200-day trend filter) backtested 2005–2026: gold and yen clear breakeven (Sharpe ~0.40, win rate ~73%), while EUR-correlated pairs sit just below, reflecting structurally thinner premium. Plus a Black-76 options-on-futures pricing engine (greeks, American binomial, 11/11 self-tests), Johansen/VECM relative-value pairs, and mean-reversion and momentum modules.`,
         keyFeatures: {},
-        galleryImages: {},
+        galleryImages: {
+          vrp_tearsheet: { alt: "VRP strategy backtest tearsheet", caption: "Volatility risk premium backtest tearsheet — CAGR, trade-Sharpe, drawdown and win rate across USDCHF, XAUUSD, GBPUSD and USDJPY" },
+          pairs_dashboard: { alt: "Johansen/VECM pairs dashboard", caption: "Relative-value pairs dashboard — Johansen/VECM cointegration, spread z-score and walk-forward backtest" },
+        },
         challenges: `Building an event-driven backtester, aligning option-chain expiries, and pricing options on futures correctly with early-exercise.`,
         learnings: `Derivatives greeks, the macro-volatility interplay, and that the VRP is real but thin and asset-dependent.`,
       },
