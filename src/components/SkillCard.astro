@@ -1,0 +1,57 @@
+---
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Code, TrendingUp, Wrench, type LucideIcon } from 'lucide-react';
+import type { IconType } from 'react-icons';
+import { SiPython, SiGit } from 'react-icons/si';
+import type { Technology } from '@/features/projects/type';
+
+const iconComponents: Record<string, LucideIcon> = { Code, TrendingUp, Wrench };
+const techIconComponents: Record<string, IconType> = {
+  python: SiPython,
+  git: SiGit,
+};
+
+export type Props = {
+  title: string;
+  description?: string;
+  iconName: string;
+  technologies?: Array<Technology>;
+};
+
+const { title, iconName, technologies = [] } = Astro.props;
+const IconComponent = iconComponents[iconName] ?? Code;
+---
+
+<Card
+  className="flex flex-col h-full hover:shadow-xl motion-safe:hover:-translate-y-1 transition-[box-shadow,transform] duration-300 border border-border/50 gap-3 pt-2"
+>
+  <CardHeader className="pb-2 pt-4">
+    <div class="flex items-center gap-4">
+      <span
+        class="inline-flex items-center justify-center p-2 bg-primary/10 rounded-lg"
+      >
+        <IconComponent className="size-5 text-primary" />
+      </span>
+      <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+    </div>
+  </CardHeader>
+  <CardContent class="flex-grow pt-1 pb-4">
+    {
+      technologies && technologies.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {technologies.map((tech) => {
+            const TechIcon = techIconComponents[tech.id.toLowerCase()];
+            return (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/30 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-primary">
+                {TechIcon ? (
+                  <TechIcon className="size-3.5 shrink-0" aria-hidden="true" />
+                ) : null}
+                <span>{tech.name}</span>
+              </span>
+            );
+          })}
+        </div>
+      )
+    }
+  </CardContent>
+</Card>

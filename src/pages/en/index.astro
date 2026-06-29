@@ -3,7 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   PortfolioScreen,
   getTranslatedProjects,
+  getTranslatedSkills,
   type TranslatedProject,
+  type TranslatedSkill,
 } from '@/features/projects';
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 
@@ -14,10 +16,12 @@ const pageTitle = ui[lang].blogPage.pageTitle;
 const pageDescription = ui[lang].blogPage.pageDescription;
 
 const projects: Array<TranslatedProject> = getTranslatedProjects(lang);
+const skills: Array<TranslatedSkill> = getTranslatedSkills(lang);
 
 const layoutProps = {
   lang,
   projects,
+  skills,
   heroGreeting: ui[lang].homePage.heroGreeting,
   heroSubtitlePart1: ui[lang].homePage.heroSubtitlePart1,
   heroSubtitlePart2: ui[lang].homePage.heroSubtitlePart2,
@@ -27,6 +31,8 @@ const layoutProps = {
   imageNotAvailable: ui[lang].homePage.imageNotAvailable,
   featuredProjectsTitle: ui[lang].homePage.featuredProjectsTitle,
   featuredProjectsDescription: ui[lang].homePage.featuredProjectsDescription,
+  mySkillsTitle: ui[lang].homePage.mySkillsTitle,
+  mySkillsDescription: ui[lang].homePage.mySkillsDescription,
   projectPreviewCtaText: ui[lang].homePage.projectCardViewProject,
 };
 ---
