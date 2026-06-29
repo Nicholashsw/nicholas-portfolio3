@@ -151,117 +151,99 @@ export const ui = {
       tips: 'Tips',
       contact: 'Contact',
     },
+    skillsContent: {
+      languages: { title: 'Languages', description: '' },
+      quantitative: { title: 'Quantitative', description: '' },
+      tools: { title: 'Tools', description: '' },
+    },
     projectsContent: {
-      vrpStrategy: {
-        title: "Volatility Risk Premium (VRP) Strategy [WIP]",
-        description: "Multi-asset options spread backtester using delta filters and macro trend signals.",
-        imageAltText: 'Chart showcasing volatility capture from FX options',
-        categoryText: 'Quantitative Research',
-        dateText: 'June 2025',
-        detailedDescription: `A multi-market strategy capturing the volatility risk premium across Spot FX, Futures (6E, 6J), and Options on FX Futures using 20–10 delta bull/bear spreads. Entry is trend-filtered via the 200-day moving average, and coded in Python using historical data fetched from IBKR. Work-in-progress extensions include macro event triggers and multi-asset overlays (Gold, CHF, VIX).`,
-        keyFeatures: {
-          multiAssetBacktesting: {
-            title: 'Multi-Asset Backtesting',
-            description: 'Runs on Spot FX, Futures, and Options instruments with synchronized logic.'
-          },
-          optionsSpread20_10Delta: {
-            title: '20–10 Delta Option Spread',
-            description: 'Implements bull put and bear call spreads based on option delta slices.'
-          },
-          macroTrendFilter200DMA: {
-            title: '200-Day Trend Filter',
-            description: 'Determines bullish or bearish macro regime for strategy entry.'
-          },
-          volatilityRiskPremiumCapture: {
-            title: 'Volatility Risk Premium Alpha',
-            description: 'Harvests premium from option sellers by maintaining defined risk.'
-          },
+      sgxMultifactorFyp: {
+        title: "Multi-Factor Equity Strategy — SGX",
+        description: `Systematic multi-factor long-short equity on SGX with a point-in-time survivorship correction (NTU FYP).`,
+        imageAltText: "SGX multi-factor strategy cumulative performance",
+        categoryText: "Quantitative Research",
+        dateText: "June 2026",
+        detailedDescription: `A systematic multi-factor long-short strategy on Singapore equities, built as my final-year project. Value, momentum, quality, size and liquidity signals combined into an IC-weighted composite, tested with Fama-MacBeth pricing, a regime overlay, and a point-in-time survivorship correction. The survivorship work is the core finding: rebuilding the universe to include delisted names cuts the long-only Sharpe from 0.98 to 0.61, a ~1.6%/yr survivorship premium the naive survivor-only universe hides. Composite factor IC 0.075 (t=5.05); value carries the signal, momentum and quality don't.`,
+        keyFeatures: {},
+        galleryImages: {
+          fig1_cumulative: { alt: "Cumulative strategy performance vs STI", caption: "Cumulative performance of the multi-factor strategy vs the STI benchmark" },
+          fig2_ic: { alt: "Factor information coefficients", caption: "Information coefficient by factor" },
+          fig3_annual: { alt: "Annual returns", caption: "Annual return breakdown" },
+          fig4_tercile: { alt: "Tercile portfolio sorts", caption: "Performance by factor tercile" },
+          fig5_regime: { alt: "Regime-conditioned performance", caption: "Performance under the macro regime overlay" },
+          fig6_rolling_sharpe: { alt: "Rolling Sharpe ratio", caption: "Rolling Sharpe ratio over time" },
+          fig7_capm: { alt: "CAPM regression", caption: "CAPM alpha/beta regression" },
+          fig8_distribution: { alt: "Return distribution", caption: "Distribution of strategy returns" },
+          fig9_weights: { alt: "Factor weights", caption: "IC-weighted factor allocation" },
+          fig10_heatmap: { alt: "Factor correlation heatmap", caption: "Cross-factor correlation heatmap" },
         },
-        galleryImages: {},
-        challenges: 'Building an event-driven backtester, aligning option chain dates, and integrating macro filters.',
-        learnings: 'Deepened understanding of derivatives greeks, macro-volatility interplay, and options structuring.',
+        challenges: `Building point-in-time index membership to remove survivorship bias, handling delisted names, and aligning fundamentals with a 45-day reporting lag to avoid look-ahead.`,
+        learnings: `Factor construction and Fama-MacBeth testing, and how much measured performance is an artifact of survivorship if you don't correct for it.`,
       },
-      qrtDataChallenge: {
-        title: 'QRT Data Challenge: Liquid Asset Reconstruction',
-        description: 'Data science competition solving time series reconstruction with ML and feature engineering.',
-        imageAltText: 'Liquid asset heatmap and reconstructed curves',
-        categoryText: 'Machine Learning / Quant Research',
-        dateText: 'August 2025',
-        detailedDescription: `Participating in QRT's financial data competition to reconstruct missing liquid asset performance. Currently applying XGBoost and LightGBM with temporal features, volatility regimes, and anomaly detection logic. Exploring CNN + MLP hybrid models and feature selection to optimize RMSE. Ongoing experiment tracking and pipeline tuning in Python.`,
-        keyFeatures: {
-          timeSeriesML: {
-            title: 'Time-Series Forecasting',
-            description: 'Applies temporal machine learning to reconstruct missing asset returns.'
-          },
-          featureEngineering: {
-            title: 'Feature Engineering',
-            description: 'Builds volatility clusters, lag windows, macro regimes for predictive power.'
-          },
-          ensembleModels: {
-            title: 'XGBoost & LightGBM',
-            description: 'Runs boosting trees with cross-validation to minimize error.'
-          },
-          hybridDeepLearning: {
-            title: 'CNN + MLP Prototype',
-            description: 'Experimental convolutional and dense neural net for signal refinement.'
-          },
+      macroVarResearchLab: {
+        title: "Macro Forecasting Horse Race",
+        description: `An honest out-of-sample horse race across five macro forecasting model classes.`,
+        imageAltText: "Winner-model out-of-sample forecasts",
+        categoryText: "Quantitative Research",
+        dateText: "June 2026",
+        detailedDescription: `A reproducible out-of-sample horse race across five model classes — random walk, AR, VAR, Bayesian VAR, and shrinkage methods — over 128 quarters of US macro data. Judged honestly with Clark-West, Diebold-Mariano, and the Model Confidence Set. The BVAR edges the naive benchmarks on most targets, but only the real exchange rate beats them significantly (DM p=0.026), and the random walk survives the Model Confidence Set everywhere. The finding is the restraint: macro variables are genuinely hard to forecast beyond no-change, and the framework refuses to overclaim it.`,
+        keyFeatures: {},
+        galleryImages: {
+          winner_forecasts: { alt: "Winner-model forecasts", caption: "Out-of-sample forecasts from the selected model" },
+          winner_forecasts_allyoy: { alt: "Winner forecasts (all-YoY)", caption: "Winner forecasts, all-YoY specification" },
+          winner_forecasts_augmented: { alt: "Winner forecasts (augmented)", caption: "Winner forecasts, augmented specification" },
+          winner_forecasts_reer_yoy: { alt: "Winner forecasts (REER-YoY)", caption: "Winner forecasts, REER-YoY specification" },
+          relrmse_heatmap: { alt: "Relative-RMSE heatmap", caption: "Relative RMSE vs benchmark by model and target" },
+          relrmse_heatmap_allyoy: { alt: "Relative-RMSE heatmap (all-YoY)", caption: "Relative RMSE, all-YoY specification" },
+          relrmse_heatmap_augmented: { alt: "Relative-RMSE heatmap (augmented)", caption: "Relative RMSE, augmented specification" },
+          relrmse_heatmap_reer_yoy: { alt: "Relative-RMSE heatmap (REER-YoY)", caption: "Relative RMSE, REER-YoY specification" },
+          gap_vs_level_heatmap: { alt: "Gap vs level heatmap", caption: "Output-gap vs level RMSE comparison" },
+          hp_lookahead: { alt: "HP-filter look-ahead diagnostic", caption: "HP-filter end-point look-ahead diagnostic" },
+          phase2_heatmap: { alt: "Model-class heatmap", caption: "Phase-2 model-class comparison" },
         },
-        galleryImages: {},
-        challenges: 'Tuning RMSE under data gaps, avoiding leakage, and aligning features to macro shifts.',
-        learnings: 'Improved financial ML modeling, validation discipline, and experiment management.',
+        challenges: `Implementing a leakage-safe walk-forward protocol, the Minnesota BVAR with a sum-of-coefficients prior, and the Model Confidence Set to guard against data-mining.`,
+        learnings: `Bayesian time-series, formal forecast evaluation, and that an honest negative result is worth more than an overfit positive one.`,
       },
-      embeddedAmplifier: {
-        title: 'Automatic Volume Control for Audio Amplifier',
-        description: 'Engineered and integrated a closed-loop audio amplifier using analog circuitry and real-time Python feedback.',
-        imageAltText: 'Block diagram of audio amplifier with microcontroller',
-        categoryText: 'Embedded Systems',
-        dateText: 'May 2025',
-        detailedDescription: `Designed and built a closed-loop audio amplifier system (THAT2180C VCA, LM380N PA, CA3140 VU Meter) on STM32 using MicroPython. Calibrated subsystem gains and offsets, characterized PA response from 100Hz to 50kHz, and implemented a control algorithm in Python with Jupyter+ipywidgets to maintain real-time loudness stability using RMS feedback. System reduces clipping and auto-adjusts volume.`,
-        keyFeatures: {
-          analogDigitalIntegration: {
-            title: 'Analog + Digital Integration',
-            description: 'Combined analog audio electronics with STM32 feedback loop using MicroPython.'
-          },
-          realTimeVolumeControl: {
-            title: 'Real-Time Volume Control',
-            description: 'Maintains consistent RMS output using step-up/down logic and VU feedback.'
-          },
-          frequencyResponseTuning: {
-            title: 'PA Frequency Characterization',
-            description: 'Measured and tuned amplifier response from 100Hz to 50kHz.'
-          },
-          autoClippingProtection: {
-            title: 'Clipping Protection',
-            description: 'System detects saturation and reduces gain to prevent distortion.'
-          },
+      alphaResearchLab: {
+        title: "Volatility & Systematic Strategy Lab",
+        description: `A multi-strategy lab around the volatility risk premium, with a Black-76 options engine.`,
+        imageAltText: "Volatility risk premium strategy",
+        categoryText: "Quantitative Research",
+        dateText: "June 2026",
+        detailedDescription: `A multi-strategy research lab built around the volatility risk premium. A VRP strategy across FX spot, futures and options (defined-risk spreads, 200-day trend filter) backtested 2005–2026: gold and yen clear breakeven (Sharpe ~0.40, win rate ~73%), while EUR-correlated pairs sit just below, reflecting structurally thinner premium. Plus a Black-76 options-on-futures pricing engine (greeks, American binomial, 11/11 self-tests), Johansen/VECM relative-value pairs, and mean-reversion and momentum modules.`,
+        keyFeatures: {},
+        galleryImages: {
+          vrp_tearsheet: { alt: "VRP strategy backtest tearsheet", caption: "Volatility risk premium backtest tearsheet — CAGR, trade-Sharpe, drawdown and win rate across USDCHF, XAUUSD, GBPUSD and USDJPY" },
+          pairs_dashboard: { alt: "Johansen/VECM pairs dashboard", caption: "Relative-value pairs dashboard — Johansen/VECM cointegration, spread z-score and walk-forward backtest" },
         },
-        galleryImages: {},
-        challenges: 'Tuning feedback loop timing, analog signal noise, and VU accuracy under dynamic load.',
-        learnings: 'Gained hands-on experience in embedded systems, control theory, audio electronics, and microcontroller firmware.',
+        challenges: `Building an event-driven backtester, aligning option-chain expiries, and pricing options on futures correctly with early-exercise.`,
+        learnings: `Derivatives greeks, the macro-volatility interplay, and that the VRP is real but thin and asset-dependent.`,
       },
-      ibkrPowerBIDashboard: {
-        title: '[Inactive] IBKR Power BI Dashboard',
-        description: '[To be resumed] Live portfolio tracker integrating Python, Supabase, and Power BI for FX and equities.',
-        imageAltText: 'IBKR dashboard preview',
-        categoryText: 'WIP / On Hold',
-        dateText: 'Paused',
-        detailedDescription: 'This project is paused. Intended to visualize live portfolio holdings and performance using IBKR API + Power BI with SQL integration.',
+      financialMlLab: {
+        title: "Congressional-Trade Alpha — An Event Study",
+        description: `An event study on whether copying congressional trades is an edge (it isn't).`,
+        imageAltText: "Congressional trade event study",
+        categoryText: "Machine Learning / Quant Research",
+        dateText: "April 2026",
+        detailedDescription: `An event study testing whether copying US congressional stock trades is an edge. 5,763 House disclosures, 2022–2025, with a proper market-model estimation window and SPY benchmark. The answer is no: sign-adjusted abnormal returns are roughly zero to slightly negative at every horizon a copy-trader could actually act on. The only signal with a pulse is committee relevance — members trading their own committee's sector — but the t-stats are weak and costs would eat it. A clean, well-powered null result.`,
         keyFeatures: {},
         galleryImages: {},
-        challenges: '',
-        learnings: '',
+        challenges: `Parsing messy disclosure filings, building a leakage-safe event window, and resisting the urge to torture a non-result into a signal.`,
+        learnings: `Event-study methodology, and that proving a negative rigorously is its own kind of result.`,
       },
-      autoApplyAgent: {
-        title: '[Inactive] AutoApply Agent',
-        description: '[To be resumed] AI agent that auto-fills internship/job applications using resume parsing and GPT.',
-        imageAltText: 'Agent UI preview',
-        categoryText: 'WIP / On Hold',
-        dateText: 'Paused',
-        detailedDescription: 'This project is paused. Goal was to create a browser automation + GPT-powered agent to select resumes, answer questions, and track application progress across portals like Workday and Greenhouse.',
+      lowlatMm: {
+        title: "Low-Latency Market-Making Engine",
+        description: `A C++20 event-driven market-making and execution engine.`,
+        imageAltText: "Low-latency market-making engine",
+        categoryText: "Systems / C++",
+        dateText: "March 2026",
+        detailedDescription: `A C++20 event-driven market-making and execution engine: limit order book, order management, a pre-trade risk gate with kill switch, and an exchange simulator, on a fully deterministic single-queue event loop. 28 unit tests, ~109 assertions. Against a random-walk feed the sample run loses money by design, to adverse selection, which is the point: it's the engine and the microstructure that are the work, not a tuned PnL.`,
         keyFeatures: {},
-        galleryImages: {},
-        challenges: '',
-        learnings: '',
+        galleryImages: {
+          architecture: { alt: "lowlat-mm engine architecture", caption: "Event-driven module pipeline: market data, order book, strategy, OMS, risk, simulator, backtest" },
+        },
+        challenges: `Designing clean module boundaries (book / OMS / risk / simulator), keeping the event loop deterministic, and modelling fills and latency realistically.`,
+        learnings: `Market microstructure, low-latency systems design in C++, and how adverse selection punishes a naive quoting strategy.`,
       },
     },
   },

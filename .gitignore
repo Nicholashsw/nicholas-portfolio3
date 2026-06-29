@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 Archive.zip
+
+# Vercel build output (must be built fresh, never committed)
+.vercel
