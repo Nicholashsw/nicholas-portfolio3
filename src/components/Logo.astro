@@ -5,6 +5,19 @@ const currentLocale =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 ---
 
-<a href="/">
-  <span class="text-2xl font-bold text-primary"> Your Logo </span>
+<a
+  href={getRelativeLocaleUrl(currentLocale)}
+  class="group inline-flex items-center gap-2.5"
+  aria-label="Nicholas Hong — home"
+>
+  <span
+    class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold tracking-tight shadow-sm"
+  >
+    NH
+  </span>
+  <span
+    class="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary"
+  >
+    Nicholas Hong
+  </span>
 </a>
