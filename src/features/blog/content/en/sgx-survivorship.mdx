@@ -1,0 +1,25 @@
+---
+lang: 'en'
+title: 'Survivorship bias runs backwards on SGX'
+description: 'Dropping dead names from a Singapore equity panel lowers measured returns, because most SGX delistings are takeouts at a premium. What that does to backtests, in numbers.'
+pubDate: 2026-08-20
+heroImage:
+  url: '../../../../assets/sgx/surv_bias_both_universes.png'
+  alt: 'Delisting survivorship bias is negative in both universes'
+tags: ['quant', 'sgx', 'survivorship', 'fyp']
+isDraft: false
+featured: true
+relatedPosts: []
+---
+
+The textbook story says survivorship bias inflates backtests: dead companies were bad companies, so a panel that only contains survivors overstates what you could have earned. On the Singapore market that story is wrong, and it is wrong in an instructive way.
+
+On a survivorship-free Compustat Global panel of 694 Singapore-listed firms (1985 to 2026, 338 delistings retained), dropping the dead names LOWERS the measured universe return by 0.89 pp/yr: the point-in-time universe earns 8.85% annualised against 7.96% for the survivors-only cut. The reason is exit composition. 198 of the 338 exits, 59%, are acquisitions or mergers, and acquired names average +3.44% per month over their final year against a +0.96% baseline for names that stay listed. Exactly one firm in the whole panel exits through bankruptcy. On SGX, leaving the exchange is usually a good outcome for the shareholder, so the dead names are, on average, the winners you deleted.
+
+I pre-registered the obvious alternative explanation, that index membership drives the sign, and it failed: restricted to point-in-time index members the bias is −1.01 pp/yr, same direction. The magnitude is an upper bound rather than a point estimate, because Compustat freezes suspension prices and a wiped-out shareholder's true −100% never enters the return series. Forcing −100% terminal returns on every triaged wipeout moves the bias to −0.60 pp/yr; forcing it on every ambiguous exit as well moves it to −0.40. The sign survives the harshest assumption I could construct.
+
+None of this means survivorship handling doesn't matter for backtests. It matters enormously, just through a different channel. A strategy backtested on today's constituents projected backwards holds names that were selected for having grown, which is a look-ahead membership bias, not a delisting bias, and it is large and positive. On my blue-chip Singapore track, the naive survivor backtest earns a Sharpe of 1.00; rebuilding the universe with quarterly point-in-time membership and real book values cuts it to 0.45. On the broad universe the long-short book flips outright: the survivor version shows alpha at t=1.0, the point-in-time version at t=3.8, because restoring dead names repopulates the short side with exactly the names a short book should have held.
+
+So two biases, opposite signs, one lesson: on this market you cannot sign the error of a lazy universe in advance. Correcting membership costs a long-only investor about half their measured Sharpe; correcting delistings gives a little back; and a long-short investor is roughly insulated because the two legs absorb the correction symmetrically (on my 54-name point-in-time roster, the correction costs the long leg 5.43 pp/yr and pays the short leg 5.26).
+
+Every number here traces to an executed run on real vendor data; the verification ledger, the exclusions list, the code and the figures are in the project repository, github.com/Nicholashsw/sgx-multifactor-fyp. An earlier version of this page quoted a Sharpe correction of 0.98 to 0.61 and a composite IC of 0.075 from a first-pass run that was later superseded; the numbers above are from the corrected canonical runs, and the audit trail of what changed and why is in the repo's EXCLUSIONS.md.
