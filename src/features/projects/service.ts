@@ -4,16 +4,16 @@ import placeholderImage from '@/assets/placeholder.webp';
 import lowlat_arch from '@/assets/lowlat/architecture.png';
 import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
 import alpha_pairs from '@/assets/alpha/pairs_dashboard.png';
-import sgx_cumulative from '@/assets/sgx/fig1_cumulative.png';
-import sgx_ic from '@/assets/sgx/fig2_ic.png';
-import sgx_annual from '@/assets/sgx/fig3_annual.png';
-import sgx_tercile from '@/assets/sgx/fig4_tercile.png';
-import sgx_regime from '@/assets/sgx/fig5_regime.png';
-import sgx_rolling from '@/assets/sgx/fig6_rolling_sharpe.png';
-import sgx_capm from '@/assets/sgx/fig7_capm.png';
-import sgx_dist from '@/assets/sgx/fig8_distribution.png';
-import sgx_weights from '@/assets/sgx/fig9_weights.png';
-import sgx_heatmap from '@/assets/sgx/fig10_heatmap.png';
+import sgx_performance from '@/assets/sgx/core_performance.png';
+import sgx_surv_bias from '@/assets/sgx/surv_bias_both_universes.png';
+import sgx_exit_mix from '@/assets/sgx/surv_exit_mix.png';
+import sgx_funnel from '@/assets/sgx/core_leakage_funnel.png';
+import sgx_markit from '@/assets/sgx/cost_markit_ls.png';
+import sgx_capacity from '@/assets/sgx/cost_capacity.png';
+import sgx_benchmark from '@/assets/sgx/core_benchmark_contamination.png';
+import sgx_mtest from '@/assets/sgx/px_multiple_testing.png';
+import sgx_merton from '@/assets/sgx/risk_merton_fit.png';
+import sgx_tsmom from '@/assets/sgx/tsmom_combo.png';
 import mv_winner from '@/assets/macrovar/winner_forecasts.png';
 import mv_winner_allyoy from '@/assets/macrovar/winner_forecasts_allyoy.png';
 import mv_winner_aug from '@/assets/macrovar/winner_forecasts_augmented.png';
@@ -37,23 +37,23 @@ const projectsListUnsorted: Array<ProjectData> = [
   {
     id: "sgxMultifactorFyp",
     slug: "sgx-multifactor-fyp",
-    imageUrl: sgx_cumulative,
+    imageUrl: sgx_performance,
     codeUrl: "https://github.com/Nicholashsw/sgx-multifactor-fyp",
     tags: ["Factor Investing", "Quant", "Python"],
     category: "Quantitative Research",
     date: "2026-06-28",
     keyFeatures: [],
     galleryImages: [
-      { id: "fig1_cumulative", src: sgx_cumulative },
-      { id: "fig2_ic", src: sgx_ic },
-      { id: "fig3_annual", src: sgx_annual },
-      { id: "fig4_tercile", src: sgx_tercile },
-      { id: "fig5_regime", src: sgx_regime },
-      { id: "fig6_rolling_sharpe", src: sgx_rolling },
-      { id: "fig7_capm", src: sgx_capm },
-      { id: "fig8_distribution", src: sgx_dist },
-      { id: "fig9_weights", src: sgx_weights },
-      { id: "fig10_heatmap", src: sgx_heatmap },
+      { id: "core_performance", src: sgx_performance },
+      { id: "surv_bias", src: sgx_surv_bias },
+      { id: "exit_mix", src: sgx_exit_mix },
+      { id: "leakage_funnel", src: sgx_funnel },
+      { id: "markit_borrow", src: sgx_markit },
+      { id: "capacity", src: sgx_capacity },
+      { id: "benchmark_contamination", src: sgx_benchmark },
+      { id: "multiple_testing", src: sgx_mtest },
+      { id: "merton_fit", src: sgx_merton },
+      { id: "tsmom_combo", src: sgx_tsmom },
     ],
   },
   {
@@ -122,26 +122,26 @@ const projectsListUnsorted: Array<ProjectData> = [
 export const projectsContent = {
   sgxMultifactorFyp: {
     title: "Multi-Factor Equity Strategy — SGX",
-    description: `Systematic multi-factor long-short equity on SGX with a point-in-time survivorship correction (NTU FYP).`,
-    imageAltText: "SGX multi-factor strategy cumulative performance",
+    description: `Systematic multi-factor equities on SGX, consolidated and verified: real cross-sectional structure, removed by real-world frictions (NTU FYP).`,
+    imageAltText: "SGX multi-factor strategy performance, point-in-time universe",
     categoryText: "Quantitative Research",
     dateText: "June 2026",
-    detailedDescription: `A systematic multi-factor long-short strategy on Singapore equities, built as my final-year project. Value, momentum, quality, size and liquidity signals combined into an IC-weighted composite, tested with Fama-MacBeth pricing, a regime overlay, and a point-in-time survivorship correction. The survivorship work is the core finding: rebuilding the universe to include delisted names cuts the long-only Sharpe from 0.98 to 0.61, a ~1.6%/yr survivorship premium the naive survivor-only universe hides. Composite factor IC 0.075 (t=5.05); value carries the signal, momentum and quality don't.`,
+    detailedDescription: `A systematic multi-factor strategy on Singapore equities, my NTU final-year project, consolidated from ten research branches into one verified body of work: every published number traces to an executed run on real vendor data. Value, momentum, quality, size and liquidity signals form a composite tested with point-in-time membership, Fama-MacBeth pricing, a pre-registered 65-test grid, and full cost and borrow modelling. The survivorship work is the core finding and it cuts both ways. Delisting bias on SGX runs backwards: dropping dead names lowers measured universe returns by 0.89 pp/yr, because 59% of exits are takeouts at a premium. Survivor-defined backtests still flatter themselves: the naive blue-chip Sharpe of 1.00 corrects to 0.45 under quarterly point-in-time membership, and the broad-universe long-short reverses outright (survivor t=1.0 vs point-in-time t=3.8). The point-in-time composite IC is 0.070 (t=5.9); value carries the signal. Fully costed with per-name Corwin-Schultz spreads and real Markit borrow, the gross 1.66%/mo edge (t=5.1) falls to 0.28%/mo (t=0.85): statistically real, economically untradeable at institutional scale.`,
     keyFeatures: {},
     galleryImages: {
-      fig1_cumulative: { alt: "Cumulative strategy performance vs STI", caption: "Cumulative performance of the multi-factor strategy vs the STI benchmark" },
-      fig2_ic: { alt: "Factor information coefficients", caption: "Information coefficient by factor" },
-      fig3_annual: { alt: "Annual returns", caption: "Annual return breakdown" },
-      fig4_tercile: { alt: "Tercile portfolio sorts", caption: "Performance by factor tercile" },
-      fig5_regime: { alt: "Regime-conditioned performance", caption: "Performance under the macro regime overlay" },
-      fig6_rolling_sharpe: { alt: "Rolling Sharpe ratio", caption: "Rolling Sharpe ratio over time" },
-      fig7_capm: { alt: "CAPM regression", caption: "CAPM alpha/beta regression" },
-      fig8_distribution: { alt: "Return distribution", caption: "Distribution of strategy returns" },
-      fig9_weights: { alt: "Factor weights", caption: "IC-weighted factor allocation" },
-      fig10_heatmap: { alt: "Factor correlation heatmap", caption: "Cross-factor correlation heatmap" },
+      core_performance: { alt: "STI-core strategy performance", caption: "STI-core strategy on the point-in-time roster: +0.40%/mo, Newey-West t=2.26" },
+      surv_bias: { alt: "Survivorship bias sign in both universes", caption: "Delisting survivorship bias is negative in both universes: dead names raise measured returns" },
+      exit_mix: { alt: "SGX delisting exit mix", caption: "59% of SGX delistings are acquisitions, and takeouts pay: the mechanism behind the backwards bias" },
+      leakage_funnel: { alt: "Alpha leakage funnel", caption: "Where the alpha goes: benchmark correction, costs, and the tradability screen" },
+      markit_borrow: { alt: "Markit borrow scenarios", caption: "Real borrow fees destroy the naive short book; the availability screen rescues it into large caps" },
+      capacity: { alt: "Capacity analysis", caption: "Feasibility-bound capacity of roughly S$50M for the concentrated STI-core book" },
+      benchmark_contamination: { alt: "Benchmark contamination test", caption: "A t+1-membership benchmark inflates the passive alternative by 0.40%/mo" },
+      multiple_testing: { alt: "Multiple-testing corrections", caption: "Bootstrap reality check and survivors by correction: net of costs, nothing survives" },
+      merton_fit: { alt: "Merton jump-diffusion fit", caption: "57.9% of strategy variance is jump risk; Gaussian risk limits understate 99% ES by a third" },
+      tsmom_combo: { alt: "TSMOM combination under constraints", caption: "The TSMOM-plus-fundamentals combination reverses once borrow constraints and costs are applied" },
     },
-    challenges: `Building point-in-time index membership to remove survivorship bias, handling delisted names, and aligning fundamentals with a 45-day reporting lag to avoid look-ahead.`,
-    learnings: `Factor construction and Fama-MacBeth testing, and how much measured performance is an artifact of survivorship if you don't correct for it.`,
+    challenges: `Building point-in-time index membership and adjudicating 338 delistings against SDC deal records, applying a 4-month fundamental reporting embargo, replacing a contaminated t+1-membership benchmark worth 0.40%/mo of phantom alpha, and holding every result to pre-registered multiple-testing discipline (65 tests; zero survive BHY).`,
+    learnings: `Verification as method: the project caught its own synthetic-data fallback, two look-ahead traps and a forward-return bug, and published the corrections as part of the contribution. In a small market the binding constraints are spreads and borrow availability, not signal.`,
   },
   macroVarResearchLab: {
     title: "Macro Forecasting Horse Race",
