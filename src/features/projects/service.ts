@@ -1,9 +1,8 @@
-// Import i18n utilities
+// Project registry. Copy lives in ./content.ts (imported into i18n/ui.ts); this file holds the
+// language-neutral metadata: assets, links, curation flags, and headline numbers.
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
-import placeholderImage from '@/assets/placeholder.webp';
-import lowlat_arch from '@/assets/lowlat/architecture.png';
-import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
-import alpha_pairs from '@/assets/alpha/pairs_dashboard.png';
+
+// SGX
 import sgx_performance from '@/assets/sgx/core_performance.png';
 import sgx_surv_bias from '@/assets/sgx/surv_bias_both_universes.png';
 import sgx_exit_mix from '@/assets/sgx/surv_exit_mix.png';
@@ -14,17 +13,54 @@ import sgx_benchmark from '@/assets/sgx/core_benchmark_contamination.png';
 import sgx_mtest from '@/assets/sgx/px_multiple_testing.png';
 import sgx_merton from '@/assets/sgx/risk_merton_fit.png';
 import sgx_tsmom from '@/assets/sgx/tsmom_combo.png';
-import mv_winner from '@/assets/macrovar/winner_forecasts.png';
-import mv_winner_allyoy from '@/assets/macrovar/winner_forecasts_allyoy.png';
-import mv_winner_aug from '@/assets/macrovar/winner_forecasts_augmented.png';
-import mv_winner_reer from '@/assets/macrovar/winner_forecasts_reer_yoy.png';
+// FX options VRP
+import vrp_strategy from '@/assets/vrp/chart_5_strategy_summary.png';
+import vrp_cumulative from '@/assets/vrp/chart_6_cumulative_payoff.png';
+import vrp_by_root from '@/assets/vrp/chart_2_vrp_by_root.png';
+import vrp_heatmap from '@/assets/vrp/chart_4_yearly_vrp_heatmap.png';
+import vrp_iv_rv from '@/assets/vrp/chart_1_iv_vs_rv_by_root.png';
+import vrp_tenor from '@/assets/vrp/chart_3_vrp_by_tenor.png';
+// Treasury
+import tsy_signal from '@/assets/treasury/fig1_signal_contrast.png';
+import tsy_equity from '@/assets/treasury/fig2_equity_curves.png';
+import tsy_risk from '@/assets/treasury/fig3_risk_return.png';
+// Macro VAR lab
 import mv_relrmse from '@/assets/macrovar/relrmse_heatmap.png';
-import mv_relrmse_allyoy from '@/assets/macrovar/relrmse_heatmap_allyoy.png';
-import mv_relrmse_aug from '@/assets/macrovar/relrmse_heatmap_augmented.png';
-import mv_relrmse_reer from '@/assets/macrovar/relrmse_heatmap_reer_yoy.png';
-import mv_gap from '@/assets/macrovar/gap_vs_level_heatmap.png';
-import mv_hp from '@/assets/macrovar/hp_lookahead.png';
 import mv_phase2 from '@/assets/macrovar/phase2_heatmap.png';
+import mv_hp from '@/assets/macrovar/hp_lookahead.png';
+import mv_winner from '@/assets/macrovar/winner_forecasts.png';
+import mv_gap from '@/assets/macrovar/gap_vs_level_heatmap.png';
+import mv_sv from '@/assets/macrovar/varr_gdp_sv_path.png';
+import mv_shockcount from '@/assets/macrovar/varx_fig2_shockcount.png';
+import mv_rt from '@/assets/macrovar/varx_fig_rt.png';
+import mv_id from '@/assets/macrovar/varx_fig_id.png';
+import mv_density from '@/assets/macrovar/varx_fig_density.png';
+// LSTM
+import lstm_ic from '@/assets/lstm/test_ic_by_model.png';
+import lstm_regime from '@/assets/lstm/regime_ic.png';
+import lstm_ls from '@/assets/lstm/xs_ls_equity_curve.png';
+// lowlat-mm
+import lowlat_arch from '@/assets/lowlat/architecture.png';
+import lowlat_pnl from '@/assets/lowlat/pnl_sample.png';
+// DSGE
+import dsge_mc from '@/assets/dsge/14_model_comparison.png';
+import dsge_policy from '@/assets/dsge/10_policy_progression.png';
+import dsge_post from '@/assets/dsge/12_posteriors.png';
+import dsge_ppc from '@/assets/dsge/16_ppc.png';
+import dsge_country from '@/assets/dsge/15_country_comparison.png';
+import dsge_irf from '@/assets/dsge/01_irf.png';
+// Global rates RV
+import grrv_oor from '@/assets/grrv/grrv_fig3_out_of_regime.png';
+import grrv_screen from '@/assets/grrv/grrv_fig2_regime_screen.png';
+import grrv_beta from '@/assets/grrv/grrv_fig4_beta_instability.png';
+import grrv_yields from '@/assets/grrv/grrv_fig1_yields.png';
+// alpha-research-lab
+import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
+import alpha_pairs from '@/assets/alpha/pairs_dashboard.png';
+// financial-ml-lab
+import fin_car from '@/assets/financial/car_reported.png';
+// quant-macro-engine
+import qme_dfast from '@/assets/qme/dfast_scenario.png';
 
 import type {
   ProjectData,
@@ -33,230 +69,423 @@ import type {
   TranslatedSkill,
 } from './type';
 
+const GH = 'https://github.com/Nicholashsw';
+
 const projectsListUnsorted: Array<ProjectData> = [
   {
-    id: "sgxMultifactorFyp",
-    slug: "sgx-multifactor-fyp",
+    id: 'sgxMultifactorFyp',
+    slug: 'sgx-multifactor-fyp',
     imageUrl: sgx_performance,
-    codeUrl: "https://github.com/Nicholashsw/sgx-multifactor-fyp",
-    tags: ["Factor Investing", "Quant", "Python"],
-    category: "Quantitative Research",
-    date: "2026-06-28",
+    codeUrl: `${GH}/sgx-multifactor-fyp`,
+    paperUrl: '/papers/sgx-multifactor-research-report.pdf',
+    paperLabel: 'Research report (PDF)',
+    papers: [
+      {
+        label: 'Verification ledger',
+        url: `${GH}/sgx-multifactor-fyp/blob/main/VERIFICATION_LEDGER.md`,
+      },
+      {
+        label: 'Exclusions',
+        url: `${GH}/sgx-multifactor-fyp/blob/main/EXCLUSIONS.md`,
+      },
+    ],
+    tags: ['Factor Investing', 'Survivorship', 'Transaction Costs'],
+    category: 'Quantitative Research',
+    capability: 'Systematic equities',
+    date: '2026-08-20',
+    featured: true,
+    featuredRank: 1,
+    status: 'published',
+    stack: [
+      'Python',
+      'pandas',
+      'statsmodels',
+      'Bloomberg VBA',
+      'Compustat',
+      'Markit',
+      'CapIQ',
+    ],
+    highlights: [
+      { label: 'Delisting bias on SGX', value: '−0.89 pp/yr' },
+      {
+        label: 'Blue-chip Sharpe, survivor → point-in-time',
+        value: '1.00 → 0.45',
+      },
+      {
+        label: 'Composite edge, gross → fully costed',
+        value: '1.66 → 0.28 %/mo',
+      },
+      { label: 'Pre-registered tests surviving BHY', value: '0 of 65' },
+    ],
     keyFeatures: [],
     galleryImages: [
-      { id: "core_performance", src: sgx_performance },
-      { id: "surv_bias", src: sgx_surv_bias },
-      { id: "exit_mix", src: sgx_exit_mix },
-      { id: "leakage_funnel", src: sgx_funnel },
-      { id: "markit_borrow", src: sgx_markit },
-      { id: "capacity", src: sgx_capacity },
-      { id: "benchmark_contamination", src: sgx_benchmark },
-      { id: "multiple_testing", src: sgx_mtest },
-      { id: "merton_fit", src: sgx_merton },
-      { id: "tsmom_combo", src: sgx_tsmom },
+      { id: 'core_performance', src: sgx_performance },
+      { id: 'surv_bias', src: sgx_surv_bias },
+      { id: 'exit_mix', src: sgx_exit_mix },
+      { id: 'leakage_funnel', src: sgx_funnel },
+      { id: 'markit_borrow', src: sgx_markit },
+      { id: 'capacity', src: sgx_capacity },
+      { id: 'benchmark_contamination', src: sgx_benchmark },
+      { id: 'multiple_testing', src: sgx_mtest },
+      { id: 'merton_fit', src: sgx_merton },
+      { id: 'tsmom_combo', src: sgx_tsmom },
     ],
   },
   {
-    id: "macroVarResearchLab",
-    slug: "macro-var-research-lab",
-    imageUrl: mv_winner,
-    codeUrl: "https://github.com/Nicholashsw/macro-var-research-lab",
-    tags: ["Econometrics", "Forecasting", "Bayesian"],
-    category: "Quantitative Research",
-    date: "2026-06-21",
+    id: 'fxOptionsVrp',
+    slug: 'fx-options-vrp',
+    imageUrl: vrp_strategy,
+    codeUrl: `${GH}/fx-options-vrp`,
+    paperUrl: '/papers/fx-options-vrp.pdf',
+    paperLabel: 'Read paper',
+    tags: ['Options', 'Volatility', 'Databento'],
+    category: 'Derivatives Research',
+    capability: 'Derivatives / volatility',
+    date: '2026-07-07',
+    featured: true,
+    featuredRank: 2,
+    status: 'published',
+    stack: [
+      'Python',
+      'pandas',
+      'pyarrow',
+      'statsmodels',
+      'Databento GLBX.MDP3',
+      'Black-76',
+    ],
+    highlights: [
+      { label: 'Daily root-tenor observations', value: '70,714' },
+      {
+        label: 'Static short-vol proxy (NW63 t)',
+        value: '0.28 vol-pts (1.79)',
+      },
+      { label: 'Top-IV selection rule (NW63 t)', value: '0.51 vol-pts (2.41)' },
+      { label: 'Roots negative in 2022', value: '7 of 7' },
+    ],
     keyFeatures: [],
     galleryImages: [
-      { id: "winner_forecasts", src: mv_winner },
-      { id: "winner_forecasts_allyoy", src: mv_winner_allyoy },
-      { id: "winner_forecasts_augmented", src: mv_winner_aug },
-      { id: "winner_forecasts_reer_yoy", src: mv_winner_reer },
-      { id: "relrmse_heatmap", src: mv_relrmse },
-      { id: "relrmse_heatmap_allyoy", src: mv_relrmse_allyoy },
-      { id: "relrmse_heatmap_augmented", src: mv_relrmse_aug },
-      { id: "relrmse_heatmap_reer_yoy", src: mv_relrmse_reer },
-      { id: "gap_vs_level_heatmap", src: mv_gap },
-      { id: "hp_lookahead", src: mv_hp },
-      { id: "phase2_heatmap", src: mv_phase2 },
+      { id: 'strategy_summary', src: vrp_strategy },
+      { id: 'cumulative_payoff', src: vrp_cumulative },
+      { id: 'vrp_by_root', src: vrp_by_root },
+      { id: 'yearly_heatmap', src: vrp_heatmap },
+      { id: 'iv_vs_rv', src: vrp_iv_rv },
+      { id: 'vrp_by_tenor', src: vrp_tenor },
     ],
   },
   {
-    id: "alphaResearchLab",
-    slug: "alpha-research-lab",
-    imageUrl: alpha_vrp,
-    codeUrl: "https://github.com/Nicholashsw/alpha-research-lab",
-    tags: ["Volatility", "Options", "Backtesting"],
-    category: "Quantitative Research",
-    date: "2026-06-14",
+    id: 'treasuryCurve',
+    slug: 'treasury-curve-carry-momentum',
+    imageUrl: tsy_signal,
+    codeUrl: `${GH}/treasury-curve-carry-momentum`,
+    paperUrl: '/papers/treasury-curve-carry-momentum.pdf',
+    paperLabel: 'Read paper',
+    tags: ['Rates', 'Futures', 'Momentum'],
+    category: 'Rates Research',
+    capability: 'Rates',
+    date: '2026-07-10',
+    featured: true,
+    featuredRank: 3,
+    status: 'published',
+    stack: ['Python', 'pandas', 'statsmodels', 'Jupyter', 'Bloomberg VBA'],
+    highlights: [
+      {
+        label: 'Same 2s10s book: momentum vs reversion',
+        value: '−0.79 vs +0.71',
+      },
+      { label: 'Duration momentum, net Sharpe', value: '0.68' },
+      { label: 'Curve vs baseline, DM p-values', value: '0.41 / 0.49' },
+      { label: 'Sample, net of costs', value: '2010–2026' },
+    ],
     keyFeatures: [],
     galleryImages: [
-      { id: "vrp_tearsheet", src: alpha_vrp },
-      { id: "pairs_dashboard", src: alpha_pairs },
+      { id: 'signal_contrast', src: tsy_signal },
+      { id: 'equity_curves', src: tsy_equity },
+      { id: 'risk_return', src: tsy_risk },
     ],
   },
   {
-    id: "financialMlLab",
-    slug: "financial-ml-lab",
-    imageUrl: placeholderImage,
-    codeUrl: "https://github.com/Nicholashsw/financial-ml-lab",
-    tags: ["Event Study", "Alt Data", "Python"],
-    category: "Machine Learning / Quant Research",
-    date: "2026-04-15",
+    id: 'macroVarResearchLab',
+    slug: 'macro-var-research-lab',
+    imageUrl: mv_relrmse,
+    codeUrl: `${GH}/macro-var-research-lab`,
+    paperUrl: '/papers/macro-var-01-var-selection-horserace.pdf',
+    paperLabel: 'Read paper (study 1)',
+    papers: [
+      {
+        label: 'Study 2: BVAR with constructed shocks',
+        url: '/papers/macro-var-02-bvar-shocks-density.pdf',
+      },
+      {
+        label: 'Study 3: VARX permutation study',
+        url: '/papers/macro-var-03-varx-permutation-study.pdf',
+      },
+    ],
+    tags: ['Econometrics', 'Forecasting', 'Bayesian'],
+    category: 'Econometrics',
+    capability: 'Macro / econometrics',
+    date: '2026-07-10',
+    featured: true,
+    featuredRank: 4,
+    status: 'published',
+    stack: ['Python', 'statsmodels', 'scikit-learn', 'arch', 'FRED', 'ALFRED'],
+    highlights: [
+      { label: 'Studies, papers', value: '3, 3' },
+      { label: 'Unique models in walk-forward', value: '1,014' },
+      { label: 'Estimators beating a univariate AR (MCS)', value: '0' },
+      { label: 'HP-filter endpoint look-ahead', value: '66% of cycle std' },
+    ],
     keyFeatures: [],
-    galleryImages: [],
+    galleryImages: [
+      { id: 'relrmse_heatmap', src: mv_relrmse },
+      { id: 'phase2_heatmap', src: mv_phase2 },
+      { id: 'hp_lookahead', src: mv_hp },
+      { id: 'winner_forecasts', src: mv_winner },
+      { id: 'gap_vs_level_heatmap', src: mv_gap },
+      { id: 'varr_gdp_sv_path', src: mv_sv },
+      { id: 'varx_fig2_shockcount', src: mv_shockcount },
+      { id: 'varx_fig_rt', src: mv_rt },
+      { id: 'varx_fig_id', src: mv_id },
+      { id: 'varx_fig_density', src: mv_density },
+    ],
   },
   {
-    id: "lowlatMm",
-    slug: "lowlat-mm",
+    id: 'lstmEquityForecasting',
+    slug: 'lstm-equity-forecasting',
+    imageUrl: lstm_ic,
+    codeUrl: `${GH}/lstm-equity-forecasting`,
+    paperUrl: '/papers/lstm-equity-forecasting.pdf',
+    paperLabel: 'Read paper',
+    tags: ['Deep Learning', 'Cross-Sectional', 'PyTorch'],
+    category: 'Machine Learning',
+    capability: 'Machine learning',
+    date: '2026-07-14',
+    featured: true,
+    featuredRank: 5,
+    status: 'published',
+    stack: [
+      'Python',
+      'PyTorch',
+      'LightGBM',
+      'XGBoost',
+      'scikit-learn',
+      'Bloomberg VBA',
+    ],
+    highlights: [
+      { label: 'S&P 500 constituents, 2005–2026', value: '518' },
+      { label: 'High-vol cross-sectional IC (t)', value: '0.044 (3.2)' },
+      { label: 'Long-short Sharpe, gross → net', value: '2.09 → < 0' },
+      { label: 'IC at a five-day horizon', value: '≈ 0' },
+    ],
+    keyFeatures: [],
+    galleryImages: [
+      { id: 'test_ic_by_model', src: lstm_ic },
+      { id: 'regime_ic', src: lstm_regime },
+      { id: 'xs_ls_equity_curve', src: lstm_ls },
+    ],
+  },
+  {
+    id: 'lowlatMm',
+    slug: 'lowlat-mm',
     imageUrl: lowlat_arch,
-    codeUrl: "https://github.com/Nicholashsw/lowlat-mm",
-    tags: ["C++", "Market Making", "Low Latency"],
-    category: "Systems / C++",
-    date: "2026-03-01",
+    codeUrl: `${GH}/lowlat-mm`,
+    tags: ['C++20', 'Market Making', 'Low Latency'],
+    category: 'Systems / C++',
+    capability: 'Systems / market microstructure',
+    date: '2026-06-10',
+    featured: true,
+    featuredRank: 6,
+    status: 'published',
+    stack: ['C++20', 'CMake', 'Catch2', 'std::variant events'],
+    highlights: [
+      { label: 'Engine', value: 'C++20, event-driven' },
+      { label: 'Unit tests', value: '28 cases, 109 assertions' },
+      { label: 'Latency model', value: 'explicit, both directions' },
+      { label: 'Sample run on a random walk', value: 'loses, by design' },
+    ],
     keyFeatures: [],
     galleryImages: [
-      { id: "architecture", src: lowlat_arch },
+      { id: 'architecture', src: lowlat_arch },
+      { id: 'pnl_sample', src: lowlat_pnl },
     ],
+  },
+  {
+    id: 'nkdsge',
+    slug: 'nkdsge-dsge',
+    imageUrl: dsge_mc,
+    codeUrl: `${GH}/nkdsge-dsge`,
+    tags: ['DSGE', 'Bayesian', 'Kalman'],
+    category: 'Structural Macro',
+    capability: 'Structural macro',
+    date: '2026-07-28',
+    featured: false,
+    featuredRank: 7,
+    status: 'published',
+    stack: ['Python', 'NumPy', 'SciPy', 'ECB Data Portal', 'FRED', 'ALFRED'],
+    highlights: [
+      { label: 'Solution', value: 'Klein / QZ, BK-determinate' },
+      {
+        label: 'Log Bayes factors: smoothing, forward-looking',
+        value: '+91, +46',
+      },
+      { label: 'MCMC', value: '2 chains × 12,000' },
+      { label: 'Posterior predictive moments passing', value: '9 of 10' },
+    ],
+    keyFeatures: [],
+    galleryImages: [
+      { id: 'model_comparison', src: dsge_mc },
+      { id: 'policy_progression', src: dsge_policy },
+      { id: 'posteriors', src: dsge_post },
+      { id: 'ppc', src: dsge_ppc },
+      { id: 'country_comparison', src: dsge_country },
+      { id: 'irf', src: dsge_irf },
+    ],
+  },
+  {
+    id: 'quantMacroEngine',
+    slug: 'quant-macro-engine',
+    imageUrl: qme_dfast,
+    codeUrl: `${GH}/quant-macro-engine`,
+    tags: ['BVAR', 'Black-Litterman', 'Scenario Analysis'],
+    category: 'Macro Systems',
+    capability: 'Macro engine',
+    date: '2026-07-29',
+    featured: false,
+    featuredRank: 8,
+    status: 'published',
+    stack: ['Python', 'NumPy', 'pandas', 'FRED', 'BEA', 'OECD', 'ECB'],
+    highlights: [
+      { label: 'Views into Black-Litterman', value: 'BVAR posterior' },
+      { label: 'Conditional forecasts', value: 'Waggoner–Zha' },
+      { label: 'DFAST 2026: BVAR vs Fed trough GDP', value: '−2.9% vs −4.6%' },
+    ],
+    keyFeatures: [],
+    galleryImages: [{ id: 'dfast_scenario', src: qme_dfast }],
+  },
+  {
+    id: 'globalRatesRv',
+    slug: 'global-rates-rv',
+    imageUrl: grrv_oor,
+    codeUrl: `${GH}/global-rates-rv`,
+    papers: [
+      {
+        label: 'FINDINGS.md',
+        url: `${GH}/global-rates-rv/blob/main/FINDINGS.md`,
+      },
+    ],
+    tags: ['Rates', 'Cointegration', 'Negative Result'],
+    category: 'Rates Research',
+    capability: 'Rates / relative value',
+    date: '2026-07-29',
+    featured: false,
+    featuredRank: 9,
+    status: 'negative-result',
+    stack: [
+      'Python',
+      'statsmodels',
+      'FRED',
+      'Bundesbank',
+      'Japan MoF',
+      'Bank of Canada',
+    ],
+    highlights: [
+      { label: 'Cointegrated pairs, full sample', value: '0 of 18' },
+      { label: 'Within regimes pass / survive FDR', value: '11 of 144 / 6' },
+      { label: 'Out-of-regime mean Sharpe', value: '−0.27' },
+      { label: 'FX contamination R²', value: '≤ 0.0016' },
+    ],
+    keyFeatures: [],
+    galleryImages: [
+      { id: 'out_of_regime', src: grrv_oor },
+      { id: 'regime_screen', src: grrv_screen },
+      { id: 'beta_instability', src: grrv_beta },
+      { id: 'yields', src: grrv_yields },
+    ],
+  },
+  {
+    id: 'alphaResearchLab',
+    slug: 'alpha-research-lab',
+    imageUrl: alpha_vrp,
+    codeUrl: `${GH}/alpha-research-lab`,
+    tags: ['Volatility', 'Options', 'Backtesting'],
+    category: 'Quantitative Research',
+    capability: 'Volatility strategies',
+    date: '2026-06-14',
+    featured: false,
+    featuredRank: 10,
+    status: 'published',
+    stack: ['Python', 'pandas', 'Black-76', 'Johansen / VECM', 'Bloomberg BGN'],
+    highlights: [
+      { label: 'XAUUSD / USDJPY trade Sharpe', value: '0.41 / 0.40' },
+      { label: 'Win rate vs breakeven', value: '73% vs 70%' },
+      { label: 'Sample', value: '2005–2026' },
+    ],
+    keyFeatures: [],
+    galleryImages: [
+      { id: 'vrp_tearsheet', src: alpha_vrp },
+      { id: 'pairs_dashboard', src: alpha_pairs },
+    ],
+  },
+  {
+    id: 'financialMlLab',
+    slug: 'financial-ml-lab',
+    imageUrl: fin_car,
+    codeUrl: `${GH}/financial-ml-lab`,
+    tags: ['Event Study', 'Alt Data', 'Python'],
+    category: 'Alternative Data',
+    capability: 'Alternative data',
+    date: '2026-05-18',
+    featured: false,
+    featuredRank: 11,
+    status: 'published',
+    stack: ['Python', 'pandas', 'pdfplumber', 'yfinance'],
+    highlights: [
+      { label: 'House PTR trades, 2022–2025', value: '5,763' },
+      { label: 'Transaction-date CAR(+1,+21) (t)', value: '−0.28% (−2.22)' },
+      { label: 'Committee-relevant CAR (t)', value: '+0.18% (0.77)' },
+    ],
+    keyFeatures: [],
+    galleryImages: [{ id: 'car_reported', src: fin_car }],
   },
 ];
 
-export const projectsContent = {
-  sgxMultifactorFyp: {
-    title: "Multi-Factor Equity Strategy — SGX",
-    description: `Systematic multi-factor equities on SGX, consolidated and verified: real cross-sectional structure, removed by real-world frictions (NTU FYP).`,
-    imageAltText: "SGX multi-factor strategy performance, point-in-time universe",
-    categoryText: "Quantitative Research",
-    dateText: "June 2026",
-    detailedDescription: `A systematic multi-factor strategy on Singapore equities, my NTU final-year project, consolidated from ten research branches into one verified body of work: every published number traces to an executed run on real vendor data. Value, momentum, quality, size and liquidity signals form a composite tested with point-in-time membership, Fama-MacBeth pricing, a pre-registered 65-test grid, and full cost and borrow modelling. The survivorship work is the core finding and it cuts both ways. Delisting bias on SGX runs backwards: dropping dead names lowers measured universe returns by 0.89 pp/yr, because 59% of exits are takeouts at a premium. Survivor-defined backtests still flatter themselves: the naive blue-chip Sharpe of 1.00 corrects to 0.45 under quarterly point-in-time membership, and the broad-universe long-short reverses outright (survivor t=1.0 vs point-in-time t=3.8). The point-in-time composite IC is 0.070 (t=5.9); value carries the signal. Fully costed with per-name Corwin-Schultz spreads and real Markit borrow, the gross 1.66%/mo edge (t=5.1) falls to 0.28%/mo (t=0.85): statistically real, economically untradeable at institutional scale.`,
-    keyFeatures: {},
-    galleryImages: {
-      core_performance: { alt: "STI-core strategy performance", caption: "STI-core strategy on the point-in-time roster: +0.40%/mo, Newey-West t=2.26" },
-      surv_bias: { alt: "Survivorship bias sign in both universes", caption: "Delisting survivorship bias is negative in both universes: dead names raise measured returns" },
-      exit_mix: { alt: "SGX delisting exit mix", caption: "59% of SGX delistings are acquisitions, and takeouts pay: the mechanism behind the backwards bias" },
-      leakage_funnel: { alt: "Alpha leakage funnel", caption: "Where the alpha goes: benchmark correction, costs, and the tradability screen" },
-      markit_borrow: { alt: "Markit borrow scenarios", caption: "Real borrow fees destroy the naive short book; the availability screen rescues it into large caps" },
-      capacity: { alt: "Capacity analysis", caption: "Feasibility-bound capacity of roughly S$50M for the concentrated STI-core book" },
-      benchmark_contamination: { alt: "Benchmark contamination test", caption: "A t+1-membership benchmark inflates the passive alternative by 0.40%/mo" },
-      multiple_testing: { alt: "Multiple-testing corrections", caption: "Bootstrap reality check and survivors by correction: net of costs, nothing survives" },
-      merton_fit: { alt: "Merton jump-diffusion fit", caption: "57.9% of strategy variance is jump risk; Gaussian risk limits understate 99% ES by a third" },
-      tsmom_combo: { alt: "TSMOM combination under constraints", caption: "The TSMOM-plus-fundamentals combination reverses once borrow constraints and costs are applied" },
-    },
-    challenges: `Building point-in-time index membership and adjudicating 338 delistings against SDC deal records, applying a 4-month fundamental reporting embargo, replacing a contaminated t+1-membership benchmark worth 0.40%/mo of phantom alpha, and holding every result to pre-registered multiple-testing discipline (65 tests; zero survive BHY).`,
-    learnings: `Verification as method: the project caught its own synthetic-data fallback, two look-ahead traps and a forward-return bug, and published the corrections as part of the contribution. In a small market the binding constraints are spreads and borrow availability, not signal.`,
-  },
-  macroVarResearchLab: {
-    title: "Macro Forecasting Horse Race",
-    description: `An honest out-of-sample horse race across five macro forecasting model classes.`,
-    imageAltText: "Winner-model out-of-sample forecasts",
-    categoryText: "Quantitative Research",
-    dateText: "June 2026",
-    detailedDescription: `A reproducible out-of-sample horse race across five model classes — random walk, AR, VAR, Bayesian VAR, and shrinkage methods — over 128 quarters of US macro data. Judged honestly with Clark-West, Diebold-Mariano, and the Model Confidence Set. The BVAR edges the naive benchmarks on most targets, but only the real exchange rate beats them significantly (DM p=0.026), and the random walk survives the Model Confidence Set everywhere. The finding is the restraint: macro variables are genuinely hard to forecast beyond no-change, and the framework refuses to overclaim it.`,
-    keyFeatures: {},
-    galleryImages: {
-      winner_forecasts: { alt: "Winner-model forecasts", caption: "Out-of-sample forecasts from the selected model" },
-      winner_forecasts_allyoy: { alt: "Winner forecasts (all-YoY)", caption: "Winner forecasts, all-YoY specification" },
-      winner_forecasts_augmented: { alt: "Winner forecasts (augmented)", caption: "Winner forecasts, augmented specification" },
-      winner_forecasts_reer_yoy: { alt: "Winner forecasts (REER-YoY)", caption: "Winner forecasts, REER-YoY specification" },
-      relrmse_heatmap: { alt: "Relative-RMSE heatmap", caption: "Relative RMSE vs benchmark by model and target" },
-      relrmse_heatmap_allyoy: { alt: "Relative-RMSE heatmap (all-YoY)", caption: "Relative RMSE, all-YoY specification" },
-      relrmse_heatmap_augmented: { alt: "Relative-RMSE heatmap (augmented)", caption: "Relative RMSE, augmented specification" },
-      relrmse_heatmap_reer_yoy: { alt: "Relative-RMSE heatmap (REER-YoY)", caption: "Relative RMSE, REER-YoY specification" },
-      gap_vs_level_heatmap: { alt: "Gap vs level heatmap", caption: "Output-gap vs level RMSE comparison" },
-      hp_lookahead: { alt: "HP-filter look-ahead diagnostic", caption: "HP-filter end-point look-ahead diagnostic" },
-      phase2_heatmap: { alt: "Model-class heatmap", caption: "Phase-2 model-class comparison" },
-    },
-    challenges: `Implementing a leakage-safe walk-forward protocol, the Minnesota BVAR with a sum-of-coefficients prior, and the Model Confidence Set to guard against data-mining.`,
-    learnings: `Bayesian time-series, formal forecast evaluation, and that an honest negative result is worth more than an overfit positive one.`,
-  },
-  alphaResearchLab: {
-    title: "Volatility & Systematic Strategy Lab",
-    description: `A multi-strategy lab around the volatility risk premium, with a Black-76 options engine.`,
-    imageAltText: "Volatility risk premium strategy",
-    categoryText: "Quantitative Research",
-    dateText: "June 2026",
-    detailedDescription: `A multi-strategy research lab built around the volatility risk premium. A VRP strategy across FX spot, futures and options (defined-risk spreads, 200-day trend filter) backtested 2005–2026: gold and yen clear breakeven (Sharpe ~0.40, win rate ~73%), while EUR-correlated pairs sit just below, reflecting structurally thinner premium. Plus a Black-76 options-on-futures pricing engine (greeks, American binomial, 11/11 self-tests), Johansen/VECM relative-value pairs, and mean-reversion and momentum modules.`,
-    keyFeatures: {},
-    galleryImages: {},
-    challenges: `Building an event-driven backtester, aligning option-chain expiries, and pricing options on futures correctly with early-exercise.`,
-    learnings: `Derivatives greeks, the macro-volatility interplay, and that the VRP is real but thin and asset-dependent.`,
-  },
-  financialMlLab: {
-    title: "Congressional-Trade Alpha — An Event Study",
-    description: `An event study on whether copying congressional trades is an edge (it isn't).`,
-    imageAltText: "Congressional trade event study",
-    categoryText: "Machine Learning / Quant Research",
-    dateText: "April 2026",
-    detailedDescription: `An event study testing whether copying US congressional stock trades is an edge. 5,763 House disclosures, 2022–2025, with a proper market-model estimation window and SPY benchmark. The answer is no: sign-adjusted abnormal returns are roughly zero to slightly negative at every horizon a copy-trader could actually act on. The only signal with a pulse is committee relevance — members trading their own committee's sector — but the t-stats are weak and costs would eat it. A clean, well-powered null result.`,
-    keyFeatures: {},
-    galleryImages: {},
-    challenges: `Parsing messy disclosure filings, building a leakage-safe event window, and resisting the urge to torture a non-result into a signal.`,
-    learnings: `Event-study methodology, and that proving a negative rigorously is its own kind of result.`,
-  },
-  lowlatMm: {
-    title: "Low-Latency Market-Making Engine",
-    description: `A C++20 event-driven market-making and execution engine.`,
-    imageAltText: "Low-latency market-making engine",
-    categoryText: "Systems / C++",
-    dateText: "March 2026",
-    detailedDescription: `A C++20 event-driven market-making and execution engine: limit order book, order management, a pre-trade risk gate with kill switch, and an exchange simulator, on a fully deterministic single-queue event loop. 28 unit tests, ~109 assertions. Against a random-walk feed the sample run loses money by design, to adverse selection, which is the point: it's the engine and the microstructure that are the work, not a tuned PnL.`,
-    keyFeatures: {},
-    galleryImages: {},
-    challenges: `Designing clean module boundaries (book / OMS / risk / simulator), keeping the event loop deterministic, and modelling fills and latency realistically.`,
-    learnings: `Market microstructure, low-latency systems design in C++, and how adverse selection punishes a naive quoting strategy.`,
-  },
-};
+// Flagships first by rank, then the rest by rank.
+export const projectsList: Array<ProjectData> = [...projectsListUnsorted].sort(
+  (a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99)
+);
 
-export const projectsList = [...projectsListUnsorted].sort((a, b) => {
-  // Sort by date, most recent first. Ensure 'date' is a valid date string.
-  const dateA = new Date(a.date);
-  const dateB = new Date(b.date);
-  return dateB.getTime() - dateA.getTime();
-});
-
-// Helper function to translate a single project
 function translateProject(
   project: ProjectData,
   lang: LanguageCode
 ): TranslatedProject {
-  // Remove problematic type assertion and use string for key
-  const currentProjectId = project.id as string;
-
-  // Use 'as any' for ui to bypass index type errors
   const langUi = ui as any;
+  const currentProjectId = project.id as keyof typeof ui.en.projectsContent;
   const projectContentSource =
     lang in langUi && langUi[lang]?.projectsContent?.[currentProjectId]
       ? langUi[lang].projectsContent
       : langUi[defaultLanguage].projectsContent;
-
-  const i18nData = projectContentSource[currentProjectId];
+  const i18nData = projectContentSource[currentProjectId] as any;
 
   if (!i18nData) {
-    // Fallback if translation for the project ID is missing
-    // This might happen if i18n/ui.ts is not updated after adding a new project
     console.warn(
       `Translation missing for project ID: ${project.id} in language: ${lang}. Using default values.`
     );
     return {
       ...project,
-      title: project.id, // Fallback title
-      description: 'Description missing for this project.', // Fallback description
-      imageAltText: 'Placeholder image', // Fallback alt text
+      title: project.id,
+      description: 'Description missing for this project.',
+      imageAltText: 'Placeholder image',
       categoryText: project.category,
       dateText: project.date,
       detailedDescription: 'Detailed description missing.',
-      keyFeaturesTranslated:
-        project.keyFeatures?.map((kf) => ({
-          ...kf,
-          title: kf.id,
-          description: 'N/A',
-        })) ?? [],
+      keyFeaturesTranslated: [],
       galleryImagesTranslated:
         project.galleryImages?.map((gi) => ({
           ...gi,
           alt: 'N/A',
-          caption: 'N/A',
+          caption: '',
         })) ?? [],
-      challenges: 'Challenges information missing.',
-      learnings: 'Learnings information missing.',
+      challenges: '',
+      learnings: '',
     };
   }
 
@@ -268,13 +497,9 @@ function translateProject(
       >;
       const featureTranslations = typedKeyFeatures?.[kf.id] ?? {
         title: kf.id,
-        description: 'Description missing',
+        description: '',
       };
-      return {
-        ...kf,
-        title: featureTranslations.title,
-        description: featureTranslations.description,
-      };
+      return { ...kf, ...featureTranslations };
     }) ?? [];
 
   const galleryImagesTranslated =
@@ -288,9 +513,9 @@ function translateProject(
         caption: '',
       };
       return {
-        ...gi, // This includes src and id
+        ...gi,
         alt: imageTranslations.alt,
-        caption: imageTranslations.caption,
+        caption: imageTranslations.caption ?? '',
       };
     }) ?? [];
 
@@ -298,19 +523,22 @@ function translateProject(
     ...project,
     title: i18nData.title,
     description: i18nData.description,
+    headline: i18nData.headline,
     imageAltText: i18nData.imageAltText,
     categoryText: i18nData.categoryText ?? project.category,
     dateText: i18nData.dateText ?? project.date,
-    detailedDescription:
-      i18nData?.detailedDescription ?? 'Detailed description missing',
+    detailedDescription: i18nData.detailedDescription,
+    whyItMatters: i18nData.whyItMatters,
+    methodology: i18nData.methodology ? [...i18nData.methodology] : undefined,
+    findings: i18nData.findings ? [...i18nData.findings] : undefined,
+    caveats: i18nData.caveats ? [...i18nData.caveats] : undefined,
     keyFeaturesTranslated,
     galleryImagesTranslated,
-    challenges: i18nData?.challenges ?? 'Challenges information missing',
-    learnings: i18nData?.learnings ?? 'Learnings information missing',
+    challenges: i18nData.challenges,
+    learnings: i18nData.learnings,
   };
 }
 
-// Function to get projects with translated content
 export function getTranslatedProjects(
   lang: LanguageCode | undefined
 ): Array<TranslatedProject> {
@@ -318,25 +546,36 @@ export function getTranslatedProjects(
   return projectsList.map((project) => translateProject(project, currentLang));
 }
 
-// Function to get a single project by its slug (untranslated)
+/** Projects shown on the homepage: explicit curation, never "latest N". */
+export function getFeaturedProjects(
+  lang: LanguageCode | undefined
+): Array<TranslatedProject> {
+  return getTranslatedProjects(lang)
+    .filter((p) => p.featured)
+    .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
+}
+
+/** Projects listed on /projects: everything with something to show. In-progress work is hidden. */
+export function getListedProjects(
+  lang: LanguageCode | undefined
+): Array<TranslatedProject> {
+  return getTranslatedProjects(lang).filter(
+    (p) => (p.status ?? 'published') !== 'in-progress'
+  );
+}
+
 export function getProjectBySlug(slug: string): ProjectData | undefined {
   return projectsList.find((project) => project.slug === slug);
 }
 
-// Function to get a single translated project by its slug
 export function getTranslatedProjectBySlug(
   slug: string,
   lang: LanguageCode | undefined
 ): TranslatedProject | undefined {
   const project = getProjectBySlug(slug);
-  if (!project) {
-    return undefined;
-  }
-  const currentLang = lang || defaultLanguage;
-  return translateProject(project, currentLang);
+  if (!project) return undefined;
+  return translateProject(project, lang || defaultLanguage);
 }
-
-
 
 // Skills
 export const skillsList: Array<SkillData> = [
@@ -376,8 +615,7 @@ export function getTranslatedSkills(
   const currentLang = lang ?? defaultLanguage;
   const langUi = ui as any;
   return skillsList.map((skill) => {
-    const c =
-      langUi[currentLang]?.skillsContent?.[skill.id] ??
+    const c = langUi[currentLang]?.skillsContent?.[skill.id] ??
       langUi[defaultLanguage]?.skillsContent?.[skill.id] ?? {
         title: skill.id,
         description: '',

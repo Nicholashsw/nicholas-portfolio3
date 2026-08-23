@@ -27,6 +27,7 @@ export type Props = {
   mySkillsTitle: string;
   mySkillsDescription: string;
   projectPreviewCtaText: string;
+  allProjectsText?: string;
 };
 
 const {
@@ -40,7 +41,13 @@ const {
   mySkillsTitle,
   mySkillsDescription,
   projectPreviewCtaText,
+  allProjectsText = 'All research →',
 } = Astro.props;
+
+// Explicit curation: flagships flagged in service.ts, ordered by featuredRank. Never "latest N".
+const featured = projects
+  .filter((p) => p.featured)
+  .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
 
 const socials = [
   { href: 'https://linkedin.com/in/nicholas-hong001', label: 'LinkedIn', Icon: FaLinkedinIn },
@@ -141,7 +148,7 @@ const socials = [
   />
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {
-      projects.slice(0, 3).map((project: TranslatedProject) => (
+      featured.map((project: TranslatedProject) => (
         <FeaturedProjectPreview
           lang={lang}
           slug={project.slug}
@@ -149,9 +156,16 @@ const socials = [
           imageUrl={project.imageUrl}
           imageAltText={project.imageAltText}
           ctaText={projectPreviewCtaText}
+          capability={project.capability}
+          headline={project.headline}
         />
       ))
     }
+  </div>
+  <div class="mt-10 text-center relative z-10">
+    <a href={getRelativeLocaleUrl(lang, '/projects')} class={buttonVariants({ variant: 'outline' })}>
+      {allProjectsText}
+    </a>
   </div>
 </section>
 
