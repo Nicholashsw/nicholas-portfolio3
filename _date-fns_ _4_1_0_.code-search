@@ -1,9 +1,0 @@
-# Query: "date-fns": "^4.1.0"
-# ContextLines: 1
-
-1 result - 1 file
-
-package-lock.json:
-  35          "cmdk": "^1.1.1",
-  36:         "date-fns": "^4.1.0",
-  37          "embla-carousel-react": "^8.6.0",
