@@ -298,7 +298,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     stack: ['C++20', 'CMake', 'Catch2', 'std::variant events'],
     highlights: [
       { label: 'Engine', value: 'C++20, event-driven' },
-      { label: 'Unit tests', value: '28 cases, 109 assertions' },
+      { label: 'Unit tests', value: '30 cases, 119 assertions' },
       { label: 'Latency model', value: 'explicit, both directions' },
       { label: 'Sample run on a random walk', value: 'loses, by design' },
     ],

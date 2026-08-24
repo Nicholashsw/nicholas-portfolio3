@@ -174,7 +174,7 @@ export const projectsContent = {
   },
 
   treasuryCurve: {
-    title: 'Treasury Futures Curve: Carry and Momentum',
+    title: 'Treasury Futures Curve: Momentum and Mean Reversion',
     description:
       'Momentum in levels, reversion in spreads: systematic U.S. Treasury futures curve strategies 2010–2026, DV01-neutral and net of costs.',
     headline:
@@ -184,7 +184,7 @@ export const projectsContent = {
     categoryText: 'Rates Research',
     dateText: 'July 2026',
     detailedDescription:
-      'A systematic study of carry, momentum and curve strategies on U.S. Treasury futures from January 2010 to July 2026. Continuous, back-adjusted futures are rebuilt from the exchange roll map, curve trades are hedged to be DV01-neutral using the daily cheapest-to-deliver forward risk, and every strategy is evaluated net of tick costs with HAC Diebold-Mariano inference against a duration-momentum baseline.',
+      'A systematic study of time-series momentum on outright duration and mean-reversion on DV01-neutral curve spreads (2s10s, 5s30s, 2s5s10s) in U.S. Treasury futures from January 2010 to July 2026. A carry strategy is scoped as future work and is not implemented here. Continuous, back-adjusted futures are rebuilt from the exchange roll map, curve trades are hedged to be DV01-neutral using the daily cheapest-to-deliver forward risk, and every strategy is evaluated net of tick costs with HAC Diebold-Mariano inference against a duration-momentum baseline.',
     whyItMatters:
       'Time-series momentum on outright duration is well known. The question a rates desk actually faces is whether the same signal works on the curve. It does not: the slope mean-reverts, and applying a trend signal to it is a systematic way to lose money even on a perfectly hedged book. The asymmetry is the finding; the honest part is that the curve trades do not statistically beat the outright baseline.',
     methodology: [
@@ -334,7 +334,7 @@ export const projectsContent = {
     methodology: [
       'Panel of 518 S&P 500 constituents exported from a Bloomberg Terminal via a staged VBA export; a yfinance mirror emits the identical schema and was checked against the Bloomberg closes (median absolute difference essentially zero).',
       'Chronological split only (train to 2021, validation 2022, test 2023+); features from information through the close of day t; scalers fit on train only; a shuffled-target ridge run every time as a leakage alarm.',
-      'Eleven classical models (linear, ridge, elastic-net, polynomial ridge, tree, random forest, XGBoost, LightGBM, linear SVR, two naive baselines) and a 64×2 pooled-panel LSTM with early stopping and four ablations.',
+      'Eleven classical models (linear, ridge, elastic-net, polynomial ridge, tree, random forest, XGBoost, LightGBM, linear SVR, two naive baselines) and a pooled-panel LSTM with early stopping. The reported LSTM is the compact configuration (1 layer, hidden 32, dropout 0.1); a higher-capacity 2×64 variant was trained but its test metrics were not retained, so no result is claimed for it.',
       'Cross-sectional target: each stock’s next-day return minus the equal-weighted universe mean; regime: VIX 63-day z-score > 1, frozen before any test evaluation; decile long-short with turnover and 10 bp per side costs; weekly-rebalance decay test; four-factor risk adjustment.',
     ],
     findings: [
@@ -383,7 +383,7 @@ export const projectsContent = {
     categoryText: 'Systems / C++',
     dateText: 'June 2026',
     detailedDescription:
-      'A modular C++20 prototype of the patterns found in a production market-making stack: a top-of-book-plus-depth order book, a CSV market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market-maker, and a replay backtest driver on a single timestamp-ordered event bus. 28 Catch2 test cases, 109 assertions. It is a learning and portfolio piece, not an HFT system, and the README says so.',
+      'A modular C++20 prototype of the patterns found in a production market-making stack: a top-of-book-plus-depth order book, a CSV market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market-maker, and a replay backtest driver on a single timestamp-ordered event bus. 30 Catch2 test cases, 119 assertions. It is a learning and portfolio piece, not an HFT system, and the README says so.',
     whyItMatters:
       'Market-making economics are decided by fill assumptions, latency and adverse selection, not by the quoting formula. An engine whose modules have clean boundaries lets each of those be changed independently and tested, which is what makes the result of any strategy experiment interpretable.',
     methodology: [
@@ -394,7 +394,7 @@ export const projectsContent = {
     ],
     findings: [
       'On the random-walk feed the default strategy loses money by construction, to adverse selection; the engine reports it rather than hiding it, which is the point of the exercise.',
-      'The unit-test suite covers the order book, OMS, risk gate, simulator and strategy (28 cases, 109 assertions) and passes with clang++ on macOS and g++ on Linux.',
+      'The unit-test suite covers the order book, OMS, risk gate, simulator and strategy (30 cases, 119 assertions) and passes with clang++ on macOS and g++ on Linux.',
     ],
     caveats: [
       'Educational scope: synthetic top-of-book feeds, no queue-position model, no real exchange protocol, no production latency engineering.',
