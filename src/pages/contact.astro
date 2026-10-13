@@ -1,47 +1,37 @@
 ---
-import { ContactScreen } from '@/features/contact';
-import { defaultLanguage, type LanguageCode, ui } from '@/i18n/ui';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Heading from '@/components/Heading.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ui } from '@/i18n/ui';
 
-const lang = 'en';
-const t = (key: keyof typeof ui[typeof lang]['contactPage']) => ui[lang].contactPage[key];
+const t = ui.en.contactPage;
 
-const pageMeta = {
-  title: t('pageTitle'),
-  description: t('pageDescription'),
-};
-
-const formTranslations = {
-  firstNameLabel: t('firstNameLabel'),
-  lastNameLabel: t('lastNameLabel'),
-  emailLabel: t('emailLabel'),
-  messageLabel: t('messageLabel'),
-  firstNamePlaceholder: t('firstNamePlaceholder'),
-  lastNamePlaceholder: t('lastNamePlaceholder'),
-  emailPlaceholder: t('emailPlaceholder'),
-  messagePlaceholder: t('messagePlaceholder'),
-  sendButtonLabel: t('sendButtonLabel'),
-  toastSuccessMessageSent: t('toastSuccessMessageSent'),
-  toastErrorFailedToSend: t('toastErrorFailedToSend'),
-  toastErrorUnexpected: t('toastErrorUnexpected'),
-  toastErrorDetails: t('toastErrorDetails'),
-  toastErrorValidationFailed: t('toastErrorValidationFailed'),
-};
-
-const layoutProps = {
-  lang,
-  mainHeadingTitle: pageMeta.title,
-  mainHeadingDescription: t('description'),
-  formTitle: t('formTitle'),
-  formTranslations,
-  orSeparatorText: t('orSeparatorText'),
-  calendarTitle: t('calendarTitle'),
-  calendarDescription: t('calendarDescription'),
-  calendarLinkLabel: t('calendarLinkLabel'),
-  calendarUrl: import.meta.env.PUBLIC_GOOGLE_CALENDAR_URL as string,
-};
+const links = [
+  { label: 'Email', value: 'nhong001@e.ntu.edu.sg', href: 'mailto:nhong001@e.ntu.edu.sg' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/nicholas-hong001', href: 'https://linkedin.com/in/nicholas-hong001' },
+  { label: 'GitHub', value: 'github.com/Nicholashsw', href: 'https://github.com/Nicholashsw' },
+];
 ---
 
-<BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
-  <ContactScreen {...layoutProps} />
+<BaseLayout pageTitle={t.pageTitle} pageDescription={t.pageDescription}>
+  <section class="container mx-auto px-4 py-12 max-w-xl">
+    <Heading
+      title={t.title}
+      description={t.description}
+      showDivider={true}
+      className="flex flex-col items-center justify-center"
+      titleClassName="md:text-5xl"
+    />
+    <ul class="mt-10 space-y-4">
+      {
+        links.map((l) => (
+          <li class="flex items-baseline justify-between gap-4 border-b border-border pb-3">
+            <span class="text-muted-foreground">{l.label}</span>
+            <a href={l.href} class="font-medium hover:underline" target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+              {l.value}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
