@@ -11,10 +11,6 @@ export type Props = {
 
 const { entry } = Astro.props;
 const post = entry.data;
-const GITHUB_USER = 'YOUR_GITHUB_USERNAME';
-const GITHUB_REPO = 'YOUR_GITHUB_REPO';
-const GITHUB_BRANCH = 'YOUR_GITHUB_BRANCH';
-const editUrl = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/${GITHUB_BRANCH}/src/content/blog/${entry.id}`;
 
 const lang = post.lang;
 const t = ui[lang].blogPost;
@@ -74,14 +70,6 @@ const { pubDate, updatedDate } = post;
     >
       <a href="/blog" class="text-primary hover:underline">
         &larr; {t('backToList')}
-      </a>
-      <a
-        href={editUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-sm text-muted-foreground hover:text-primary hover:underline"
-      >
-        {t('editOnGithub')}
       </a>
     </footer>
   </article>
