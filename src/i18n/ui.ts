@@ -3,8 +3,8 @@ import { projectsContent } from '@/features/projects/content';
 export const ui = {
   en: {
     indexPage: {
-      pageTitle: 'Home',
-      description: 'Welcome to my portfolio.',
+      pageTitle: 'Nicholas Hong',
+      description: 'Nicholas Hong. Quant research and trading systems.',
     },
     homePage: {
       heroGreeting: 'Hi, I’m Nicholas 👋',
@@ -22,18 +22,15 @@ export const ui = {
       allProjectsLink: 'All research →',
       projectCardViewCode: 'View Code',
       imageNotAvailable: 'Image not available for now',
-      mySkillsTitle: 'My Skills',
-      mySkillsDescription:
-        'Explore the expertise and abilities that define my work and passion.',
+      mySkillsTitle: 'Skills',
+      mySkillsDescription: '',
     },
     blogPage: {
-      pageTitle: 'My Technical Blog',
-      pageDescription:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      title: 'My Technical Blog',
-      description:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      comingSoon: 'Blog posts will appear here soon. Check back later!',
+      pageTitle: 'Blog',
+      pageDescription: 'Short write-ups on quant research and markets.',
+      title: 'Blog',
+      description: 'Short write-ups on quant research and markets.',
+      comingSoon: 'Nothing here yet.',
       heroImageAlt: 'Hero image for article: ',
       publishedOn: 'Published on: ',
       readMore: 'Read more',
@@ -58,12 +55,10 @@ export const ui = {
       title: 'Table of Contents',
     },
     contactPage: {
-      pageTitle: 'Contact Me',
-      pageDescription:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
-      title: 'Contact Me',
-      description:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
+      pageTitle: 'Contact',
+      pageDescription: 'How to reach Nicholas Hong.',
+      title: 'Contact',
+      description: 'Email or LinkedIn is the quickest way to reach me.',
       formTitle: 'Send a message',
       firstNameLabel: 'First Name',
       lastNameLabel: 'Last Name',
@@ -115,7 +110,7 @@ export const ui = {
     },
     projectsPage: {
       title: 'Research and projects',
-      metaTitle: "My Projects | Nicholas Hong's Portfolio",
+      metaTitle: 'Projects | Nicholas Hong',
       metaDescription:
         'Quantitative research and systems projects by Nicholas Hong: systematic equities, derivatives, rates, macro econometrics, machine learning and market-making systems.',
       noProjects: 'No projects to display at the moment.',
@@ -124,26 +119,10 @@ export const ui = {
     },
     notFoundPage: {
       pageTitle: 'Page Not Found',
-      title: 'Oops! Page Not Found',
+      title: 'Page not found',
       message:
         'Sorry, the page you are looking for does not seem to exist. Check the URL or return to the homepage.',
       homeLink: 'Return to Homepage',
-    },
-    tipsPage: {
-      metaTitle: 'Development Tips | Nicholas Hong',
-      metaDescription:
-        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
-      title: 'Latest Tips',
-      description:
-        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
-      noTips: 'No tips to display at the moment.',
-      readTip: 'Read tip',
-      backToList: 'Back to list',
-      featuredTips: 'Featured Tips',
-      allTips: 'All Tips',
-      tipsAvailable: 'tips available',
-      tipAvailable: 'tip available',
-      editOnGithub: 'Edit on GitHub',
     },
     zodErrors: {
       invalid_type: 'Invalid type.',
@@ -159,13 +138,12 @@ export const ui = {
       title: 'Nicholas Hong',
       description:
         'Quant researcher & engineer building FX, vol, and macro trading systems',
-      rights: '© 2025 Nicholas Hong. All rights reserved.',
+      rights: 'Nicholas Hong',
     },
     nav: {
       home: 'Home',
       projects: 'Projects',
       blog: 'Blog',
-      tips: 'Tips',
       contact: 'Contact',
     },
     skillsContent: {
