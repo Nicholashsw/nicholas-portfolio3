@@ -16,7 +16,7 @@ export const projectsContent = {
     categoryText: 'Quantitative Research',
     dateText: 'August 2026',
     detailedDescription:
-      'A systematic multi-factor strategy on Singapore equities, my NTU final-year project, consolidated from ten research branches into one verified body of work: every published number traces to an executed run on real vendor data, catalogued claim by claim in a verification ledger, with superseded and contaminated results listed in an exclusions file. Value, momentum, quality, size and liquidity signals form a composite tested with point-in-time membership, Fama-MacBeth pricing, a pre-registered 65-test grid, and full cost and borrow modelling.',
+      'A systematic multi-factor strategy on Singapore equities, my NTU final-year project, consolidated from ten research branches into one verified body of work: every published number traces to an executed run on real vendor data, catalogued claim by claim in a verification ledger, with superseded and contaminated results listed in an exclusions file. Value, momentum, quality, size and liquidity signals form a composite tested with point-in-time membership, Fama-MacBeth pricing, a 65-test specification grid, and full cost and borrow modelling.',
     whyItMatters:
       'Factor premia are documented on US data with deep liquidity. SGX is small, REIT-heavy and thinly traded, so it is a clean test of whether the cross-sectional structure transports and, separately, whether it can be harvested. The answer is yes to the first and no to the second, and the gap between them is measured rather than asserted.',
     methodology: [
@@ -24,7 +24,7 @@ export const projectsContent = {
       'Fundamentals lagged with a four-month reporting embargo; forward returns by explicit point-in-time lookup after a forward-return bug was caught and corrected.',
       'Composite IC and Fama-MacBeth pricing on two universes: a 71-name point-in-time STI roster and the broad Compustat universe (1991–2026).',
       'Per-name Corwin-Schultz half-spreads with the traded-days correction, Markit borrow availability and fees on the short side, and a capacity curve at feasible participation.',
-      'Pre-registered 65-test specification grid on a 1995–2019 development window with Bonferroni, BHY and bootstrap reality-check corrections; a second M=55 family for the price-signal branch.',
+      'A 65-test specification grid on a 1995–2019 development window with Bonferroni, BHY and bootstrap reality-check corrections; a second M=55 family for the price-signal branch.',
       'Risk measured with a Merton jump-diffusion fit and compared with Gaussian expected shortfall.',
     ],
     findings: [
@@ -33,7 +33,7 @@ export const projectsContent = {
       'Composite IC is 0.049 (t = 5.9) on the broad universe, the governing estimate, and 0.070 (t = 5.9) on the 71-name point-in-time roster; value carries the signal and part of it is a REIT effect.',
       'Fully costed with real spreads and borrow, the gross 1.66%/mo edge (t = 5.1) falls to 0.28%/mo (t = 0.85): statistically real, economically untradeable at institutional scale.',
       'The STI-core book earns +0.40%/mo (Newey-West t = 2.26) with a feasibility-bound capacity of roughly S$50M; a t+1-membership benchmark would have inflated the passive alternative by 0.40%/mo.',
-      'Of 65 pre-registered tests, 24 clear |t| = 1.96, one clears 3.0, and zero survive BHY false-discovery control.',
+      'Of the 65 tests in the specification grid, 24 clear |t| = 1.96, one clears 3.0, and zero survive BHY false-discovery control.',
     ],
     caveats: [
       'Nothing in the 65-test grid survives multiple-testing correction; the defensible claim is structure, not alpha.',
@@ -81,7 +81,7 @@ export const projectsContent = {
       multiple_testing: {
         alt: 'Multiple-testing corrections on the price-signal family',
         caption:
-          'Price-signal family (M = 55 tests, gross): Bonferroni passes 15, BHY 19, bootstrap reality check 12; net of costs 0 of 22 survive any correction. The separate pre-registered 65-test grid has zero BHY survivors.',
+          'Price-signal family (M = 55 tests, gross): Bonferroni passes 15, BHY 19, bootstrap reality check 12; net of costs 0 of 22 survive any correction. The separate 65-test specification grid has zero BHY survivors.',
       },
       merton_fit: {
         alt: 'Merton jump-diffusion fit',
@@ -95,7 +95,7 @@ export const projectsContent = {
       },
     },
     challenges:
-      'Building point-in-time index membership and adjudicating 338 delistings against SDC deal records, applying a 4-month fundamental reporting embargo, replacing a contaminated t+1-membership benchmark worth 0.40%/mo of phantom alpha, and holding every result to pre-registered multiple-testing discipline.',
+      'Building point-in-time index membership and adjudicating 338 delistings against SDC deal records, applying a 4-month fundamental reporting embargo, replacing a contaminated t+1-membership benchmark worth 0.40%/mo of phantom alpha, and holding every result to multiple-testing discipline.',
     learnings:
       'Verification as method: the project caught its own synthetic-data fallback, two look-ahead traps and a forward-return bug, and published the corrections as part of the contribution. In a small market the binding constraints are spreads and borrow availability, not signal.',
   },

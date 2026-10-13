@@ -115,7 +115,7 @@ const projectsListUnsorted: Array<ProjectData> = [
         label: 'Composite edge, gross → fully costed',
         value: '1.66 → 0.28 %/mo',
       },
-      { label: 'Pre-registered tests surviving BHY', value: '0 of 65' },
+      { label: 'Specification-grid tests surviving BHY', value: '0 of 65' },
     ],
     keyFeatures: [],
     galleryImages: [
