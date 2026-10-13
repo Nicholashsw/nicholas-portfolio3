@@ -1,45 +1,37 @@
 ---
-import { ContactScreen } from '@/features/contact';
+import Heading from '@/components/Heading.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ui } from '@/i18n/ui';
 
-const lang = 'en';
+const t = ui.en.contactPage;
 
-const pageMeta = {
-  title: 'Contact Me',
-  description: "Let's discuss your project, a potential collaboration, or just chat about tech!",
-};
-
-const formTranslations = {
-  firstNameLabel: 'First Name',
-  lastNameLabel: 'Last Name',
-  emailLabel: 'Email',
-  messageLabel: 'Message',
-  firstNamePlaceholder: 'Your first name',
-  lastNamePlaceholder: 'Your last name',
-  emailPlaceholder: 'Your email address',
-  messagePlaceholder: 'Your message here...',
-  sendButtonLabel: 'Send',
-  toastSuccessMessageSent: 'Message sent successfully!',
-  toastErrorFailedToSend: 'Failed to send message.',
-  toastErrorUnexpected: 'An unexpected error occurred.',
-  toastErrorDetails: 'Error details:',
-  toastErrorValidationFailed: 'Form validation failed.',
-};
-
-const layoutProps = {
-  lang,
-  mainHeadingTitle: pageMeta.title,
-  mainHeadingDescription: pageMeta.description,
-  formTitle: 'Send a message',
-  formTranslations,
-  orSeparatorText: 'OR',
-  calendarTitle: 'Schedule a Meeting',
-  calendarDescription: 'Prefer to talk live? Book a slot directly in my calendar.',
-  calendarLinkLabel: 'See my calendar',
-  calendarUrl: import.meta.env.PUBLIC_GOOGLE_CALENDAR_URL,
-};
+const links = [
+  { label: 'Email', value: 'nhong001@e.ntu.edu.sg', href: 'mailto:nhong001@e.ntu.edu.sg' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/nicholas-hong001', href: 'https://linkedin.com/in/nicholas-hong001' },
+  { label: 'GitHub', value: 'github.com/Nicholashsw', href: 'https://github.com/Nicholashsw' },
+];
 ---
 
-<BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
-  <ContactScreen {...layoutProps} />
+<BaseLayout pageTitle={t.pageTitle} pageDescription={t.pageDescription}>
+  <section class="container mx-auto px-4 py-12 max-w-xl">
+    <Heading
+      title={t.title}
+      description={t.description}
+      showDivider={true}
+      className="flex flex-col items-center justify-center"
+      titleClassName="md:text-5xl"
+    />
+    <ul class="mt-10 space-y-4">
+      {
+        links.map((l) => (
+          <li class="flex items-baseline justify-between gap-4 border-b border-border pb-3">
+            <span class="text-muted-foreground">{l.label}</span>
+            <a href={l.href} class="font-medium hover:underline" target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+              {l.value}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
