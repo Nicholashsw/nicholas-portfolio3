@@ -30,8 +30,8 @@ export const projectsContent = {
     findings: [
       'Delisting survivorship bias on SGX runs backwards: dropping dead names lowers measured universe returns by 0.89 pp/yr, because 59% of exits are takeouts at a premium.',
       'Survivor-defined backtests still flatter themselves: the naive blue-chip Sharpe of 1.00 corrects to 0.45 under quarterly point-in-time membership, and the broad-universe long-short reverses outright (survivor t = 1.0 vs point-in-time t = 3.8).',
-      'Composite IC is 0.049 (t = 5.9) on the broad universe, the governing estimate, and 0.070 (t = 5.9) on the 71-name point-in-time roster; value carries the signal and part of it is a REIT effect.',
-      'Fully costed with real spreads and borrow, the gross 1.66%/mo edge (t = 5.1) falls to 0.28%/mo (t = 0.85): statistically real, economically untradeable at institutional scale.',
+      'Composite IC is 0.049 (Newey-West t = 5.2) on the broad universe, the governing estimate, and 0.070 (t = 5.9) on the 71-name point-in-time roster; value carries the signal and part of it is a REIT effect.',
+      'Fully costed with real spreads and borrow, the gross 1.66%/mo edge (t = 5.1) falls to 0.37%/mo (t = 1.1), and the long side alone keeps 0.09%/mo: statistically real, economically untradeable at institutional scale.',
       'The STI-core book earns +0.40%/mo (Newey-West t = 2.26) with a feasibility-bound capacity of roughly S$50M; a t+1-membership benchmark would have inflated the passive alternative by 0.40%/mo.',
       'Of the 65 tests in the specification grid, 24 clear |t| = 1.96, one clears 3.0, and zero survive BHY false-discovery control.',
     ],
