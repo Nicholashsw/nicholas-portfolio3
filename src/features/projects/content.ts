@@ -378,27 +378,28 @@ export const projectsContent = {
     description:
       'A C++20 event-driven market-making and execution engine: order book, OMS, pre-trade risk, exchange simulator, deterministic replay backtest.',
     headline:
-      'A deterministic single-queue event loop with explicit latency and fill models, built so that a naive quoting strategy loses money for the right reasons.',
+      'A deterministic event-driven engine in C++20, backtested on a real day of CME E-mini S&P 500 order-book data from Databento.',
     imageAltText: 'lowlat-mm event-driven engine architecture',
     categoryText: 'Systems / C++',
     dateText: 'June 2026',
     detailedDescription:
-      'A modular C++20 prototype of the patterns found in a production market-making stack: a top-of-book-plus-depth order book, a CSV market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market-maker, and a replay backtest driver on a single timestamp-ordered event bus. 30 Catch2 test cases, 119 assertions. It is a learning and portfolio piece, not an HFT system, and the README says so.',
+      'A modular C++20 prototype of the patterns found in a production market-making stack: a top-of-book-plus-depth order book, a market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market-maker, and a replay backtest driver on a single timestamp-ordered event bus. 30 Catch2 test cases, 119 assertions. A learning piece, not an HFT system.',
     whyItMatters:
       'Market-making economics are decided by fill assumptions, latency and adverse selection, not by the quoting formula. An engine whose modules have clean boundaries lets each of those be changed independently and tested, which is what makes the result of any strategy experiment interpretable.',
     methodology: [
       'std::variant event types dispatched through a deterministic priority queue; strategy-to-exchange and exchange-to-strategy latency are modelled explicitly and re-scheduled by the driver.',
       'Order book with top-of-book and depth, OMS state machine with acknowledgement, partial fill, cancel and rejection paths, and position and P&L attribution in ticks.',
       'Pre-trade risk gate on position, order size, open quantity and drawdown with a kill switch; exchange simulator with marketable and passive fill logic.',
-      'Inventory-skewed market-maker with configurable half-spread, quote size and requote threshold; synthetic feed generators (random walk, stable, oscillating) and a PnL/inventory plotter.',
+      'Inventory-skewed market-maker with configurable half-spread, quote size and requote threshold, run on one regular-hours session of ESZ6 top of book from Databento (8.4 million book updates).',
     ],
     findings: [
-      'On the random-walk feed the default strategy loses money by construction, to adverse selection; the engine reports it rather than hiding it, which is the point of the exercise.',
+      'On ESZ6 on 16 Oct 2026 it made about US$26,300 with a US$28,900 max drawdown. Most of that is direction: ES fell about 100 points and the book was net short for most of the day.',
+      '77 fills from 556,508 orders. Quotes sit two ticks from mid while the touch is one tick wide 94% of the time, so most fills come when the market runs through a stale quote.',
       'The unit-test suite covers the order book, OMS, risk gate, simulator and strategy (30 cases, 119 assertions) and passes with clang++ on macOS and g++ on Linux.',
     ],
     caveats: [
-      'Educational scope: synthetic top-of-book feeds, no queue-position model, no real exchange protocol, no production latency engineering.',
-      'A queue-aware extension on real CME market-by-order data is planned and blocked on a paid data pull; it is not part of this repository.',
+      'Fills on touch with no queue position. The touch held a median of about 25 contracts that day, all ahead of a new order, so the PnL is optimistic.',
+      'One day, one contract, no fees, and a requote rate no exchange would allow. Next: fill only on trade prints, with queue position from market-by-order data.',
     ],
     keyFeatures: {},
     galleryImages: {
@@ -408,9 +409,9 @@ export const projectsContent = {
           'Event-driven module pipeline: market data, order book, strategy, OMS, risk, simulator, backtest, on one timestamp-ordered bus.',
       },
       pnl_sample: {
-        alt: 'Sample backtest: mid price, net position and PnL on the random-walk feed',
+        alt: 'ESZ6 backtest on 16 Oct 2026: mid, net position and PnL',
         caption:
-          'Sample run on the bundled random-walk feed with the default config (5,000 events, 53 fills): mid, net position and total PnL in ticks. The strategy loses to adverse selection, as a naive quoter on a random walk should.',
+          'One regular-hours session of ESZ6 (8.4 million top-of-book updates, 77 fills): mid, net position and PnL.',
       },
     },
     challenges:
