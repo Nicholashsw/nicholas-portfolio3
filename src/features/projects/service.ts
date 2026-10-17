@@ -300,7 +300,7 @@ const projectsListUnsorted: Array<ProjectData> = [
       { label: 'Engine', value: 'C++20, event-driven' },
       { label: 'Unit tests', value: '30 cases, 119 assertions' },
       { label: 'Latency model', value: 'explicit, both directions' },
-      { label: 'Sample run on a random walk', value: 'loses, by design' },
+      { label: 'Data', value: 'one day of CME ES, Databento' },
     ],
     keyFeatures: [],
     galleryImages: [
