@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button';
 import type { LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Calendar, Dumbbell } from 'lucide-react';
-import { FaLinkedinIn, FaGithub, FaMedium } from 'react-icons/fa';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import heroImage from '@/assets/user-hero.webp';
 import { Image } from 'astro:assets';
 import FeaturedProjectPreview from '../components/FeaturedProjectPreview.astro';
@@ -52,7 +52,6 @@ const featured = projects
 const socials = [
   { href: 'https://linkedin.com/in/nicholas-hong001', label: 'LinkedIn', Icon: FaLinkedinIn },
   { href: 'https://github.com/Nicholashsw', label: 'GitHub', Icon: FaGithub },
-  { href: 'https://medium.com/@nhong001', label: 'Medium', Icon: FaMedium },
 ];
 ---
 
