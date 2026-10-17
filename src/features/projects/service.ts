@@ -113,7 +113,7 @@ const projectsListUnsorted: Array<ProjectData> = [
       },
       {
         label: 'Composite edge, gross → fully costed',
-        value: '1.66 → 0.28 %/mo',
+        value: '1.66 → 0.37 %/mo',
       },
       { label: 'Specification-grid tests surviving BHY', value: '0 of 65' },
     ],
