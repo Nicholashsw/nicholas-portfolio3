@@ -17,7 +17,7 @@ export const ui = {
         'Illustration representing Nicholas Hong or a development concept',
       featuredProjectsTitle: 'Featured research',
       featuredProjectsDescription:
-        'Six projects across systematic equities, volatility, rates, macro econometrics, machine learning and market-making systems. Each page gives the question, the method, the strongest result and its caveats, with code and papers.',
+        'projects across systematic equities, volatility, rates, macro econometrics, machine learning and market-making systems.\n\nmethodology, result, caveats, code and writeup.',
       projectCardViewProject: 'View project',
       allProjectsLink: 'All research →',
       projectCardViewCode: 'View Code',
