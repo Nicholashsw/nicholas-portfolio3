@@ -296,10 +296,10 @@ const projectsListUnsorted: Array<ProjectData> = [
     status: 'published',
     stack: ['C++20', 'OCaml', 'CMake', 'Catch2', 'QCheck', 'Databento', 'q'],
     highlights: [
-      { label: 'Fill on touch vs queue-aware', value: '+US$30,125 vs −US$4,663' },
-      { label: 'Touch fill markout, 0 ms', value: '−0.94 ticks' },
-      { label: 'C++ vs OCaml blotter', value: 'byte-identical' },
-      { label: 'Data', value: 'ESZ6, 16 Oct 2026, Databento' },
+      { label: 'Mean daily PnL, touch / queue', value: '−US$7,310 / −US$4,451' },
+      { label: 'Daily PnL explained by ES move', value: '58%' },
+      { label: 'Best day, touch vs queue', value: '+US$30,125 vs −US$4,663' },
+      { label: 'Data', value: '21 sessions of ESZ6, Databento' },
     ],
     keyFeatures: [],
     galleryImages: [

@@ -378,7 +378,7 @@ export const projectsContent = {
     description:
       'A C++20 event-driven market-making engine with an OCaml replay that tests how much of a backtest is the fill assumption.',
     headline:
-      'On a real day of E-mini S&P 500 data the same quotes make US$30,125 if every touch fills, and lose US$4,663 once each order waits its turn in the queue.',
+      'Over 21 real sessions of E-mini S&P 500 futures the quotes lose money under every fill rule. The one day that made US$30,125 was the biggest selloff in the sample.',
     imageAltText: 'lowlat-mm event-driven engine architecture',
     categoryText: 'Systems / C++',
     dateText: 'October 2026',
@@ -389,19 +389,20 @@ export const projectsContent = {
     methodology: [
       'std::variant event types dispatched through a deterministic priority queue; strategy-to-exchange and exchange-to-strategy latency modelled explicitly.',
       'Order book with top of book and depth, OMS with acknowledgement, partial fill, cancel and rejection paths, and a risk gate on position, order size, open quantity and drawdown.',
-      'Inventory-skewed market maker run on one regular-hours session of ESZ6 from Databento: 8.4 million top-of-book changes and 500,392 trade prints.',
+      'Inventory-skewed market maker run on 21 regular sessions of ESZ6 from Databento (18 Sep to 16 Oct 2026), each day starting flat; 16 Oct alone is 8.4 million top-of-book changes and 500,392 trade prints.',
       'OCaml replay with four fill rules: on touch, only on trades through the price, and two queue-aware rules that fill an order only after the size ahead of it has traded or cancelled.',
       'Fill markouts at 0 ms, 1 s, 1 min and 5 min, in Python and in q.',
     ],
     findings: [
-      'Filling on touch, the day makes US$30,125 on 77 fills (770 contracts) with a US$27,625 max drawdown. Most of it is direction: ES fell about 100 points and the book was net short for most of the day.',
-      'With queue position the same quotes lose US$4,663; filling only on trades through the price loses US$13,375. The gain comes from the fill assumption.',
+      'Across 21 sessions every fill rule loses on average: −US$7,310 a day filling on touch and −US$4,451 with queue position, neither significant.',
+      'Most of the daily swing is direction. The strategy sells into rallies and buys into selloffs, so under the touch rule each point ES rises costs about US$500 and the move explains 58% of the variance. Flat days still lose about US$8,100 (t = −2.12).',
+      '16 Oct, the sample\'s largest fall (ES −99.75), makes US$30,125 filling on touch and loses US$4,663 once orders wait in the queue.',
       'Touch fills start under water (markout −0.94 ticks at 0 ms, −1.53 at one minute): an order fills only after the market has already reached its price.',
       'The OCaml replay reproduces the C++ backtest on the real day with a byte-identical fill blotter, in 11 seconds against 18 minutes. That cross-check exposed an entry-price bug in the OMS, now fixed.',
     ],
     caveats: [
       'Queue position is estimated from top of book and trade prints; market-by-order data would make it exact.',
-      'One day, one contract, no fees, and a requote rate no exchange would allow (556,508 orders for 77 fills).',
+      'One contract, no fees, and a requote rate no exchange would allow (556,508 orders for 77 fills on 16 Oct).',
     ],
     keyFeatures: {},
     galleryImages: {
@@ -413,13 +414,13 @@ export const projectsContent = {
       pnl_sample: {
         alt: 'ESZ6 backtest on 16 Oct 2026: mid, net position and PnL',
         caption:
-          'ESZ6 on 16 Oct 2026, fill on touch: mid, net position and PnL. Under queue-aware fills the same quotes lose US$4,663.',
+          'ESZ6 on 16 Oct 2026, the biggest selloff in the 21 sessions, filling on touch: mid, net position and PnL. Across all 21 sessions every fill rule loses money.',
       },
     },
     challenges:
       'Keeping the event loop deterministic, modelling fills and latency honestly, and building a second engine in a different language to check the first.',
     learnings:
-      'A market-making backtest is mostly a statement about its fill model. Adverse selection shows up in the first second of every fill.',
+      'A market-making backtest is mostly a statement about its fill model, and one good day says nothing. Adverse selection shows up in the first second of every fill.',
   },
 
   nkdsge: {
