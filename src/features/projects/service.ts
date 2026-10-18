@@ -318,7 +318,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     date: '2026-07-28',
     featured: false,
     featuredRank: 7,
-    status: 'published',
+    status: 'archived',
     stack: ['Python', 'NumPy', 'SciPy', 'ECB Data Portal', 'FRED', 'ALFRED'],
     highlights: [
       { label: 'Solution', value: 'Klein / QZ, BK-determinate' },
@@ -350,7 +350,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     date: '2026-07-29',
     featured: false,
     featuredRank: 8,
-    status: 'published',
+    status: 'archived',
     stack: ['Python', 'NumPy', 'pandas', 'FRED', 'BEA', 'OECD', 'ECB'],
     highlights: [
       { label: 'Walk-forward BL vs equal weight', value: '−2.64%/yr (t = −2.11)' },
@@ -377,7 +377,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     date: '2026-07-29',
     featured: false,
     featuredRank: 9,
-    status: 'negative-result',
+    status: 'archived',
     stack: [
       'Python',
       'statsmodels',
@@ -411,7 +411,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     date: '2026-06-14',
     featured: false,
     featuredRank: 10,
-    status: 'published',
+    status: 'archived',
     stack: ['Python', 'pandas', 'Black-76', 'Johansen / VECM', 'Bloomberg BGN'],
     highlights: [
       { label: 'XAUUSD / USDJPY trade Sharpe', value: '0.41 / 0.40' },
@@ -434,7 +434,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     date: '2026-05-18',
     featured: false,
     featuredRank: 11,
-    status: 'published',
+    status: 'archived',
     stack: ['Python', 'pandas', 'pdfplumber', 'yfinance'],
     highlights: [
       { label: 'House PTR trades, 2022–2025', value: '5,763' },
@@ -447,9 +447,9 @@ const projectsListUnsorted: Array<ProjectData> = [
 ];
 
 // Flagships first by rank, then the rest by rank.
-export const projectsList: Array<ProjectData> = [...projectsListUnsorted].sort(
-  (a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99)
-);
+export const projectsList: Array<ProjectData> = projectsListUnsorted
+  .filter((p) => p.status !== 'archived')
+  .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
 
 function translateProject(
   project: ProjectData,

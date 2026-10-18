@@ -15,7 +15,8 @@ export type GalleryImage = {
 };
 
 /** Publication status drives where a project is shown and how it is labelled. */
-export type ProjectStatus = 'published' | 'negative-result' | 'in-progress';
+// 'archived': kept on GitHub but left off the site.
+export type ProjectStatus = 'published' | 'negative-result' | 'in-progress' | 'archived';
 
 /** A headline number shown in the "At a glance" strip of a project page. */
 export type Highlight = {

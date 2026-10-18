@@ -22,6 +22,19 @@ console.log(`Using Mermaid strategy: ${mermaidStrategy}`);
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nicholashong.dev',
+  // Projects taken off the site (still on GitHub) send old links to the project list.
+  redirects: {
+    '/projects/nkdsge-dsge': '/projects',
+    '/en/projects/nkdsge-dsge': '/en/projects',
+    '/projects/quant-macro-engine': '/projects',
+    '/en/projects/quant-macro-engine': '/en/projects',
+    '/projects/global-rates-rv': '/projects',
+    '/en/projects/global-rates-rv': '/en/projects',
+    '/projects/alpha-research-lab': '/projects',
+    '/en/projects/alpha-research-lab': '/en/projects',
+    '/projects/financial-ml-lab': '/projects',
+    '/en/projects/financial-ml-lab': '/en/projects',
+  },
   integrations: [
     react(),
     mdx({
