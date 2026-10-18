@@ -131,17 +131,17 @@ export const projectsContent = {
 
   macroVarResearchLab: {
     title: 'Macro VAR Research Lab',
-    description: 'Over 1,000 forecasting models for US GDP and inflation, and none reliably beats a simple autoregression.',
+    description: 'One question asked three ways: over 1,000 forecasting models for US GDP and inflation, and none reliably beats a simple autoregression.',
     headline: 'Across 1,000+ models and five estimator classes, nothing reliably beats a simple autoregression out of sample.',
     imageAltText: 'Forecast error of each model class against a univariate AR',
     categoryText: 'Econometrics',
     dateText: 'July 2026',
-    detailedDescription: 'What actually forecasts US GDP, inflation and interest rates once look-ahead, overfitting and multiple comparisons are controlled? Three studies on public US data, each with its own paper.',
+    detailedDescription: 'What actually forecasts US GDP, inflation and interest rates once look-ahead, overfitting and multiple comparisons are controlled? One study in three stages on public US data: first which specification and estimator, then whether constructed shocks help, then whether the shock idea survives at scale and in real time. One consolidated paper, with the three stage papers behind it.',
     whyItMatters: '',
     methodology: [
-      'Study 1: a disciplined specification search and a horse race of OLS, Bayesian VAR, ridge, LASSO and elastic net, judged with the Model Confidence Set.',
-      'Study 2: Bayesian VARs with constructed shocks, scored on density forecasts.',
-      'Study 3: 1,014 VARX models in an expanding walk-forward, rebuilt on real-time ALFRED data.',
+      'Stage 1: a disciplined specification search and a horse race of OLS, Bayesian VAR, ridge, LASSO and elastic net, judged with the Model Confidence Set.',
+      'Stage 2: Bayesian VARs with constructed shocks, scored on density forecasts.',
+      'Stage 3: 1,014 VARX models in an expanding walk-forward, rebuilt on real-time ALFRED data.',
     ],
     findings: [
       'No estimator class beats a univariate AR by a Model Confidence Set margin.',
@@ -151,7 +151,7 @@ export const projectsContent = {
     ],
     caveats: [
       'Short samples (100 to 130 quarters) limit the power of every test.',
-      'Some Study 2 shock inputs come from spreadsheet exports that cannot be redistributed.',
+      'The three stages use different samples and transforms, stated in the paper; some Stage 2 shock inputs come from spreadsheet exports that cannot be redistributed.',
     ],
     keyFeatures: {},
     galleryImages: {

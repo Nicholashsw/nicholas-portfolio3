@@ -178,15 +178,19 @@ const projectsListUnsorted: Array<ProjectData> = [
     slug: 'macro-var-research-lab',
     imageUrl: mv_models,
     codeUrl: `${GH}/macro-var-research-lab`,
-    paperUrl: '/papers/macro-var-01-var-selection-horserace.pdf',
-    paperLabel: 'Read paper (study 1)',
+    paperUrl: '/papers/macro-var-consolidated.pdf',
+    paperLabel: 'Read paper',
     papers: [
       {
-        label: 'Study 2: BVAR with constructed shocks',
+        label: 'Stage 1 working paper: specification and estimator',
+        url: '/papers/macro-var-01-var-selection-horserace.pdf',
+      },
+      {
+        label: 'Stage 2 working paper: BVAR with constructed shocks',
         url: '/papers/macro-var-02-bvar-shocks-density.pdf',
       },
       {
-        label: 'Study 3: VARX permutation study',
+        label: 'Stage 3 working paper: VARX permutation study',
         url: '/papers/macro-var-03-varx-permutation-study.pdf',
       },
     ],
@@ -199,7 +203,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     status: 'published',
     stack: ['Python', 'statsmodels', 'scikit-learn', 'arch', 'FRED', 'ALFRED'],
     highlights: [
-      { label: 'Studies, papers', value: '3, 3' },
+      { label: 'Stages, one question', value: '3' },
       { label: 'Unique models in walk-forward', value: '1,014' },
       { label: 'Estimators beating a univariate AR (MCS)', value: '0' },
       { label: 'HP-filter endpoint look-ahead', value: '66% of cycle std' },
