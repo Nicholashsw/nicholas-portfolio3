@@ -560,13 +560,13 @@ export const projectsContent = {
     categoryText: 'Quantitative Research',
     dateText: 'June 2026',
     detailedDescription:
-      'A multi-strategy research lab built around the volatility risk premium. A VRP strategy across FX spot and options (defined-risk 20Δ/10Δ spreads, 200-day trend filter, 45 DTE entry) backtested 2005–2026 on Bloomberg BGN implied and realised volatility: gold and yen clear breakeven (trade-level Sharpe about 0.40, win rate about 73%), while EUR-correlated pairs sit just below, reflecting structurally thinner premium. Plus a Black-76 options-on-futures pricing engine with greeks, a CRR American pricer and self-tests, Johansen/VECM relative-value pairs, and mean-reversion and momentum modules.',
+      'A multi-strategy research lab built around the volatility risk premium. A VRP strategy across FX spot and options (defined-risk 20Δ/10Δ spreads, 200-day trend filter, 45 DTE entry) backtested 2005–2026 on Bloomberg BGN implied and realised volatility: gold and yen clear breakeven (trade-level Sharpe about 0.40, win rate about 73%), while EUR-correlated pairs sit just below, reflecting structurally thinner premium. Plus a Black-76 options-on-futures pricing engine with greeks, a CRR American pricer and self-tests, Johansen/VECM relative-value pairs, and a mean-reversion module.',
     whyItMatters:
       'This is the strategy-construction side of the volatility work: how a premium turns into a defined-risk trade with a trend filter and a lifecycle, and what win rate the payoff asymmetry requires. The exchange-level measurement of the premium itself lives in the FX options VRP project.',
     methodology: [
       'Event-driven backtester with option lifecycle (enter 45 DTE, exit at 50% profit, 2× stop or 21 DTE), 5% risk-per-trade sizing, and trade-level Sharpe to avoid daily mark-to-market noise.',
       'Black-76 pricing, greeks and implied-volatility inversion (Newton with bisection backstop), CRR American reference pricer and a European-vs-American bias report.',
-      'Johansen/VECM cointegration, spread z-score and walk-forward backtest for pairs; bear-market-reversal screener and momentum dashboard as supporting modules.',
+      'Johansen/VECM cointegration, spread z-score and walk-forward backtest code for pairs, and a bear-market-reversal screener as a supporting module.',
     ],
     findings: [
       'XAUUSD and USDJPY exceed the roughly 70% win rate required to break even at a 2.35× loss-to-win ratio (trade Sharpe 0.41 and 0.40, max drawdown −11% and −6%).',
@@ -582,11 +582,6 @@ export const projectsContent = {
         alt: 'VRP strategy backtest tearsheet',
         caption:
           'Volatility risk premium backtest tearsheet: CAGR, trade-Sharpe, drawdown and win rate across USDCHF, XAUUSD, GBPUSD and USDJPY.',
-      },
-      pairs_dashboard: {
-        alt: 'Johansen/VECM pairs dashboard',
-        caption:
-          'Relative-value pairs dashboard: Johansen/VECM cointegration, spread z-score and walk-forward backtest.',
       },
     },
     challenges:
@@ -642,28 +637,30 @@ export const projectsContent = {
     description:
       'A systematic macro research engine: Bayesian VARs, HMM regimes, nowcasting and a Taylor-rule layer, joined to portfolio construction through a Black-Litterman bridge, plus conditional forecasting and a DFAST scenario.',
     headline:
-      'BVAR posterior forecasts become Black-Litterman views with the forecast covariance as view uncertainty, so model uncertainty reaches position sizing.',
+      'The BVAR handles a Fed stress scenario sensibly, but its forecasts make poor portfolio views: walk-forward Black-Litterman trails equal weight by 2.64% a year.',
     imageAltText:
       'BVAR conditional forecast under the published severely adverse DFAST assumptions',
     categoryText: 'Macro Systems',
     dateText: 'July 2026',
     detailedDescription:
-      'An end-to-end macro pipeline on public data (FRED, BEA, OECD, ACM term premium, ECB): preprocessing, a dynamic-factor nowcast, Kalman latent states, a Minnesota-prior BVAR with a scenario engine, an HMM regime classifier on BVAR residuals, an inflation block, a Taylor-rule implied path, derived signals, and a Black-Litterman layer that consumes BVAR posterior forecasts as views. The add-ons module contributes Waggoner-Zha conditional forecasting with hard and soft conditions, a stationary block bootstrap with step-down multiple-testing correction, a market-making P&L simulator, and a worked Fed DFAST 2026 severely-adverse scenario.',
+      'An end-to-end macro pipeline on public data (FRED, BEA, OECD, ACM term premium, ECB): preprocessing, a dynamic-factor nowcast, Kalman latent states, a Minnesota-prior BVAR with a scenario engine, an HMM regime classifier on BVAR residuals, an inflation block, a Taylor-rule implied path, derived signals, and a walk-forward Black-Litterman layer that turns BVAR forecasts into asset views. The add-ons module contributes Waggoner-Zha conditional forecasting with hard and soft conditions, a stationary block bootstrap with step-down multiple-testing correction, a market-making P&L simulator, and a worked Fed DFAST 2026 severely-adverse scenario.',
     whyItMatters:
       'Most macro code stops at a forecast. A desk needs the forecast conditioned on a published policy path, with uncertainty that reflects estimation as well as shocks, and a way to turn it into positions. The engine is built around those handoffs.',
     methodology: [
       'Minnesota BVAR via dummy observations (Banbura, Giannone and Reichlin 2010) with Normal-inverse-Wishart posterior sampling; HMM regimes on residuals; ACM term premium and Taylor-rule layers.',
-      'Black-Litterman with BVAR posterior means as views and forecast covariance as the view-uncertainty matrix.',
+      'Walk-forward Black-Litterman on six ETFs (SPY, EFA, EEM, IEF, LQD, GLD): each quarter the BVAR and each ETF\'s regression on macro changes are refitted on data available at the time (macro data to t−1), the BVAR forecast for t+1 becomes one view per asset, and the regression residual variance sets the view uncertainty.',
       'Conditional forecasts by Waggoner and Zha (1999): hard conditions written on future structural shocks, soft conditions by rejection sampling, parameter uncertainty propagated from a posterior sample.',
       'Stationary bootstrap (Politis and Romano 1994) with a step-down maximum-statistic correction; calibrated on iid noise (false-positive rate 0.03) and on twelve junk factors (no survivors).',
     ],
     findings: [
       'Imposing the Fed’s published 2026 severely-adverse assumptions (unemployment to 10%, 3-month bill to 0.1%) on a BVAR estimated through 2026Q1 implies real GDP falls 2.9% to trough with a 90% band of −8.6 to +3.1, against the Fed model’s −4.6%: inside the band, a weak test rather than a validation, and milder because a linear VAR misses the Okun asymmetry.',
       'Hard conditions are met to 1e−8 on every draw; conditioning visibly moves unconstrained variables; posterior draws widen the bands as they should.',
+      'Walk-forward Black-Litterman, 2015-04 to 2026-09 (47 quarterly decisions, no costs): 4.56% a year at 9.74% volatility against 7.34% at 9.73% for equal weight, Sharpe 0.51 against 0.78, max drawdown −31% against −21%. The macro views lose 2.64% a year (t = −2.11).',
     ],
     caveats: [
       'An engine and a set of tested modules rather than a single empirical study; the VAR lab and the DSGE project carry the research findings.',
-      'The market-making simulator’s Sharpe is implausibly high by construction (guaranteed arrivals, no queue); the shape of the adverse-selection trade-off is the output, not the level.',
+      'Macro data is FRED’s current vintage, so past quarters include later revisions, a mild advantage a real-time model would not have had.',
+      'The Black-Litterman backtest has no transaction costs, which would only widen the gap to equal weight.',
     ],
     keyFeatures: {},
     galleryImages: {
@@ -674,7 +671,7 @@ export const projectsContent = {
       },
     },
     challenges:
-      'Writing conditional forecasts on the shocks rather than overwriting the path, propagating posterior uncertainty through to scenario bands, and wiring model uncertainty into a portfolio layer without discarding it at the handoff.',
+      'Writing conditional forecasts on the shocks rather than overwriting the path, propagating posterior uncertainty through to scenario bands, and keeping the portfolio layer strictly walk-forward, checked by recomputing weights from data cut off at past decision dates.',
     learnings:
       'Bayesian macro time-series as infrastructure: the value is in the handoffs between models, scenarios and positions.',
   },

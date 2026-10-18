@@ -56,7 +56,6 @@ import grrv_beta from '@/assets/grrv/grrv_fig4_beta_instability.png';
 import grrv_yields from '@/assets/grrv/grrv_fig1_yields.png';
 // alpha-research-lab
 import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
-import alpha_pairs from '@/assets/alpha/pairs_dashboard.png';
 // financial-ml-lab
 import fin_car from '@/assets/financial/car_reported.png';
 // quant-macro-engine
@@ -354,7 +353,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     status: 'published',
     stack: ['Python', 'NumPy', 'pandas', 'FRED', 'BEA', 'OECD', 'ECB'],
     highlights: [
-      { label: 'Views into Black-Litterman', value: 'BVAR posterior' },
+      { label: 'Walk-forward BL vs equal weight', value: '−2.64%/yr (t = −2.11)' },
       { label: 'Conditional forecasts', value: 'Waggoner–Zha' },
       { label: 'DFAST 2026: BVAR vs Fed trough GDP', value: '−2.9% vs −4.6%' },
     ],
@@ -422,7 +421,6 @@ const projectsListUnsorted: Array<ProjectData> = [
     keyFeatures: [],
     galleryImages: [
       { id: 'vrp_tearsheet', src: alpha_vrp },
-      { id: 'pairs_dashboard', src: alpha_pairs },
     ],
   },
   {
