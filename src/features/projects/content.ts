@@ -376,30 +376,32 @@ export const projectsContent = {
   lowlatMm: {
     title: 'Low-Latency Market-Making Engine',
     description:
-      'A C++20 event-driven market-making and execution engine: order book, OMS, pre-trade risk, exchange simulator, deterministic replay backtest.',
+      'A C++20 event-driven market-making engine with an OCaml replay that tests how much of a backtest is the fill assumption.',
     headline:
-      'A deterministic event-driven engine in C++20, backtested on a real day of CME E-mini S&P 500 order-book data from Databento.',
+      'On a real day of E-mini S&P 500 data the same quotes make US$30,125 if every touch fills, and lose US$4,663 once each order waits its turn in the queue.',
     imageAltText: 'lowlat-mm event-driven engine architecture',
     categoryText: 'Systems / C++',
-    dateText: 'June 2026',
+    dateText: 'October 2026',
     detailedDescription:
-      'A modular C++20 prototype of the patterns found in a production market-making stack: a top-of-book-plus-depth order book, a market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market-maker, and a replay backtest driver on a single timestamp-ordered event bus. 30 Catch2 test cases, 119 assertions. A learning piece, not an HFT system.',
+      'A modular C++20 prototype of the parts of a market-making stack: an order book, a market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market maker, and a replay backtest on one timestamp-ordered event bus. An OCaml replay engine runs the same strategy under four fill rules on Databento top-of-book and trade data, and fill markouts measure adverse selection. A learning piece, not an HFT system.',
     whyItMatters:
-      'Market-making economics are decided by fill assumptions, latency and adverse selection, not by the quoting formula. An engine whose modules have clean boundaries lets each of those be changed independently and tested, which is what makes the result of any strategy experiment interpretable.',
+      'Market-making results are decided by fill assumptions, latency and adverse selection, not by the quoting formula. Running the same quotes under different fill rules shows how much of a backtest is the strategy and how much is the simulator.',
     methodology: [
-      'std::variant event types dispatched through a deterministic priority queue; strategy-to-exchange and exchange-to-strategy latency are modelled explicitly and re-scheduled by the driver.',
-      'Order book with top-of-book and depth, OMS state machine with acknowledgement, partial fill, cancel and rejection paths, and position and P&L attribution in ticks.',
-      'Pre-trade risk gate on position, order size, open quantity and drawdown with a kill switch; exchange simulator with marketable and passive fill logic.',
-      'Inventory-skewed market-maker with configurable half-spread, quote size and requote threshold, run on one regular-hours session of ESZ6 top of book from Databento (8.4 million book updates).',
+      'std::variant event types dispatched through a deterministic priority queue; strategy-to-exchange and exchange-to-strategy latency modelled explicitly.',
+      'Order book with top of book and depth, OMS with acknowledgement, partial fill, cancel and rejection paths, and a risk gate on position, order size, open quantity and drawdown.',
+      'Inventory-skewed market maker run on one regular-hours session of ESZ6 from Databento: 8.4 million top-of-book changes and 500,392 trade prints.',
+      'OCaml replay with four fill rules: on touch, only on trades through the price, and two queue-aware rules that fill an order only after the size ahead of it has traded or cancelled.',
+      'Fill markouts at 0 ms, 1 s, 1 min and 5 min, in Python and in q.',
     ],
     findings: [
-      'On ESZ6 on 16 Oct 2026 it made about US$26,300 with a US$28,900 max drawdown. Most of that is direction: ES fell about 100 points and the book was net short for most of the day.',
-      '77 fills from 556,508 orders. Quotes sit two ticks from mid while the touch is one tick wide 94% of the time, so most fills come when the market runs through a stale quote.',
-      'The unit-test suite covers the order book, OMS, risk gate, simulator and strategy (30 cases, 119 assertions) and passes with clang++ on macOS and g++ on Linux.',
+      'Filling on touch, the day makes US$30,125 on 77 fills (770 contracts) with a US$27,625 max drawdown. Most of it is direction: ES fell about 100 points and the book was net short for most of the day.',
+      'With queue position the same quotes lose US$4,663; filling only on trades through the price loses US$13,375. The gain comes from the fill assumption.',
+      'Touch fills start under water (markout −0.94 ticks at 0 ms, −1.53 at one minute): an order fills only after the market has already reached its price.',
+      'The OCaml replay reproduces the C++ backtest on the real day with a byte-identical fill blotter, in 11 seconds against 18 minutes. That cross-check exposed an entry-price bug in the OMS, now fixed.',
     ],
     caveats: [
-      'Fills on touch with no queue position. The touch held a median of about 25 contracts that day, all ahead of a new order, so the PnL is optimistic.',
-      'One day, one contract, no fees, and a requote rate no exchange would allow. Next: fill only on trade prints, with queue position from market-by-order data.',
+      'Queue position is estimated from top of book and trade prints; market-by-order data would make it exact.',
+      'One day, one contract, no fees, and a requote rate no exchange would allow (556,508 orders for 77 fills).',
     ],
     keyFeatures: {},
     galleryImages: {
@@ -411,13 +413,13 @@ export const projectsContent = {
       pnl_sample: {
         alt: 'ESZ6 backtest on 16 Oct 2026: mid, net position and PnL',
         caption:
-          'One regular-hours session of ESZ6 (8.4 million top-of-book updates, 77 fills): mid, net position and PnL.',
+          'ESZ6 on 16 Oct 2026, fill on touch: mid, net position and PnL. Under queue-aware fills the same quotes lose US$4,663.',
       },
     },
     challenges:
-      'Designing clean module boundaries (book / OMS / risk / simulator), keeping the event loop deterministic, and modelling fills and latency realistically.',
+      'Keeping the event loop deterministic, modelling fills and latency honestly, and building a second engine in a different language to check the first.',
     learnings:
-      'Market microstructure, low-latency systems design in C++, and how adverse selection punishes a naive quoting strategy.',
+      'A market-making backtest is mostly a statement about its fill model. Adverse selection shows up in the first second of every fill.',
   },
 
   nkdsge: {
