@@ -229,10 +229,11 @@ export const projectsContent = {
       'Direction drives it. The quotes end up short in rallies and long in selloffs, so each point ES rises costs about US$500 and the move explains 58% of daily PnL.',
       'The one standout day, 16 Oct, was the biggest selloff in the sample: +US$30,125 on touch and −US$4,663 once orders wait in the queue.',
       'The two engines produce byte-identical fills on the real data, and the cross-check exposed an entry-price bug in the OMS.',
+      'A smarter rule (microprice fair value, quoting at the touch, an imbalance guard), tuned on 10 days and tested on 11, is far worse: −US$70,928 a day with queue position (t = −4.87). It trades about 30 times the volume, and those fills are picked off within a second.',
     ],
     caveats: [
       'Queue position is estimated from top of book and trade prints; order-level data would make it exact.',
-      'One contract, no fees, and a naive quoting rule that requotes far more than an exchange would allow.',
+      'One contract, no fees, and a requote rate far above what an exchange would allow.',
     ],
     keyFeatures: {},
     galleryImages: {
