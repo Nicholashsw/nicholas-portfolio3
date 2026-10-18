@@ -6,421 +6,251 @@
  */
 export const projectsContent = {
   sgxMultifactorFyp: {
-    title: 'Multi-Factor Equity Strategy — SGX',
-    description:
-      'Systematic multi-factor equities on SGX, consolidated and verified: real cross-sectional structure, removed by real-world frictions (NTU FYP).',
-    headline:
-      'Real, correctly signed factor structure on SGX; spreads and borrow remove it before it becomes a strategy.',
-    imageAltText:
-      'SGX multi-factor strategy performance, point-in-time universe',
+    title: 'Multi-Factor Equities on SGX',
+    description: 'Factor signals on Singapore stocks are real, but spreads and borrow take the 1.66% a month edge down to 0.37%.',
+    headline: 'Real factor structure on Singapore stocks, removed by trading costs: the edge falls from 1.66% to 0.37% a month once spreads and borrow are paid.',
+    imageAltText: 'Cost waterfall for the SGX composite strategy',
     categoryText: 'Quantitative Research',
-    dateText: 'August 2026',
-    detailedDescription:
-      'A systematic multi-factor strategy on Singapore equities, my NTU final-year project, consolidated from ten research branches into one verified body of work: every published number traces to an executed run on real vendor data, catalogued claim by claim in a verification ledger, with superseded and contaminated results listed in an exclusions file. Value, momentum, quality, size and liquidity signals form a composite tested with point-in-time membership, Fama-MacBeth pricing, a 65-test specification grid, and full cost and borrow modelling.',
-    whyItMatters:
-      'Factor premia are documented on US data with deep liquidity. SGX is small, REIT-heavy and thinly traded, so it is a clean test of whether the cross-sectional structure transports and, separately, whether it can be harvested. The answer is yes to the first and no to the second, and the gap between them is measured rather than asserted.',
+    dateText: 'October 2026',
+    detailedDescription: 'Do the standard stock-picking factors (value, momentum, quality, size, liquidity) work on Singapore stocks, and can anyone actually capture them? My NTU final-year project, built on a point-in-time universe that keeps every delisted firm, with every number traced to a run in a verification ledger.',
+    whyItMatters: '',
     methodology: [
-      'Point-in-time index membership rebuilt quarterly; 338 delistings adjudicated against deal records so that takeouts, liquidations and transfers carry the right terminal return.',
-      'Fundamentals lagged with a four-month reporting embargo; forward returns by explicit point-in-time lookup after a forward-return bug was caught and corrected.',
-      'Composite IC and Fama-MacBeth pricing on two universes: a 71-name point-in-time STI roster and the broad Compustat universe (1991–2026).',
-      'Per-name Corwin-Schultz half-spreads with the traded-days correction, Markit borrow availability and fees on the short side, and a capacity curve at feasible participation.',
-      'A 65-test specification grid on a 1995–2019 development window with Bonferroni, BHY and bootstrap reality-check corrections; a second M=55 family for the price-signal branch.',
-      'Risk measured with a Merton jump-diffusion fit and compared with Gaussian expected shortfall.',
+      'Point-in-time universe from Compustat Global, 1991 to 2026, keeping all 338 delisted firms; exits checked against SDC deal records.',
+      'Eight factors combined with weights fixed in advance and never fitted to this universe; fundamentals lagged four months.',
+      'Costs from Corwin-Schultz spreads on the names traded, Markit borrow availability and Markit fees.',
+      'A 65-test specification grid with Bonferroni, BHY and bootstrap corrections, Newey-West t-statistics throughout, and the strategy frozen on 17 Oct 2026.',
     ],
     findings: [
-      'Delisting survivorship bias on SGX runs backwards: dropping dead names lowers measured universe returns by 0.89 pp/yr, because 59% of exits are takeouts at a premium.',
-      'Survivor-defined backtests still flatter themselves: the naive blue-chip Sharpe of 1.00 corrects to 0.45 under quarterly point-in-time membership, and the broad-universe long-short reverses outright (survivor t = 1.0 vs point-in-time t = 3.8).',
-      'Composite IC is 0.049 (Newey-West t = 5.2) on the broad universe, the governing estimate, and 0.070 (t = 5.9) on the 71-name point-in-time roster; value carries the signal and part of it is a REIT effect.',
-      'Fully costed with real spreads and borrow, the gross 1.66%/mo edge (t = 5.1) falls to 0.37%/mo (t = 1.1), and the long side alone keeps 0.09%/mo: statistically real, economically untradeable at institutional scale.',
-      'The STI-core book earns +0.40%/mo (Newey-West t = 2.26) with a feasibility-bound capacity of roughly S$50M; a t+1-membership benchmark would have inflated the passive alternative by 0.40%/mo.',
-      'Of the 65 tests in the specification grid, 24 clear |t| = 1.96, one clears 3.0, and zero survive BHY false-discovery control.',
+      'The signal is real: composite IC 0.049 (t = 5.2) and a long-short alpha of 1.32% a month (t = 3.8).',
+      'Costs take it away: 1.66% gross, 0.92% after spreads, 0.61% after the borrow screen and 0.37% (t = 1.1) after fees. The long side alone keeps 0.09%.',
+      'Survivorship bias runs backwards on SGX. 59% of exits are takeovers at a premium, so dropping dead firms lowers measured returns by 0.89 pp a year.',
+      'A six-name STI book earns 10.1% a year against 5.3% for its benchmark (alpha t = 2.26), explained by its value and momentum tilt.',
     ],
     caveats: [
-      'Nothing in the 65-test grid survives multiple-testing correction; the defensible claim is structure, not alpha.',
-      '57.9% of strategy variance is jump risk; a Gaussian risk limit understates 99% expected shortfall by a third.',
-      'The TSMOM-plus-fundamentals combination that looked additive reverses once borrow constraints and costs are applied.',
-      'The project caught its own synthetic-data fallback and two look-ahead traps; the corrections are published as part of the work.',
+      'None of the 65 grid tests survives BHY, so the claim is structure, not alpha.',
+      'The survivorship figure is an upper bound until the last 115 delisting exits are adjudicated.',
     ],
     keyFeatures: {},
     galleryImages: {
-      core_performance: {
-        alt: 'STI-core strategy performance',
-        caption:
-          'STI-core strategy on the point-in-time roster: +0.40%/mo, Newey-West t = 2.26.',
-      },
-      surv_bias: {
-        alt: 'Survivorship bias sign in both universes',
-        caption:
-          'Delisting survivorship bias is negative in both universes: dead names raise measured returns.',
+      cost_waterfall: {
+        alt: 'Cost waterfall for the SGX composite strategy',
+        caption: 'Decile long-short on the composite, 2003 to 2026, with spreads charged on the names traded each month.',
       },
       exit_mix: {
         alt: 'SGX delisting exit mix',
-        caption:
-          '59% of SGX delistings are acquisitions, and takeouts pay: the mechanism behind the backwards bias.',
+        caption: 'Most SGX delistings are takeovers, and takeovers pay on the way out. That is why the bias runs backwards.',
       },
-      leakage_funnel: {
-        alt: 'Alpha leakage funnel',
-        caption:
-          'Where the alpha goes: benchmark correction, costs, and the tradability screen.',
-      },
-      markit_borrow: {
-        alt: 'Markit borrow scenarios',
-        caption:
-          'Real borrow fees destroy the naive short book; the availability screen rescues it into large caps.',
-      },
-      capacity: {
-        alt: 'Capacity analysis',
-        caption:
-          'Feasibility-bound capacity of roughly S$50M for the concentrated STI-core book.',
-      },
-      benchmark_contamination: {
-        alt: 'Benchmark contamination test',
-        caption:
-          'A t+1-membership benchmark inflates the passive alternative by 0.40%/mo.',
-      },
-      multiple_testing: {
-        alt: 'Multiple-testing corrections on the price-signal family',
-        caption:
-          'Price-signal family (M = 55 tests, gross): Bonferroni passes 15, BHY 19, bootstrap reality check 12; net of costs 0 of 22 survive any correction. The separate 65-test specification grid has zero BHY survivors.',
-      },
-      merton_fit: {
-        alt: 'Merton jump-diffusion fit',
-        caption:
-          '57.9% of strategy variance is jump risk; Gaussian risk limits understate 99% ES by a third.',
-      },
-      tsmom_combo: {
-        alt: 'TSMOM combination under constraints',
-        caption:
-          'The TSMOM-plus-fundamentals combination reverses once borrow constraints and costs are applied.',
+      sti_core: {
+        alt: 'STI-core book against the equal-weight STI',
+        caption: 'The six-name STI book against the equal-weight STI, net of costs.',
       },
     },
-    challenges:
-      'Building point-in-time index membership and adjudicating 338 delistings against SDC deal records, applying a 4-month fundamental reporting embargo, replacing a contaminated t+1-membership benchmark worth 0.40%/mo of phantom alpha, and holding every result to multiple-testing discipline.',
-    learnings:
-      'Verification as method: the project caught its own synthetic-data fallback, two look-ahead traps and a forward-return bug, and published the corrections as part of the contribution. In a small market the binding constraints are spreads and borrow availability, not signal.',
+    challenges: '',
+    learnings: '',
   },
 
   fxOptionsVrp: {
-    title: 'Volatility Risk Premia in CME G10 FX Options',
-    description:
-      'A 16-year exchange-level panel of CME FX options on futures: does implied volatility exceed realised, and does selecting on high IV help?',
-    headline:
-      'The FX volatility premium is real, left-skewed and insurance-like; a leak-free high-IV selection rule roughly doubles the payoff proxy.',
-    imageAltText: 'Strategy payoff proxies with Newey-West t-statistics',
+    title: 'Volatility Risk Premia in CME FX Options',
+    description: 'Sixteen years of CME FX options. Implied vol beats realised in 6 of 7 currencies, and the payoff looks like insurance.',
+    headline: 'FX options cost more than the volatility that follows in 6 of 7 currencies. Sellers get paid most years and give it back in years like 2022.',
+    imageAltText: 'Implied minus realised volatility by currency',
     categoryText: 'Derivatives Research',
     dateText: 'July 2026',
-    detailedDescription:
-      'A research-grade panel of CME G10 FX options on futures, June 2010 to June 2026, built from Databento GLBX.MDP3 statistics and definitions (six batch jobs, 986 files, 11 GB raw) across seven currency roots at 30, 60 and 90-day tenors. Black-76 at-the-money implied volatility is compared with the forward realised volatility of each option’s own underlying futures contract, and twelve short-volatility payoff proxies are tested with Newey-West and non-overlapping inference. Every variant tested is disclosed.',
-    whyItMatters:
-      'Selling volatility is a core source of return for options market makers and macro funds, and FX is the asset class where the premium is least well documented at exchange level. The data work matters as much as the result: the 2017 CME symbol migration creates a false discontinuity in any naive long-horizon study, and the legacy NZD series carries an implied-volatility regime that is pure artefact.',
+    detailedDescription: 'Does implied volatility on CME FX options exceed the volatility that actually follows, and does picking the most expensive currency help? Sixteen years of exchange data, June 2010 to June 2026, from Databento.',
+    whyItMatters: '',
     methodology: [
-      'Definitions and settlements joined per month through the definition-level underlying id; options mapped to the specific futures contract they reference; 0% unmatched across all 492 statistics role-months.',
-      'Black-76 implied volatility per contract (r = 0, calendar-year tau); forward realised volatility over (t, t+H] from the underlying’s own settle series with a gap guard.',
-      'ATM selection to 30/60/90-day targets by nearest tenor, global de-duplication and re-ranking on tenor distance, moneyness and open interest: 440,467 ATM rows, 70,714 daily root-tenor observations.',
-      'The 2017 CME FX options symbol migration corrected with an explicit source rule (legacy symbols before July 2017, migrated symbols after, legacy 6N retained); the anomalous pre-2014 6N regime removed.',
-      'Conditioning signal: trailing 252-observation IV z-score ending at t−1, minimum 126 observations, so no look-ahead enters any rule.',
-      'Inference: Newey-West t at 5, 21 and 63 lags, non-overlapping 21-day subsamples, skew and excess kurtosis for every variant; full reproduction scorecard against the original pipeline (21 of the 22 comparable metrics identical; the one difference is 20 rows in 32.5 million).',
+      'Seven currencies at 30, 60 and 90 days from Databento CME data: 986 files, 11 GB raw, 440,467 at-the-money rows.',
+      'Black-76 implied vol against the realised vol of each option\'s own futures contract, with the 2017 CME symbol change handled explicitly.',
+      'Twelve short-vol payoff proxies with Newey-West and non-overlapping t-statistics; signals use trailing data only.',
     ],
     findings: [
-      'Median implied exceeds median forward-realised volatility for six of seven roots; JPY carries the largest premium (+0.87 vol points) and NZD is flat.',
-      'A static short-volatility proxy across all roots and tenors averages 0.28 vol points per day (median 0.49, positive 65.6% of days) with NW63 t = 1.79 and non-overlapping t = 2.27; only the 30-day bucket is robustly significant on its own (t = 2.40).',
-      'Selecting the single most IV-elevated root per date and tenor raises the mean to 0.51 vol points (median 0.76) with NW63 t = 2.41 and non-overlapping t = 2.71, with monotone attenuation for top-2 and top-3.',
-      'Time-series threshold rules on a cell’s own z-score add little once the signal is restricted to trailing information; the improvement from conditioning is in payoff magnitude, not hit rate.',
-      'The distribution is left-skewed in every variant (static skew −1.69, excess kurtosis 7.0); 2022 is a broad stress year in which short volatility loses on all seven roots.',
+      'Implied beats realised in 6 of 7 currencies. Yen is highest at +0.87 vol points and NZD is flat.',
+      'Selling vol across the board earns 0.28 vol points a day (non-overlapping t = 2.27). Picking the most expensive currency each day lifts it to 0.51 (t = 2.71).',
+      'The payoff is shaped like insurance: skew −1.69, excess kurtosis 7.0, and 2022 loses in all seven currencies.',
     ],
     caveats: [
-      'Payoff proxies, not P&L: settlement marks, no transaction costs, no delta hedging, no margin.',
-      'Interest rate set to zero in the Black-76 inversion; the premium is insensitive to it at these tenors but the convention is stated.',
-      'NZD remains thin even after 2014 (roughly 78% of daily cells have zero open interest).',
-      'Raw and derived Databento panels are licensed and not redistributed; the repository ships the full pipeline, aggregated tables and a reproduction scorecard.',
+      'Payoff proxies on settlement marks, not P&L: no costs, delta hedging or margin.',
+      'NZD is thin even after 2014, and its pre-2014 series is excluded as an artefact.',
     ],
     keyFeatures: {},
     galleryImages: {
-      strategy_summary: {
-        alt: 'Twelve strategy payoff proxies with Newey-West t-statistics',
-        caption:
-          'Twelve payoff proxies, mean and median with NW63 t-statistics: the cross-sectional top-1 IV rule is the strongest and most robust.',
+      premium_by_currency: {
+        alt: 'Implied minus realised volatility by currency',
+        caption: 'Median at-the-money implied minus forward realised vol by currency, 2010 to 2026 (NZD from 2014).',
       },
       cumulative_payoff: {
-        alt: 'Cumulative payoff proxy, static vs high-IV conditioning',
-        caption:
-          'Cumulative payoff proxy 2010–2026: static (blue), time-series z ≥ 0.5 (green), cross-sectional top-1 IV z (red).',
+        alt: 'Cumulative payoff proxy',
+        caption: 'Cumulative payoff proxy: selling everything against picking the most expensive currency each day.',
       },
-      vrp_by_root: {
-        alt: 'Median volatility risk premium by FX root',
-        caption:
-          'Median IV−RV spread by root: positive for six of seven, JPY strongest, NZD flat once its legacy regime is removed.',
-      },
-      yearly_heatmap: {
-        alt: 'Yearly median volatility risk premium by root',
-        caption:
-          'Yearly median premium by root: 2015 (NZD, the thin market, with AUD and EUR also negative) and 2022 (all seven roots) are the stress years; CHF is positive in 2015.',
-      },
-      iv_vs_rv: {
-        alt: 'Median implied vs forward realised volatility by root',
-        caption:
-          'Median Black-76 ATM implied against forward realised volatility by root, 2010–2026 (NZD from 2014).',
-      },
-      vrp_by_tenor: {
-        alt: 'Median volatility risk premium by target tenor',
-        caption:
-          'Median premium and share of positive days by tenor. In the strategy tests (table 3) the 30-day bucket is the only one robustly significant on its own (NW63 t = 2.40).',
+      premium_by_year: {
+        alt: 'The premium by year and currency',
+        caption: 'Positive most years, negative almost everywhere in 2022.',
       },
     },
-    challenges:
-      'Reconstructing a consistent 16-year options panel across the 2017 CME symbol migration, detecting and removing the legacy NZD implied-volatility artefact, and keeping the conditioning signal strictly leak-free after an earlier draft had used a full-sample z-score.',
-    learnings:
-      'The data contributions were larger than the strategy result. The premium is a left-skewed insurance premium: conditioning changes magnitude, not hit rate, and 2022 shows what the tail looks like.',
+    challenges: '',
+    learnings: '',
   },
 
   treasuryCurve: {
-    title: 'Treasury Futures Curve: Momentum and Mean Reversion',
-    description:
-      'Momentum in levels, reversion in spreads: systematic U.S. Treasury futures curve strategies 2010–2026, DV01-neutral and net of costs.',
-    headline:
-      'The same DV01-neutral 2s10s book earns a net Sharpe of −0.79 under a momentum signal and +0.71 under mean-reversion.',
-    imageAltText:
-      'Same DV01-neutral 2s10s book under momentum and mean-reversion signals',
+    title: 'Treasury Futures: Momentum vs Mean Reversion',
+    description: 'The same hedged 2s10s trade earns a Sharpe of +0.71 with mean reversion and −0.79 with momentum. Levels trend, spreads revert.',
+    headline: 'The same hedged 2s10s trade earns a net Sharpe of +0.71 with mean reversion and −0.79 with momentum.',
+    imageAltText: 'Same DV01-neutral 2s10s book under momentum and mean-reversion signals',
     categoryText: 'Rates Research',
     dateText: 'July 2026',
-    detailedDescription:
-      'A systematic study of time-series momentum on outright duration and mean-reversion on DV01-neutral curve spreads (2s10s, 5s30s, 2s5s10s) in U.S. Treasury futures from January 2010 to July 2026. A carry extension was subsequently tested as a secondary study and failed its pre-specified promotion criteria, so it is documented as a null rather than folded into the headline result. Continuous, back-adjusted futures are rebuilt from the exchange roll map, curve trades are hedged to be DV01-neutral using the daily cheapest-to-deliver forward risk, and every strategy is evaluated net of tick costs with HAC Diebold-Mariano inference against a duration-momentum baseline.',
-    whyItMatters:
-      'Time-series momentum on outright duration is well known. The question a rates desk actually faces is whether the same signal works on the curve. It does not: the slope mean-reverts, and applying a trend signal to it is a systematic way to lose money even on a perfectly hedged book. The asymmetry is the finding; the honest part is that the curve trades do not statistically beat the outright baseline.',
+    detailedDescription: 'Momentum works on Treasury duration. Does it work on the shape of the curve? US Treasury futures from January 2010 to July 2026, every curve trade DV01-neutral and net of costs.',
+    whyItMatters: '',
     methodology: [
-      'Six futures roots (TU, FV, TY, UXY, US, WN), first three generics; continuous series rebuilt from FUT_CUR_GEN_TICKER with difference back-adjustment so roll gaps are never booked as returns.',
-      'DV01 from Bloomberg’s daily cheapest-to-deliver forward risk (CONVENTIONAL_CTD_FORWARD_FRSK), the real per-day sensitivity rather than a regression proxy.',
-      'No look-ahead: signals use t−1 data, execution at the t settle, monthly rebalance, 126-day warm-up, leverage capped at 3×, volatility scaled to 10%.',
-      'Costs of one tick per contract per side using each contract’s own tick size (the 10-year tick was halved during the sample).',
-      'Diebold-Mariano with Newey-West long-run variance at a 21-day lag plus the Harvey-Leybourne-Newbold small-sample correction, cross-checked against HAC-robust OLS.',
+      'Six futures contracts from Bloomberg, rebuilt into continuous series so roll gaps are never booked as returns.',
+      'Curve trades hedged with the daily cheapest-to-deliver DV01; signals use the previous day\'s data.',
+      'One tick per contract per side in costs, and Diebold-Mariano tests against outright duration momentum.',
     ],
     findings: [
-      'On the identical DV01-neutral 2s10s book, momentum loses (net Sharpe −0.79) and mean-reversion earns +0.71; the book’s P&L regression slope on the 10-year yield change is −0.001, so the gap is signal, not hedge error.',
-      'Net of one tick per contract per side, 2010–2026: duration momentum 0.68 (max drawdown −23%), 2s10s mean-reversion 0.71 (−20%), 5s30s mean-reversion 0.66 (−27%), 2s5s10s butterfly 0.07 (−38%).',
-      'Against the baseline, HAC Diebold-Mariano gives DM = 0.83 (p = 0.41) for 2s10s and 0.68 (p = 0.49) for 5s30s: neither curve strategy statistically dominates outright momentum.',
-      'Every number was re-executed from the canonical notebook against the original exports in August 2026; that re-execution exposed a transaction-cost loader bug, corrected on 2026-08-23, and the figures here are from the corrected run.',
+      'Same book, opposite signals: momentum −0.79, mean reversion +0.71. The book\'s P&L does not move with the 10-year yield, so the gap is the signal, not the hedge.',
+      'Net Sharpe: duration momentum 0.68, 2s10s reversion 0.71, 5s30s reversion 0.66, butterfly 0.07.',
+      'Neither curve trade beats outright momentum (Diebold-Mariano p = 0.41 and 0.49).',
     ],
     caveats: [
-      'The mean-reversion direction for the curve is economically motivated but was confirmed on the full sample; a walk-forward out-of-sample test is still required before treating the curve results as a hard performance claim.',
-      'Single country, single currency; costs are a flat tick-per-side approximation without market impact or financing.',
-      'Inputs are Bloomberg Terminal exports and are not redistributed; the repository ships the exporters, the checklist and a documented free-data route.',
-      'Correction (2026-08-23): the original notebook silently loaded no contract statics, so the table first published as "net" was gross of tick costs (0.71 / 0.77 / 0.73 / 0.12; same-book −0.73 / +0.77; DM p 0.32 / 0.37). The costed numbers are shown here and in the re-typeset paper; no conclusion changed — the ordering holds, both DM p-values move further from significance, and the asymmetry widens slightly.',
+      'The reversion direction was confirmed on the full sample and still needs a walk-forward test.',
+      'A cost-loader bug made the first published table gross of costs. It was fixed on 23 Aug 2026 and no conclusion changed.',
     ],
     keyFeatures: {},
     galleryImages: {
       signal_contrast: {
         alt: 'Same DV01-neutral 2s10s book under opposite signals',
-        caption:
-          'The headline: one DV01-neutral 2s10s book, two signals. Momentum earns −0.79 net Sharpe, mean-reversion +0.71.',
+        caption: 'One DV01-neutral 2s10s book, two signals.',
       },
       equity_curves: {
         alt: 'Net cumulative performance of the four strategies',
-        caption:
-          'Net cumulative performance 2010–2026: duration momentum 0.68, 2s10s reversion 0.71, 5s30s reversion 0.66, butterfly 0.07.',
-      },
-      risk_return: {
-        alt: 'Net Sharpe and maximum drawdown by strategy',
-        caption:
-          'Net Sharpe and maximum drawdown: the curve trades are co-equal with the baseline, not better; the butterfly does not earn its risk.',
+        caption: 'Net cumulative performance of the four strategies, 2010 to 2026.',
       },
     },
-    challenges:
-      'Rebuilding continuous futures from the exchange roll map without booking roll gaps, hedging curve trades with the true daily DV01 rather than a proxy, and resisting the temptation to read a 0.77 versus 0.71 Sharpe gap as significant when the Diebold-Mariano test says it is not.',
-    learnings:
-      'Levels trend, spreads revert, and the signal has to match the instrument. The statistically defensible claim is the asymmetry, not outperformance.',
+    challenges: '',
+    learnings: '',
   },
 
   macroVarResearchLab: {
     title: 'Macro VAR Research Lab',
-    description:
-      'Three studies, three papers: what forecasts the US macroeconomy out of sample once leakage, overfitting and multiple comparisons are controlled.',
-    headline:
-      'Across 1,000+ specifications and five estimator classes, no model is distinguishable from a univariate AR; shocks and identification add nothing out of sample.',
-    imageAltText:
-      'Relative RMSE heatmap of VAR specifications against a random walk',
+    description: 'Over 1,000 forecasting models for US GDP and inflation, and none reliably beats a simple autoregression.',
+    headline: 'Across 1,000+ models and five estimator classes, nothing reliably beats a simple autoregression out of sample.',
+    imageAltText: 'Forecast error of each model class against a univariate AR',
     categoryText: 'Econometrics',
-    dateText: 'May–July 2026',
-    detailedDescription:
-      'A consolidated lab of three completed studies on US quarterly data from public sources (FRED, FRBSF, NY Fed, ALFRED). Study 1 is a disciplined specification search and model-class horse race with the Model Confidence Set. Study 2 is a BVAR-with-constructed-shocks density study that exposes and fixes the common failures of that practice. Study 3 is a 1,014-model VARX permutation study with a real-time ALFRED replication, externally identified shocks, forecast combination and density evaluation, plus an interactive console.',
-    whyItMatters:
-      'Applied macro forecasting gives the analyst enormous freedom to search over variables, transforms, lags and estimators. These studies measure what that freedom buys when it is disciplined: very little. For anyone building macro views into a portfolio process, knowing which sophistication does not pay is as valuable as a model that does.',
+    dateText: 'July 2026',
+    detailedDescription: 'What actually forecasts US GDP, inflation and interest rates once look-ahead, overfitting and multiple comparisons are controlled? Three studies on public US data, each with its own paper.',
+    whyItMatters: '',
     methodology: [
-      'Study 1: theory-pruned block forward selection with hard validity gates (stability, residual whiteness, parsimony, conditioning); relative RMSE versus random walk and AR benchmarks; Clark-West, Diebold-Mariano and the Model Confidence Set across OLS, Minnesota BVAR, ridge, LASSO and elastic-net; a single-seed reproduce.py regenerates every number.',
-      'Study 2: Minnesota BVAR via dummy observations versus a naive implementation; shocks as AR(1) surprises standardised on the training window only; expanding-window evaluation over 48 origins scored by CRPS, log score and Diebold-Mariano; stochastic-volatility BVAR; Johansen cointegration; G7 panel extension.',
-      'Study 3: 16 endogenous sets × 12 shock subsets × 3 treatments × 3 lag rules = 1,632 cells, 1,014 unique models, expanding walk-forward from 2009Q4 at h = 1, 4, 8; real-time rebuild on ALFRED vintages; Kaenzig oil and Bauer-Swanson FOMC shocks as identified alternatives; forecast-encompassing tests; plug-in versus shock-uncertainty densities; Bayesian coverage decomposition.',
+      'Study 1: a disciplined specification search and a horse race of OLS, Bayesian VAR, ridge, LASSO and elastic net, judged with the Model Confidence Set.',
+      'Study 2: Bayesian VARs with constructed shocks, scored on density forecasts.',
+      'Study 3: 1,014 VARX models in an expanding walk-forward, rebuilt on real-time ALFRED data.',
     ],
     findings: [
-      'Study 1: the disciplined baseline is a four-variable core plus oil as an exogenous regressor; no estimator class beats a univariate AR by a Model Confidence Set margin; full-sample HP filtering of the policy rate leaks the future by 66% of the cycle’s own standard deviation at the endpoint; year-over-year transforms fail every whiteness test.',
-      'Study 2: a naively coded Minnesota prior leaves the posterior unshrunk (largest companion eigenvalue 1.068) while dummy observations restore stability (0.96); stacking all shocks inflates out-of-sample error by an order of magnitude; a stochastic-volatility BVAR produces sharper, better-calibrated densities than random-walk and AR(1) benchmarks for output and inflation.',
-      'Study 3: shocks cut the best GDP RMSE by about 12% at one quarter, but only 4.0% of specifications beat the core VAR at the 5% level, which is what noise delivers; the gain survives real-time vintages (16.1% → 15.9%); externally identified shocks do not beat cheap growth-rate proxies (encompassed in 22 of 24 cells); the shock model’s 90% interval covers 68% of outcomes until future-shock risk is priced.',
+      'No estimator class beats a univariate AR by a Model Confidence Set margin.',
+      'A full-sample HP filter leaks the future: the cycle is revised by 66% of its own standard deviation at the endpoint.',
+      'Shocks cut one-quarter GDP error by about 12%, but only 4.0% of specifications beat the core VAR at the 5% level, which is what chance delivers.',
+      'A naively coded Minnesota prior left the model explosive (eigenvalue 1.068); dummy observations fix it (0.96).',
     ],
     caveats: [
-      'Short samples (roughly 100–130 quarters) limit the power of every test; the Model Confidence Set is the guard against reading noise as discovery.',
-      'Study 2’s shock inputs were constructed from spreadsheet exports of public series that are not redistributed; the series list is documented so they can be rebuilt.',
-      'Study 1’s Phase C Model Confidence Set depends on the pinned arch version recorded in the results file.',
+      'Short samples (100 to 130 quarters) limit the power of every test.',
+      'Some Study 2 shock inputs come from spreadsheet exports that cannot be redistributed.',
     ],
     keyFeatures: {},
     galleryImages: {
-      relrmse_heatmap: {
-        alt: 'Relative RMSE heatmap, base specification',
-        caption:
-          'Study 1: relative RMSE against a random walk at h = 1 across candidate specifications. Green beats the random walk; the core-plus-oil row is the disciplined winner.',
-      },
-      phase2_heatmap: {
-        alt: 'Model-class comparison heatmap',
-        caption:
-          'Study 1: model classes × information sets. No estimator separates from the univariate AR under the Model Confidence Set.',
+      models_vs_ar: {
+        alt: 'Forecast error of each model class against a univariate AR',
+        caption: 'Mean one-quarter-ahead RMSE across four variables, relative to a univariate AR.',
       },
       hp_lookahead: {
-        alt: 'HP-filter look-ahead diagnostic',
-        caption:
-          'Study 1: the two-sided HP cycle of the fed funds rate is revised by up to 66% of its own standard deviation at the endpoint; a real-time filter does not see it.',
-      },
-      winner_forecasts: {
-        alt: 'Out-of-sample forecasts from the winning specification',
-        caption:
-          'Study 1: one-quarter-ahead out-of-sample forecasts of the winner against the random walk.',
-      },
-      gap_vs_level_heatmap: {
-        alt: 'Gap versus level rate representation',
-        caption:
-          'Study 1: representing the policy rate as a gap rather than a level is a tie once the gap is built without look-ahead.',
-      },
-      varr_gdp_sv_path: {
-        alt: 'Time-varying volatility of GDP-growth shocks',
-        caption:
-          'Study 2: stochastic-volatility path of US GDP-growth shocks with the GFC and COVID spikes; the motivation for variable-specific volatility.',
-      },
-      varx_fig2_shockcount: {
-        alt: 'GDP RMSE by number of exogenous shocks',
-        caption:
-          'Study 3: adding shocks lowers one-quarter GDP RMSE across 1,014 models, but the leaderboard order is one member of a large statistically equivalent set.',
-      },
-      varx_fig_rt: {
-        alt: 'Real-time versus final-vintage RMSE',
-        caption:
-          'Study 3: the shock advantage survives an ALFRED real-time rebuild almost intact (16.1% to 15.9% RMSE reduction).',
-      },
-      varx_fig_id: {
-        alt: 'Identified oil shock versus cheap proxy',
-        caption:
-          'Study 3: the Kaenzig oil-supply-news shock does not beat the raw real-oil-price growth proxy out of sample, even with a full-sample look-ahead the proxy lacks.',
-      },
-      varx_fig_density: {
-        alt: 'Density calibration of shock-augmented forecasts',
-        caption:
-          'Study 3: under a plug-in density the shock model’s nominal 90% GDP interval covers 68% of outcomes; pricing future-shock risk restores 91% and removes the sharpness advantage.',
+        alt: 'HP-filter look-ahead',
+        caption: 'The two-sided HP filter knows the future near the endpoint; a real-time filter does not.',
       },
     },
-    challenges:
-      'Implementing a leakage-safe walk-forward protocol at scale, the Minnesota BVAR with sum-of-coefficients and dummy-observation priors, the Model Confidence Set, and a real-time replication on archival vintages; then consolidating three separately built studies into one repository without rewriting any result.',
-    learnings:
-      'Disciplined parsimony and leakage-free evaluation dominate methodological sophistication in short macro samples. An honest negative result is worth more than an overfit positive one.',
+    challenges: '',
+    learnings: '',
   },
 
   lstmEquityForecasting: {
     title: 'LSTM vs Classical ML for Equity Returns',
-    description:
-      'Does an LSTM beat classical machine learning at forecasting daily US equity returns? 518 S&P 500 stocks, 2005–2026, with an explicit leakage control.',
-    headline:
-      'Nothing beats zero on levels; cross-sectionally there is a real stress-regime signal that does not survive transaction costs.',
-    imageAltText: 'Horse race of models by test-set information coefficient',
+    description: 'An LSTM against eleven simpler models on 518 S&P 500 stocks. Nothing materially beats predicting zero, and the one real signal dies at 10 bp costs.',
+    headline: 'Nothing materially beats predicting a zero return. The one real signal appears on stress days, where trading costs the most.',
+    imageAltText: 'Long-short Sharpe before and after costs on calm and stress days',
     categoryText: 'Machine Learning',
     dateText: 'July 2026',
-    detailedDescription:
-      'An undergraduate research project that benchmarks a pooled-panel PyTorch LSTM against eleven classical models on 518 S&P 500 constituents from March 2005 to July 2026, with a strictly chronological protocol, a shuffled-target leakage alarm that runs on every execution, and a Bloomberg-versus-mirror parity check. After the level horse race returns a null, the task is reframed cross-sectionally and split by a pre-registered volatility regime, with a costed long-short portfolio and a horizon-decay test.',
-    whyItMatters:
-      'LSTM stock-prediction projects are common and usually wrong for a reason that is invisible in the headline number: leakage, survivorship or an untested baseline. This one is built to fail honestly. The interesting result is what survives the discipline: short-horizon, stress-concentrated cross-sectional predictability that is statistically real and economically useless at the frequencies where it exists.',
+    detailedDescription: 'Does an LSTM forecast daily US stock returns better than simpler models? 518 S&P 500 stocks from March 2005 to July 2026, with a leakage alarm on every run.',
+    whyItMatters: '',
     methodology: [
-      'Panel of 518 S&P 500 constituents exported from a Bloomberg Terminal via a staged VBA export; a yfinance mirror emits the identical schema and was checked against the Bloomberg closes (median absolute difference essentially zero).',
-      'Chronological split only (train to 2021, validation 2022, test 2023+); features from information through the close of day t; scalers fit on train only; a shuffled-target ridge run every time as a leakage alarm.',
-      'Eleven classical models (linear, ridge, elastic-net, polynomial ridge, tree, random forest, XGBoost, LightGBM, linear SVR, two naive baselines) and a pooled-panel LSTM with early stopping. The reported LSTM is the compact configuration (1 layer, hidden 32, dropout 0.1); a higher-capacity 2×64 variant was trained but its test metrics were not retained, so no result is claimed for it.',
-      'Cross-sectional target: each stock’s next-day return minus the equal-weighted universe mean; regime: VIX 63-day z-score > 1, frozen before any test evaluation; decile long-short with turnover and 10 bp per side costs; weekly-rebalance decay test; four-factor risk adjustment.',
+      'A Bloomberg panel of 518 S&P 500 stocks, checked against a free mirror.',
+      'Chronological split only (train to 2021, validation 2022, test from 2023); a shuffled-target model runs every time as a leakage alarm.',
+      'An LSTM against eleven classical models, then a cross-sectional test split by a VIX regime fixed before the test, with a costed decile long-short.',
     ],
     findings: [
-      'Level prediction: no model beats naive zero on RMSE over 466,426 test stock-days; the LSTM’s test IC is 0.004 (t = 0.76), indistinguishable from the shuffled-target control.',
-      'Cross-sectional, high-volatility days: LightGBM reaches a mean daily rank IC of 0.044 (t = 3.17) versus 0.005 (t = 0.88) on calm days, and the nonlinear model overtakes the linear ones specifically under stress.',
-      'A decile long-short earns a gross annualised Sharpe of 2.09 in high-volatility periods and is negative net of 10 bp per side in every configuration; turnover is roughly 2.7× per day.',
-      'At a weekly rebalance the IC falls to 0.0007: slower trading removes the cost and the edge together. Four-factor alpha is insignificant (t = 1.35 all days, 0.10 high-vol).',
+      'On 466,426 test stock-days the best model is 0.16% better than predicting zero, close to the shuffled control. The LSTM is 3.6% worse.',
+      'On stress days LightGBM reaches a rank IC of 0.044 (t = 3.17), against 0.005 on calm days.',
+      'Its long-short earns a gross Sharpe of 2.09 on stress days and loses after 10 bp a side. Turnover is about 2.7 times a day.',
     ],
     caveats: [
-      'Current-member universe, so survivorship bias is present and documented as a limitation.',
-      'Costs modelled as a flat 10 bp per side; one LSTM architecture with four ablations rather than a search.',
-      'The Bloomberg panel and the per-stock prediction files are not redistributed; summary results, checkpoint metrics and the paper are.',
-      'Correction (2026-08-23): the originally typeset paper misprinted the three LightGBM net-Sharpe cells of Table II (−0.24 / −1.91 / −2.02); the correct values are −0.88 / −4.89 / −3.55. The paper served here is the re-typeset, corrected version; the conclusion that every net Sharpe is negative is unaffected.',
+      'Current S&P 500 members, so survivorship bias is present.',
+      'One LSTM architecture with ablations, not a full search.',
     ],
     keyFeatures: {},
     galleryImages: {
-      test_ic_by_model: {
-        alt: 'Test-set information coefficient by model',
-        caption:
-          'Level horse race on the 2023+ test set: cross-sectional IC by model. XGBoost leads at 0.14 (t = 1.83); the LSTM sits beside the shuffled-target control.',
+      stress_vs_calm: {
+        alt: 'Long-short Sharpe before and after costs on calm and stress days',
+        caption: 'LightGBM decile long-short, before and after costs, on calm and stress days.',
       },
-      regime_ic: {
-        alt: 'Ridge IC by volatility regime',
-        caption:
-          'Ridge IC by regime, with and without macro context features: the pooled null hides a high-volatility signal (IC 0.05, t = 3.4).',
+      rmse_vs_zero: {
+        alt: 'Test error of each model against predicting zero',
+        caption: 'Test error of each model against predicting a zero return.',
       },
       xs_ls_equity_curve: {
-        alt: 'Cross-sectional long-short equity curve, gross and net',
-        caption:
-          'Ridge cross-sectional decile long-short, test period, high-volatility days shaded: positive gross, negative after 10 bp per side.',
+        alt: 'Ridge long-short, gross and net',
+        caption: 'Ridge long-short over the test period, gross and net of 10 bp a side, stress days shaded.',
       },
     },
-    challenges:
-      'Building a Bloomberg export pipeline that mirrors a free data source exactly, keeping an LSTM honest against a shuffled-target control, and reframing a null into the cross-sectional test that actually answers the economic question.',
-    learnings:
-      'A negative-but-rigorous result is the correct scientific conclusion for this setting. The detectable structure is a one-day, stress-regime phenomenon, and that is exactly where costs are highest.',
+    challenges: '',
+    learnings: '',
   },
 
   lowlatMm: {
     title: 'Low-Latency Market-Making Engine',
-    description:
-      'A C++20 event-driven market-making engine with an OCaml replay that tests how much of a backtest is the fill assumption.',
-    headline:
-      'Over 21 real sessions of E-mini S&P 500 futures the quotes lose money under every fill rule. The one day that made US$30,125 was the biggest selloff in the sample.',
-    imageAltText: 'lowlat-mm event-driven engine architecture',
+    description: 'A C++ market-making engine tested on 21 days of E-mini futures data. It loses money, and most of the daily swing is market direction.',
+    headline: 'Over 21 real sessions of E-mini S&P 500 futures the quotes lose money under every fill rule, and most of the daily swing is market direction.',
+    imageAltText: 'Daily PnL against the ES move over 21 sessions',
     categoryText: 'Systems / C++',
     dateText: 'October 2026',
-    detailedDescription:
-      'A modular C++20 prototype of the parts of a market-making stack: an order book, a market-data feed, an OMS with position tracking and P&L attribution, a pre-trade risk gate with a kill switch, an exchange simulator with acknowledgement and fill latency, an inventory-aware market maker, and a replay backtest on one timestamp-ordered event bus. An OCaml replay engine runs the same strategy under four fill rules on Databento top-of-book and trade data, and fill markouts measure adverse selection. A learning piece, not an HFT system.',
-    whyItMatters:
-      'Market-making results are decided by fill assumptions, latency and adverse selection, not by the quoting formula. Running the same quotes under different fill rules shows how much of a backtest is the strategy and how much is the simulator.',
+    detailedDescription: 'How much of a market-making backtest is the strategy, and how much is the fill assumption? A C++20 event-driven engine and a second, independent replay engine, run on real CME order-book data from Databento.',
+    whyItMatters: '',
     methodology: [
-      'std::variant event types dispatched through a deterministic priority queue; strategy-to-exchange and exchange-to-strategy latency modelled explicitly.',
-      'Order book with top of book and depth, OMS with acknowledgement, partial fill, cancel and rejection paths, and a risk gate on position, order size, open quantity and drawdown.',
-      'Inventory-skewed market maker run on 21 regular sessions of ESZ6 from Databento (18 Sep to 16 Oct 2026), each day starting flat; 16 Oct alone is 8.4 million top-of-book changes and 500,392 trade prints.',
-      'OCaml replay with four fill rules: on touch, only on trades through the price, and two queue-aware rules that fill an order only after the size ahead of it has traded or cancelled.',
-      'Fill markouts at 0 ms, 1 s, 1 min and 5 min, in Python and in q.',
+      'C++20 engine: order book, OMS, pre-trade risk gate with a kill switch, exchange simulator with latency, and an inventory-skewed market maker on one deterministic event bus.',
+      'The replay engine runs the same quotes under four fill rules: on touch, on trades through the price, and two rules that make each order wait its turn in the queue.',
+      '21 regular sessions of ESZ6, 18 Sep to 16 Oct 2026, each starting flat, with fill markouts from 0 ms to 5 minutes.',
     ],
     findings: [
-      'Across 21 sessions every fill rule loses on average: −US$7,310 a day filling on touch and −US$4,451 with queue position, neither significant.',
-      'Most of the daily swing is direction. The strategy sells into rallies and buys into selloffs, so under the touch rule each point ES rises costs about US$500 and the move explains 58% of the variance. Flat days still lose about US$8,100 (t = −2.12).',
-      '16 Oct, the sample\'s largest fall (ES −99.75), makes US$30,125 filling on touch and loses US$4,663 once orders wait in the queue.',
-      'Touch fills start under water (markout −0.94 ticks at 0 ms, −1.53 at one minute): an order fills only after the market has already reached its price.',
-      'The OCaml replay reproduces the C++ backtest on the real day with a byte-identical fill blotter, in 11 seconds against 18 minutes. That cross-check exposed an entry-price bug in the OMS, now fixed.',
+      'Every fill rule loses on average: −US$7,310 a day filling on touch and −US$4,451 with queue position, neither significant.',
+      'Direction drives it. The quotes end up short in rallies and long in selloffs, so each point ES rises costs about US$500 and the move explains 58% of daily PnL.',
+      'The one standout day, 16 Oct, was the biggest selloff in the sample: +US$30,125 on touch and −US$4,663 once orders wait in the queue.',
+      'The two engines produce byte-identical fills on the real data, and the cross-check exposed an entry-price bug in the OMS.',
     ],
     caveats: [
-      'Queue position is estimated from top of book and trade prints; market-by-order data would make it exact.',
-      'One contract, no fees, and a requote rate no exchange would allow (556,508 orders for 77 fills on 16 Oct).',
+      'Queue position is estimated from top of book and trade prints; order-level data would make it exact.',
+      'One contract, no fees, and a naive quoting rule that requotes far more than an exchange would allow.',
     ],
     keyFeatures: {},
     galleryImages: {
-      architecture: {
-        alt: 'lowlat-mm engine architecture',
-        caption:
-          'Event-driven module pipeline: market data, order book, strategy, OMS, risk, simulator, backtest, on one timestamp-ordered bus.',
+      pnl_vs_move: {
+        alt: 'Daily PnL against the ES move over 21 sessions',
+        caption: 'Daily PnL against ES\'s open-to-close move, 21 sessions.',
+      },
+      pnl_by_rule: {
+        alt: 'Mean daily PnL by fill rule',
+        caption: 'Mean daily PnL by fill rule, with 16 Oct marked.',
       },
       pnl_sample: {
-        alt: 'ESZ6 backtest on 16 Oct 2026: mid, net position and PnL',
-        caption:
-          'ESZ6 on 16 Oct 2026, the biggest selloff in the 21 sessions, filling on touch: mid, net position and PnL. Across all 21 sessions every fill rule loses money.',
+        alt: 'ESZ6 on 16 Oct 2026: price, position and PnL',
+        caption: 'ESZ6 on 16 Oct 2026, filling on touch: price, net position and PnL.',
       },
     },
-    challenges:
-      'Keeping the event loop deterministic, modelling fills and latency honestly, and building a second engine in a different language to check the first.',
-    learnings:
-      'A market-making backtest is mostly a statement about its fill model, and one good day says nothing. Adverse selection shows up in the first second of every fill.',
+    challenges: '',
+    learnings: '',
   },
 
   nkdsge: {

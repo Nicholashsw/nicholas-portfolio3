@@ -3,46 +3,28 @@
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 
 // SGX
-import sgx_performance from '@/assets/sgx/core_performance.png';
-import sgx_surv_bias from '@/assets/sgx/surv_bias_both_universes.png';
+import sgx_waterfall from '@/assets/sgx/cost_waterfall.png';
 import sgx_exit_mix from '@/assets/sgx/surv_exit_mix.png';
-import sgx_funnel from '@/assets/sgx/core_leakage_funnel.png';
-import sgx_markit from '@/assets/sgx/cost_markit_ls.png';
-import sgx_capacity from '@/assets/sgx/cost_capacity.png';
-import sgx_benchmark from '@/assets/sgx/core_benchmark_contamination.png';
-import sgx_mtest from '@/assets/sgx/px_multiple_testing.png';
-import sgx_merton from '@/assets/sgx/risk_merton_fit.png';
-import sgx_tsmom from '@/assets/sgx/tsmom_combo.png';
-// FX options VRP
-import vrp_strategy from '@/assets/vrp/chart_5_strategy_summary.png';
+import sgx_core from '@/assets/sgx/sti_core.png';
+
+import vrp_premium from '@/assets/vrp/premium_by_currency.png';
 import vrp_cumulative from '@/assets/vrp/chart_6_cumulative_payoff.png';
-import vrp_by_root from '@/assets/vrp/chart_2_vrp_by_root.png';
-import vrp_heatmap from '@/assets/vrp/chart_4_yearly_vrp_heatmap.png';
-import vrp_iv_rv from '@/assets/vrp/chart_1_iv_vs_rv_by_root.png';
-import vrp_tenor from '@/assets/vrp/chart_3_vrp_by_tenor.png';
-// Treasury
+import vrp_by_year from '@/assets/vrp/premium_by_year.png';
+
 import tsy_signal from '@/assets/treasury/fig1_signal_contrast.png';
 import tsy_equity from '@/assets/treasury/fig2_equity_curves.png';
-import tsy_risk from '@/assets/treasury/fig3_risk_return.png';
-// Macro VAR lab
-import mv_relrmse from '@/assets/macrovar/relrmse_heatmap.png';
-import mv_phase2 from '@/assets/macrovar/phase2_heatmap.png';
+
+import mv_models from '@/assets/macrovar/models_vs_ar.png';
 import mv_hp from '@/assets/macrovar/hp_lookahead.png';
-import mv_winner from '@/assets/macrovar/winner_forecasts.png';
-import mv_gap from '@/assets/macrovar/gap_vs_level_heatmap.png';
-import mv_sv from '@/assets/macrovar/varr_gdp_sv_path.png';
-import mv_shockcount from '@/assets/macrovar/varx_fig2_shockcount.png';
-import mv_rt from '@/assets/macrovar/varx_fig_rt.png';
-import mv_id from '@/assets/macrovar/varx_fig_id.png';
-import mv_density from '@/assets/macrovar/varx_fig_density.png';
-// LSTM
-import lstm_ic from '@/assets/lstm/test_ic_by_model.png';
-import lstm_regime from '@/assets/lstm/regime_ic.png';
+
+import lstm_stress from '@/assets/lstm/stress_vs_calm.png';
+import lstm_rmse from '@/assets/lstm/rmse_vs_zero.png';
 import lstm_ls from '@/assets/lstm/xs_ls_equity_curve.png';
-// lowlat-mm
-import lowlat_arch from '@/assets/lowlat/architecture.png';
+
+import lowlat_move from '@/assets/lowlat/pnl_vs_move.png';
+import lowlat_rules from '@/assets/lowlat/pnl_by_rule.png';
 import lowlat_pnl from '@/assets/lowlat/pnl_sample.png';
-// DSGE
+
 import dsge_mc from '@/assets/dsge/14_model_comparison.png';
 import dsge_policy from '@/assets/dsge/10_policy_progression.png';
 import dsge_post from '@/assets/dsge/12_posteriors.png';
@@ -74,7 +56,7 @@ const projectsListUnsorted: Array<ProjectData> = [
   {
     id: 'sgxMultifactorFyp',
     slug: 'sgx-multifactor-fyp',
-    imageUrl: sgx_performance,
+    imageUrl: sgx_waterfall,
     codeUrl: `${GH}/sgx-multifactor-fyp`,
     paperUrl: '/papers/sgx-multifactor-research-report.pdf',
     paperLabel: 'Research report (PDF)',
@@ -118,22 +100,15 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     keyFeatures: [],
     galleryImages: [
-      { id: 'core_performance', src: sgx_performance },
-      { id: 'surv_bias', src: sgx_surv_bias },
+      { id: 'cost_waterfall', src: sgx_waterfall },
       { id: 'exit_mix', src: sgx_exit_mix },
-      { id: 'leakage_funnel', src: sgx_funnel },
-      { id: 'markit_borrow', src: sgx_markit },
-      { id: 'capacity', src: sgx_capacity },
-      { id: 'benchmark_contamination', src: sgx_benchmark },
-      { id: 'multiple_testing', src: sgx_mtest },
-      { id: 'merton_fit', src: sgx_merton },
-      { id: 'tsmom_combo', src: sgx_tsmom },
+      { id: 'sti_core', src: sgx_core },
     ],
   },
   {
     id: 'fxOptionsVrp',
     slug: 'fx-options-vrp',
-    imageUrl: vrp_strategy,
+    imageUrl: vrp_premium,
     codeUrl: `${GH}/fx-options-vrp`,
     paperUrl: '/papers/fx-options-vrp.pdf',
     paperLabel: 'Read paper',
@@ -163,12 +138,9 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     keyFeatures: [],
     galleryImages: [
-      { id: 'strategy_summary', src: vrp_strategy },
+      { id: 'premium_by_currency', src: vrp_premium },
       { id: 'cumulative_payoff', src: vrp_cumulative },
-      { id: 'vrp_by_root', src: vrp_by_root },
-      { id: 'yearly_heatmap', src: vrp_heatmap },
-      { id: 'iv_vs_rv', src: vrp_iv_rv },
-      { id: 'vrp_by_tenor', src: vrp_tenor },
+      { id: 'premium_by_year', src: vrp_by_year },
     ],
   },
   {
@@ -199,13 +171,12 @@ const projectsListUnsorted: Array<ProjectData> = [
     galleryImages: [
       { id: 'signal_contrast', src: tsy_signal },
       { id: 'equity_curves', src: tsy_equity },
-      { id: 'risk_return', src: tsy_risk },
     ],
   },
   {
     id: 'macroVarResearchLab',
     slug: 'macro-var-research-lab',
-    imageUrl: mv_relrmse,
+    imageUrl: mv_models,
     codeUrl: `${GH}/macro-var-research-lab`,
     paperUrl: '/papers/macro-var-01-var-selection-horserace.pdf',
     paperLabel: 'Read paper (study 1)',
@@ -235,22 +206,14 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     keyFeatures: [],
     galleryImages: [
-      { id: 'relrmse_heatmap', src: mv_relrmse },
-      { id: 'phase2_heatmap', src: mv_phase2 },
+      { id: 'models_vs_ar', src: mv_models },
       { id: 'hp_lookahead', src: mv_hp },
-      { id: 'winner_forecasts', src: mv_winner },
-      { id: 'gap_vs_level_heatmap', src: mv_gap },
-      { id: 'varr_gdp_sv_path', src: mv_sv },
-      { id: 'varx_fig2_shockcount', src: mv_shockcount },
-      { id: 'varx_fig_rt', src: mv_rt },
-      { id: 'varx_fig_id', src: mv_id },
-      { id: 'varx_fig_density', src: mv_density },
     ],
   },
   {
     id: 'lstmEquityForecasting',
     slug: 'lstm-equity-forecasting',
-    imageUrl: lstm_ic,
+    imageUrl: lstm_stress,
     codeUrl: `${GH}/lstm-equity-forecasting`,
     paperUrl: '/papers/lstm-equity-forecasting.pdf',
     paperLabel: 'Read paper',
@@ -277,24 +240,24 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     keyFeatures: [],
     galleryImages: [
-      { id: 'test_ic_by_model', src: lstm_ic },
-      { id: 'regime_ic', src: lstm_regime },
+      { id: 'stress_vs_calm', src: lstm_stress },
+      { id: 'rmse_vs_zero', src: lstm_rmse },
       { id: 'xs_ls_equity_curve', src: lstm_ls },
     ],
   },
   {
     id: 'lowlatMm',
     slug: 'lowlat-mm',
-    imageUrl: lowlat_arch,
+    imageUrl: lowlat_move,
     codeUrl: `${GH}/lowlat-mm`,
-    tags: ['C++20', 'OCaml', 'Market Making'],
+    tags: ['C++20', 'Market Making', 'Low Latency'],
     category: 'Systems / C++',
     capability: 'Systems / market microstructure',
     date: '2026-10-19',
     featured: true,
     featuredRank: 2,
     status: 'published',
-    stack: ['C++20', 'OCaml', 'CMake', 'Catch2', 'QCheck', 'Databento', 'q'],
+    stack: ['C++20', 'CMake', 'Catch2', 'Python', 'Databento'],
     highlights: [
       { label: 'Mean daily PnL, touch / queue', value: '−US$7,310 / −US$4,451' },
       { label: 'Daily PnL explained by ES move', value: '58%' },
@@ -303,7 +266,8 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     keyFeatures: [],
     galleryImages: [
-      { id: 'architecture', src: lowlat_arch },
+      { id: 'pnl_vs_move', src: lowlat_move },
+      { id: 'pnl_by_rule', src: lowlat_rules },
       { id: 'pnl_sample', src: lowlat_pnl },
     ],
   },
