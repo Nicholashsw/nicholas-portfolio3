@@ -25,23 +25,10 @@ import lowlat_move from '@/assets/lowlat/pnl_vs_move.png';
 import lowlat_rules from '@/assets/lowlat/pnl_by_rule.png';
 import lowlat_pnl from '@/assets/lowlat/pnl_sample.png';
 
-import dsge_mc from '@/assets/dsge/14_model_comparison.png';
-import dsge_policy from '@/assets/dsge/10_policy_progression.png';
-import dsge_post from '@/assets/dsge/12_posteriors.png';
-import dsge_ppc from '@/assets/dsge/16_ppc.png';
-import dsge_country from '@/assets/dsge/15_country_comparison.png';
-import dsge_irf from '@/assets/dsge/01_irf.png';
 // Global rates RV
-import grrv_oor from '@/assets/grrv/grrv_fig3_out_of_regime.png';
-import grrv_screen from '@/assets/grrv/grrv_fig2_regime_screen.png';
-import grrv_beta from '@/assets/grrv/grrv_fig4_beta_instability.png';
-import grrv_yields from '@/assets/grrv/grrv_fig1_yields.png';
 // alpha-research-lab
-import alpha_vrp from '@/assets/alpha/vrp_tearsheet.png';
 // financial-ml-lab
-import fin_car from '@/assets/financial/car_reported.png';
 // quant-macro-engine
-import qme_dfast from '@/assets/qme/dfast_scenario.png';
 
 import type {
   ProjectData,
@@ -274,143 +261,6 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'pnl_by_rule', src: lowlat_rules },
       { id: 'pnl_sample', src: lowlat_pnl },
     ],
-  },
-  {
-    id: 'nkdsge',
-    slug: 'nkdsge-dsge',
-    imageUrl: dsge_mc,
-    codeUrl: `${GH}/nkdsge-dsge`,
-    tags: ['DSGE', 'Bayesian', 'Kalman'],
-    category: 'Structural Macro',
-    capability: 'Structural macro',
-    date: '2026-07-28',
-    featured: false,
-    featuredRank: 7,
-    status: 'archived',
-    stack: ['Python', 'NumPy', 'SciPy', 'ECB Data Portal', 'FRED', 'ALFRED'],
-    highlights: [
-      { label: 'Solution', value: 'Klein / QZ, BK-determinate' },
-      {
-        label: 'Log Bayes factors: smoothing, forward-looking',
-        value: '+91, +46',
-      },
-      { label: 'MCMC', value: '2 chains × 12,000' },
-      { label: 'Posterior predictive moments passing', value: '9 of 10' },
-    ],
-    keyFeatures: [],
-    galleryImages: [
-      { id: 'model_comparison', src: dsge_mc },
-      { id: 'policy_progression', src: dsge_policy },
-      { id: 'posteriors', src: dsge_post },
-      { id: 'ppc', src: dsge_ppc },
-      { id: 'country_comparison', src: dsge_country },
-      { id: 'irf', src: dsge_irf },
-    ],
-  },
-  {
-    id: 'quantMacroEngine',
-    slug: 'quant-macro-engine',
-    imageUrl: qme_dfast,
-    codeUrl: `${GH}/quant-macro-engine`,
-    tags: ['BVAR', 'Black-Litterman', 'Scenario Analysis'],
-    category: 'Macro Systems',
-    capability: 'Macro engine',
-    date: '2026-07-29',
-    featured: false,
-    featuredRank: 8,
-    status: 'archived',
-    stack: ['Python', 'NumPy', 'pandas', 'FRED', 'BEA', 'OECD', 'ECB'],
-    highlights: [
-      { label: 'Walk-forward BL vs equal weight', value: '−2.64%/yr (t = −2.11)' },
-      { label: 'Conditional forecasts', value: 'Waggoner–Zha' },
-      { label: 'DFAST 2026: BVAR vs Fed trough GDP', value: '−2.9% vs −4.6%' },
-    ],
-    keyFeatures: [],
-    galleryImages: [{ id: 'dfast_scenario', src: qme_dfast }],
-  },
-  {
-    id: 'globalRatesRv',
-    slug: 'global-rates-rv',
-    imageUrl: grrv_oor,
-    codeUrl: `${GH}/global-rates-rv`,
-    papers: [
-      {
-        label: 'FINDINGS.md',
-        url: `${GH}/global-rates-rv/blob/main/FINDINGS.md`,
-      },
-    ],
-    tags: ['Rates', 'Cointegration', 'Negative Result'],
-    category: 'Rates Research',
-    capability: 'Rates / relative value',
-    date: '2026-07-29',
-    featured: false,
-    featuredRank: 9,
-    status: 'archived',
-    stack: [
-      'Python',
-      'statsmodels',
-      'FRED',
-      'Bundesbank',
-      'Japan MoF',
-      'Bank of Canada',
-    ],
-    highlights: [
-      { label: 'Cointegrated pairs, full sample', value: '0 of 18' },
-      { label: 'Within regimes pass / survive FDR', value: '11 of 144 / 6' },
-      { label: 'Out-of-regime mean Sharpe', value: '−0.27' },
-      { label: 'FX contamination R²', value: '≤ 0.0016' },
-    ],
-    keyFeatures: [],
-    galleryImages: [
-      { id: 'out_of_regime', src: grrv_oor },
-      { id: 'regime_screen', src: grrv_screen },
-      { id: 'beta_instability', src: grrv_beta },
-      { id: 'yields', src: grrv_yields },
-    ],
-  },
-  {
-    id: 'alphaResearchLab',
-    slug: 'alpha-research-lab',
-    imageUrl: alpha_vrp,
-    codeUrl: `${GH}/alpha-research-lab`,
-    tags: ['Volatility', 'Options', 'Backtesting'],
-    category: 'Quantitative Research',
-    capability: 'Volatility strategies',
-    date: '2026-06-14',
-    featured: false,
-    featuredRank: 10,
-    status: 'archived',
-    stack: ['Python', 'pandas', 'Black-76', 'Johansen / VECM', 'Bloomberg BGN'],
-    highlights: [
-      { label: 'XAUUSD / USDJPY trade Sharpe', value: '0.41 / 0.40' },
-      { label: 'Win rate vs breakeven', value: '73% vs 70%' },
-      { label: 'Sample', value: '2005–2026' },
-    ],
-    keyFeatures: [],
-    galleryImages: [
-      { id: 'vrp_tearsheet', src: alpha_vrp },
-    ],
-  },
-  {
-    id: 'financialMlLab',
-    slug: 'financial-ml-lab',
-    imageUrl: fin_car,
-    codeUrl: `${GH}/financial-ml-lab`,
-    tags: ['Event Study', 'Alt Data', 'Python'],
-    category: 'Alternative Data',
-    capability: 'Alternative data',
-    date: '2026-05-18',
-    featured: false,
-    featuredRank: 11,
-    status: 'archived',
-    stack: ['Python', 'pandas', 'pdfplumber', 'yfinance'],
-    highlights: [
-      { label: 'House PTR trades, 2022–2025', value: '5,763' },
-      { label: 'Transaction-date CAR(+1,+21) (t)', value: '−0.28% (−2.22)' },
-      { label: 'Committee-relevant CAR (t)', value: '+0.18% (0.77)' },
-    ],
-    keyFeatures: [],
-    galleryImages: [{ id: 'car_reported', src: fin_car }],
   },
 ];
 
