@@ -25,11 +25,6 @@ import lowlat_move from '@/assets/lowlat/pnl_vs_move.png';
 import lowlat_rules from '@/assets/lowlat/pnl_by_rule.png';
 import lowlat_pnl from '@/assets/lowlat/pnl_sample.png';
 
-// Global rates RV
-// alpha-research-lab
-// financial-ml-lab
-// quant-macro-engine
-
 import type {
   ProjectData,
   SkillData,
