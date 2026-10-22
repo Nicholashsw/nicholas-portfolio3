@@ -13,6 +13,7 @@ export type Props = {
   imageAltText: string;
   ctaText: string;
   capability?: string;
+  topicLabels?: string[];
   headline?: string;
 };
 
@@ -24,6 +25,7 @@ const {
   imageAltText,
   ctaText,
   capability,
+  topicLabels = [],
   headline,
 } = Astro.props;
 const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
@@ -57,7 +59,7 @@ const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
     {
       capability && (
         <span class="text-xs font-medium uppercase tracking-wide text-[#c9a84c]">
-          {capability}
+          {[capability, ...topicLabels].join(' · ')}
         </span>
       )
     }

@@ -51,7 +51,7 @@ const href = (p: TranslatedProject) =>
                 >
                   <SectionCard
                     title={project.title}
-                    categoryText={project.capability ?? project.categoryText}
+                    categoryText={project.capability ? [project.capability, ...(project.topicLabels ?? [])].join(' · ') : project.categoryText}
                     className="w-full"
                     classNameTitle="text-xl"
                     tags={project.tags ?? []}
@@ -81,7 +81,7 @@ const href = (p: TranslatedProject) =>
                 >
                   <SectionCard
                     title={project.title}
-                    categoryText={project.capability ?? project.categoryText}
+                    categoryText={project.capability ? [project.capability, ...(project.topicLabels ?? [])].join(' · ') : project.categoryText}
                     className="w-full"
                     classNameTitle="text-xl"
                     tags={project.tags ?? []}
