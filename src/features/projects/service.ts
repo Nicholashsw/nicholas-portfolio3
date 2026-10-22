@@ -39,17 +39,17 @@ const projectsListUnsorted: Array<ProjectData> = [
     id: 'sgxMultifactor',
     slug: 'sgx-multifactor',
     imageUrl: sgx_waterfall,
-    codeUrl: `${GH}/sgx-multifactor-fyp`,
+    codeUrl: `${GH}/sgx-multifactor`,
     paperUrl: '/papers/sgx-multifactor-research-report.pdf',
     paperLabel: 'Research report (PDF)',
     papers: [
       {
         label: 'Verification ledger',
-        url: `${GH}/sgx-multifactor-fyp/blob/main/VERIFICATION_LEDGER.md`,
+        url: `${GH}/sgx-multifactor/blob/main/VERIFICATION_LEDGER.md`,
       },
       {
         label: 'Exclusions',
-        url: `${GH}/sgx-multifactor-fyp/blob/main/EXCLUSIONS.md`,
+        url: `${GH}/sgx-multifactor/blob/main/EXCLUSIONS.md`,
       },
     ],
     tags: ['Factor Investing', 'Survivorship', 'Transaction Costs'],
