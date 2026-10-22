@@ -30,7 +30,7 @@ const meta: Meta[] = [];
 if (project.capability)
   meta.push({
     label: d.capabilityLabel ?? 'Capability:',
-    value: [project.capability, ...(project.topicLabels ?? [])].join(' · '),
+    value: project.capability,
     variant: 'default',
   });
 if (project.categoryText)

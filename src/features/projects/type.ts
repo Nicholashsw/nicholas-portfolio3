@@ -44,7 +44,6 @@ export type ProjectData = {
   featuredRank?: number; // homepage and /projects ordering (lower first)
   status?: ProjectStatus; // defaults to 'published'
   capability?: string; // the distinct capability this project demonstrates
-  topicLabels?: string[]; // extra topic labels shown next to the capability
 
   // Research metadata
   paperUrl?: string; // primary paper or report, served from /public/papers
