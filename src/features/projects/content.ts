@@ -49,7 +49,7 @@ export const projectsContent = {
   },
 
   fxOptionsVrp: {
-    title: 'Volatility Risk Premia in CME FX Options',
+    title: 'FX Options VRP',
     description: 'Sixteen years of CME currency options. They cost more than the volatility that follows, like insurance.',
     headline: 'Options are overpriced in 6 of 7 currencies. Sellers win most years, then lose it all in a year like 2022.',
     imageAltText: 'Implied minus realised volatility by currency',
@@ -91,7 +91,7 @@ export const projectsContent = {
   },
 
   treasuryCurve: {
-    title: 'Treasury Futures: Momentum vs Mean Reversion',
+    title: 'Treasury Futures',
     description: 'Same hedged Treasury curve trade, two signals: it makes money betting on reversal and loses betting on trend.',
     headline: 'Yields trend, but the curve snaps back.',
     imageAltText: 'Same DV01-neutral 2s10s book under momentum and mean-reversion signals',
@@ -128,7 +128,7 @@ export const projectsContent = {
   },
 
   macroVarResearchLab: {
-    title: 'Macro VAR Research Lab',
+    title: 'Macro VAR',
     description: 'Over 1,000 models to forecast US growth and inflation. None reliably beats the simplest one.',
     headline: 'After 1,000+ models, nothing reliably beats a simple autoregression.',
     imageAltText: 'Forecast error of each model class against a univariate AR',
@@ -165,7 +165,7 @@ export const projectsContent = {
   },
 
   lstmEquityForecasting: {
-    title: 'LSTM vs Classical ML for Equity Returns',
+    title: 'LSTM',
     description: 'An LSTM against eleven simpler models on 518 S&P 500 stocks. None beats guessing zero.',
     headline: 'Nothing beats guessing a zero return. The one real signal shows up on stressful days, when trading costs the most.',
     imageAltText: 'Long-short Sharpe before and after costs on calm and stress days',
@@ -206,7 +206,7 @@ export const projectsContent = {
   },
 
   lowlatMm: {
-    title: 'Low-Latency Market-Making Engine',
+    title: 'Market Making',
     description: 'A C++ market maker tested on 21 days of S&P 500 futures. It loses money, and the market\'s direction explains most of why.',
     headline: 'It loses money under every fill assumption. The one great day was luck: the biggest selloff in the sample.',
     imageAltText: 'Daily PnL against the ES move over 21 sessions',
