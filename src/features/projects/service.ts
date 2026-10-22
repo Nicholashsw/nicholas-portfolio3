@@ -36,8 +36,8 @@ const GH = 'https://github.com/Nicholashsw';
 
 const projectsListUnsorted: Array<ProjectData> = [
   {
-    id: 'sgxMultifactorFyp',
-    slug: 'sgx-multifactor-fyp',
+    id: 'sgxMultifactor',
+    slug: 'sgx-multifactor',
     imageUrl: sgx_waterfall,
     codeUrl: `${GH}/sgx-multifactor-fyp`,
     paperUrl: '/papers/sgx-multifactor-research-report.pdf',

@@ -24,6 +24,8 @@ export default defineConfig({
   site: 'https://nicholashong.dev',
   // Projects taken off the site (still on GitHub) send old links to the project list.
   redirects: {
+    '/projects/sgx-multifactor-fyp': '/projects/sgx-multifactor',
+    '/en/projects/sgx-multifactor-fyp': '/en/projects/sgx-multifactor',
     '/projects/nkdsge-dsge': '/projects',
     '/en/projects/nkdsge-dsge': '/en/projects',
     '/projects/quant-macro-engine': '/projects',

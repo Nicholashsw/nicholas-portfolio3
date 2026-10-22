@@ -5,14 +5,14 @@
  * service.ts as `highlights`.
  */
 export const projectsContent = {
-  sgxMultifactorFyp: {
+  sgxMultifactor: {
     title: 'Multi-Factor Equities on SGX',
     description: 'Classic stock-picking factors work in Singapore. Trading costs take almost all of it.',
     headline: 'The signal is real, but after spreads and borrowing costs, 1.66% a month becomes 0.37%.',
     imageAltText: 'Cost waterfall for the SGX composite strategy',
     categoryText: 'Quantitative Research',
     dateText: 'October 2026',
-    detailedDescription: 'Do value, momentum and quality predict Singapore stocks, and can you actually trade them? My NTU final-year project, with every delisted company kept in the data.',
+    detailedDescription: 'Do value, momentum and quality predict Singapore stocks, and can you actually trade them?',
     whyItMatters: '',
     methodology: [
       'Singapore stocks from 1991 to 2026, including the 338 that delisted.',
