@@ -162,20 +162,6 @@ const projectsListUnsorted: Array<ProjectData> = [
     codeUrl: `${GH}/macro-var-research-lab`,
     paperUrl: '/papers/macro-var-consolidated.pdf',
     paperLabel: 'Read paper',
-    papers: [
-      {
-        label: 'Stage 1 working paper: specification and estimator',
-        url: '/papers/macro-var-01-var-selection-horserace.pdf',
-      },
-      {
-        label: 'Stage 2 working paper: BVAR with constructed shocks',
-        url: '/papers/macro-var-02-bvar-shocks-density.pdf',
-      },
-      {
-        label: 'Stage 3 working paper: VARX permutation study',
-        url: '/papers/macro-var-03-varx-permutation-study.pdf',
-      },
-    ],
     tags: ['Econometrics', 'Forecasting', 'Bayesian'],
     category: 'Econometrics',
     capability: 'Macro / econometrics',

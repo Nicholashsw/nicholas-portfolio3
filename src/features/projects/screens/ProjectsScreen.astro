@@ -1,10 +1,8 @@
 ---
 import { ui, type LanguageCode } from '@/i18n/ui';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import SectionCard from '@/components/section-card.astro';
 import { EmptyState } from '@/components/empty-state';
 import Heading from '@/components/Heading.astro';
-import { Badge } from '@/components/ui/badge';
+import FeaturedProjectPreview from '../components/FeaturedProjectPreview.astro';
 import type { TranslatedProject } from '../type';
 
 export type Props = {
@@ -15,7 +13,6 @@ export type Props = {
 const { projects, lang } = Astro.props;
 const t = (ui as Record<string, any>)[lang];
 const projectsPageTranslations = t.projectsPage;
-const d = t.projectDetailPage ?? {};
 
 // In-progress work is not listed; flagships first, then by rank.
 const listed = projects
@@ -23,13 +20,6 @@ const listed = projects
   .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
 const flagships = listed.filter((p) => p.featured);
 const others = listed.filter((p) => !p.featured);
-
-const statusLabel = (p: TranslatedProject) =>
-  p.status === 'negative-result'
-    ? (d.statusNegativeResult ?? 'Negative result')
-    : null;
-const href = (p: TranslatedProject) =>
-  getRelativeLocaleUrl(lang, `/projects/${p.slug}`);
 ---
 
 <div class="py-12 md:py-16">
@@ -44,25 +34,14 @@ const href = (p: TranslatedProject) =>
             </h2>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {flagships.map((project) => (
-                <a
-                  href={href(project)}
-                  aria-label={`View project ${project.title}`}
-                  class="flex rounded-lg transition-shadow duration-200 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                >
-                  <SectionCard
-                    title={project.title}
-                    categoryText={project.capability ?? project.categoryText}
-                    className="w-full"
-                    classNameTitle="text-xl"
-                    tags={project.tags ?? []}
-                    imageUrl={project.imageUrl}
-                    imageAltText={project.imageAltText}
-                  >
-                    <p class="text-sm text-muted-foreground">
-                      {project.description}
-                    </p>
-                  </SectionCard>
-                </a>
+                <FeaturedProjectPreview
+                  lang={lang}
+                  slug={project.slug}
+                  title={project.title}
+                  imageUrl={project.imageUrl}
+                  imageAltText={project.imageAltText}
+                  headline={project.description}
+                />
               ))}
             </div>
           </section>
@@ -74,30 +53,14 @@ const href = (p: TranslatedProject) =>
             </h2>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {others.map((project) => (
-                <a
-                  href={href(project)}
-                  aria-label={`View project ${project.title}`}
-                  class="flex rounded-lg transition-shadow duration-200 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                >
-                  <SectionCard
-                    title={project.title}
-                    categoryText={project.capability ?? project.categoryText}
-                    className="w-full"
-                    classNameTitle="text-xl"
-                    tags={project.tags ?? []}
-                    imageUrl={project.imageUrl}
-                    imageAltText={project.imageAltText}
-                  >
-                    {statusLabel(project) && (
-                      <div class="mb-2">
-                        <Badge variant="outline">{statusLabel(project)}</Badge>
-                      </div>
-                    )}
-                    <p class="text-sm text-muted-foreground">
-                      {project.description}
-                    </p>
-                  </SectionCard>
-                </a>
+                <FeaturedProjectPreview
+                  lang={lang}
+                  slug={project.slug}
+                  title={project.title}
+                  imageUrl={project.imageUrl}
+                  imageAltText={project.imageAltText}
+                  headline={project.description}
+                />
               ))}
             </div>
           </section>

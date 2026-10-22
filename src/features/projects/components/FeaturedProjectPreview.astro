@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { ArrowRight } from 'lucide-react';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { LanguageCode } from '@/i18n/ui';
 
@@ -11,8 +10,6 @@ export type Props = {
   title: string;
   imageUrl?: ImageMetadata;
   imageAltText: string;
-  ctaText: string;
-  capability?: string;
   headline?: string;
 };
 
@@ -22,8 +19,6 @@ const {
   title,
   imageUrl,
   imageAltText,
-  ctaText,
-  capability,
   headline,
 } = Astro.props;
 const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
@@ -54,13 +49,6 @@ const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
     }
   </div>
   <div class="flex flex-col gap-2 p-5">
-    {
-      capability && (
-        <span class="text-xs font-medium uppercase tracking-wide text-[#c9a84c]">
-          {capability}
-        </span>
-      )
-    }
     <h3 class="text-xl font-semibold leading-snug">{title}</h3>
     {
       headline && (
@@ -69,13 +57,5 @@ const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
         </p>
       )
     }
-    <div
-      class="mt-1 flex items-center text-sm font-medium text-foreground/80 group-hover:text-foreground"
-    >
-      {ctaText}
-      <ArrowRight
-        className="ml-2 size-4 transition-transform group-hover:translate-x-1"
-      />
-    </div>
   </div>
 </a>

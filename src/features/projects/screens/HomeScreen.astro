@@ -26,7 +26,6 @@ export type Props = {
   featuredProjectsDescription: string;
   mySkillsTitle: string;
   mySkillsDescription: string;
-  projectPreviewCtaText: string;
   allProjectsText?: string;
 };
 
@@ -40,7 +39,6 @@ const {
   featuredProjectsDescription,
   mySkillsTitle,
   mySkillsDescription,
-  projectPreviewCtaText,
   allProjectsText = 'All research →',
 } = Astro.props;
 
@@ -155,8 +153,6 @@ const socials = [
           title={project.title}
           imageUrl={project.imageUrl}
           imageAltText={project.imageAltText}
-          ctaText={projectPreviewCtaText}
-          capability={project.capability}
           headline={project.description}
         />
       ))
