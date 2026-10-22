@@ -1,7 +1,7 @@
 ---
 /**
- * Research charts, shown whole (object-contain) at full column width. No captions or numbering:
- * the page copy carries the argument.
+ * Sequenced research figures with captions. Replaces the cropping 16:9 carousel: every chart is
+ * shown whole (object-contain) at full column width, numbered, with its caption underneath.
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -11,16 +11,19 @@ export type Props = {
     id: string;
     src: ImageMetadata;
     alt: string;
+    caption?: string;
   }>;
+  title?: string;
 };
 
-const { images } = Astro.props;
+const { images, title } = Astro.props;
 ---
 
 {
   images.length > 0 && (
     <section class="mb-10 not-prose">
-      <ol class="space-y-8">
+      {title && <h2 class="text-2xl font-semibold mb-6">{title}</h2>}
+      <ol class="space-y-10">
         {images.map((image, i) => (
           <li class="rounded-lg border border-border/60 bg-card p-3 md:p-4">
             <figure>
@@ -35,6 +38,14 @@ const { images } = Astro.props;
                   quality="high"
                 />
               </div>
+              {image.caption && (
+                <figcaption class="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  <span class="font-medium text-foreground mr-2">
+                    Figure {i + 1}.
+                  </span>
+                  {image.caption}
+                </figcaption>
+              )}
             </figure>
           </li>
         ))}
