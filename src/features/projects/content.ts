@@ -27,7 +27,7 @@ export const projectsContent = {
     ],
     caveats: [
       'Nothing survives multiple-testing correction.',
-      '115 delistings are still being checked.',
+      '49 delistings are still being checked.',
     ],
     keyFeatures: {},
     galleryImages: {
@@ -108,10 +108,9 @@ export const projectsContent = {
       'Same trade: +0.71 Sharpe on reversal, −0.79 on trend.',
       'Plain duration momentum earns 0.68.',
       'The curve trades don\'t statistically beat it.',
-    ],
-    caveats: [
       "Out of sample testing: mean reversion still works. When the curve leans too steep or inverted, the Fed's own next move tends to pull it back, and betting on that pull-back is what makes money.",
     ],
+    caveats: [],
     keyFeatures: {},
     galleryImages: {
       signal_contrast: {
