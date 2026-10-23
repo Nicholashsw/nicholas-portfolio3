@@ -157,9 +157,9 @@ const projectsListUnsorted: Array<ProjectData> = [
   },
   {
     id: 'macroVarResearchLab',
-    slug: 'macro-var-research-lab',
+    slug: 'macro-var',
     imageUrl: mv_models,
-    codeUrl: `${GH}/macro-var-research-lab`,
+    codeUrl: `${GH}/macro-var`,
     paperUrl: '/papers/macro-var-consolidated.pdf',
     paperLabel: 'read paper',
     papers: [

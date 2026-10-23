@@ -26,6 +26,8 @@ export default defineConfig({
   redirects: {
     '/projects/sgx-multifactor-fyp': '/projects/sgx-multifactor',
     '/en/projects/sgx-multifactor-fyp': '/en/projects/sgx-multifactor',
+    '/projects/macro-var-research-lab': '/projects/macro-var',
+    '/en/projects/macro-var-research-lab': '/en/projects/macro-var',
     '/projects/nkdsge-dsge': '/projects',
     '/en/projects/nkdsge-dsge': '/en/projects',
     '/projects/quant-macro-engine': '/projects',
