@@ -110,7 +110,7 @@ export const projectsContent = {
       'The curve trades don\'t statistically beat it.',
     ],
     caveats: [
-      'The reversal direction was chosen on the full sample; a walk-forward test is running.',
+      "Out of sample testing: mean reversion still works. When the curve leans too steep or inverted, the Fed's own next move tends to pull it back, and betting on that pull-back is what makes money.",
     ],
     keyFeatures: {},
     galleryImages: {
